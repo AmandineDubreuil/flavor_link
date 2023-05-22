@@ -41,6 +41,7 @@ class Recettes
     #[ORM\ManyToOne(inversedBy: 'recettes')]
     #[ORM\JoinColumn(nullable: true)]
     private ?User $user = null;
+    
 
     public function getId(): ?int
     {
@@ -154,4 +155,5 @@ class Recettes
 
         return $this;
     }
+
 }

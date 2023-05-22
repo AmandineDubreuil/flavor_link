@@ -172,6 +172,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @return Collection<int, Recettes>
      */
+
+     public function __toString(): string
+     {
+         return $this->getPseudo();  // or some string field in your Vegetal Entity 
+     }
+
     public function getRecettes(): Collection
     {
         return $this->recettes;

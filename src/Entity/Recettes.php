@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\RecettesRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -41,6 +43,14 @@ class Recettes
     #[ORM\ManyToOne(inversedBy: 'recettes')]
     #[ORM\JoinColumn(nullable: true)]
     private ?User $user = null;
+
+    #[ORM\OneToMany(mappedBy: 'recetteId', targetEntity: RecetteIngredients::class)]
+    private Collection $ingredients;
+
+    public function __construct()
+    {
+        $this->ingredients = new ArrayCollection();
+    }
     
 
     public function getId(): ?int
@@ -152,6 +162,36 @@ class Recettes
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, RecetteIngredients>
+     */
+    public function getIngredients(): Collection
+    {
+        return $this->ingredients;
+    }
+
+    public function addIngredient(RecetteIngredients $ingredient): self
+    {
+        if (!$this->ingredients->contains($ingredient)) {
+            $this->ingredients->add($ingredient);
+            $ingredient->setRecetteId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeIngredient(RecetteIngredients $ingredient): self
+    {
+        if ($this->ingredients->removeElement($ingredient)) {
+            // set the owning side to null (unless already changed)
+            if ($ingredient->getRecetteId() === $this) {
+                $ingredient->setRecetteId(null);
+            }
+        }
 
         return $this;
     }

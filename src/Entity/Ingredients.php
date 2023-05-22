@@ -76,6 +76,11 @@ class Ingredients
     /**
      * @return Collection<int, RecetteIngredients>
      */
+    public function __toString(): string
+    {
+        return $this->getIngredient();  // or some string field in your Vegetal Entity 
+    }
+
     public function getRecetteIngredients(): Collection
     {
         return $this->recetteIngredients;

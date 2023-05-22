@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -40,6 +42,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column]
     private ?\DateTimeImmutable $modifiedAt = null;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Recettes::class, orphanRemoval: true)]
+    private Collection $recettes;
+
+    public function __construct()
+    {
+        $this->recettes = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -155,6 +165,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setModifiedAt(\DateTimeImmutable $modifiedAt): self
     {
         $this->modifiedAt = $modifiedAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Recettes>
+     */
+    public function getRecettes(): Collection
+    {
+        return $this->recettes;
+    }
+
+    public function addRecette(Recettes $recette): self
+    {
+        if (!$this->recettes->contains($recette)) {
+            $this->recettes->add($recette);
+            $recette->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRecette(Recettes $recette): self
+    {
+        if ($this->recettes->removeElement($recette)) {
+            // set the owning side to null (unless already changed)
+            if ($recette->getUser() === $this) {
+                $recette->setUser(null);
+            }
+        }
 
         return $this;
     }

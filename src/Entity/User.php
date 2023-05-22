@@ -43,7 +43,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?\DateTimeImmutable $modifiedAt = null;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Recettes::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Recettes::class, orphanRemoval: false)]
     private Collection $recettes;
 
     public function __construct()

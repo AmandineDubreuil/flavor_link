@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Recettes;
 use Symfony\Component\Form\AbstractType;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -16,7 +17,7 @@ class RecettesType extends AbstractType
             ->add('tpsPreparation')
             ->add('tpsCuisson')
             ->add('tpsRepos')
-            ->add('preparation')
+            ->add('preparation', CKEditorType::class)
             ->add('photo')
             ->add('saison')
             ->add('nbPersonnes')

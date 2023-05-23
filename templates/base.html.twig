@@ -22,7 +22,9 @@
 				<a href="{{path('app_home')}}" class="navbar-brand">Flavor Link</a>
 				<div class="navbar-menu ml-auto">
 					<a class="navbar-link" href="{{path('app_home')}}">Home</a>
-					<a class="navbar-link" href="{{path('app_user_index')}}">User</a>
+					<a class="navbar-link" href="{{path('app_user_index')}}">Mon compte</a>
+					<a class="navbar-link" href="#">Mon profil</a>
+					<a class="navbar-link" href="#">Mes recettes</a>
 					<a class="navbar-link" href="{{path('app_recettes_index')}}">Recettes</a>
 					<a class="navbar-link" href="{{path('app_ingredients_index')}}">Ingrédients</a>
 					<a class="navbar-link" href="{{path('app_login')}}">Connexion</a>
@@ -44,7 +46,7 @@
 		{% block javascripts %}
 			{{ encore_entry_script_tags('app') }}
 		{% endblock %}
-				<script src="{{asset('./assets/js/script.js')}}"></script>
+		<script src="{{asset('./assets/js/script.js')}}"></script>
 
 	</body>
 </html>

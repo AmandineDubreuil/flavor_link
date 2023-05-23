@@ -27,25 +27,26 @@
 				<tr>
 					<td>{{ recette.id }}</td>
 					<td>{{ recette.titre }}</td>
-				<td>{{ recette.ingredientsAll | raw }}</td>
-							<td>{{ recette.tpsPreparation }}</td>
-				<td>{{ recette.tpsCuisson }}</td>
-				<td>{{ recette.tpsRepos }}</td>
-				<td>{{ recette.preparation | raw }}</td>
-				<td>{{ recette.photo }}</td>
-				<td>{{ recette.saison }}</td>
-				<td>{{ recette.nbPersonnes }}</td>
-				<td>
-					<a href="{{ path('app_recettes_show', {'id': recette.id}) }}">show</a>
-					<a href="{{ path('app_recettes_edit', {'id': recette.id}) }}">edit</a>
-				</td>
-			</tr>
-		{% else %}
-			<tr>
-				<td colspan="10">no records found</td>
-			</tr>
-		{% endfor %}
-	</tbody>
-</table>
+					<td>{{ recette.ingredientsAll | raw }}</td>
+					<td>{{ recette.tpsPreparation }}</td>
+					<td>{{ recette.tpsCuisson }}</td>
+					<td>{{ recette.tpsRepos }}</td>
+					<td>{{ recette.preparation | raw }}</td>
+					<td>{{ recette.photo }}</td>
+					<td>{{ recette.saison }}</td>
+					<td>{{ recette.nbPersonnes }}</td>
+					<td>
+						<a href="{{ path('app_recettes_show', {'id': recette.id}) }}">show</a>
+						<a href="{{ path('app_recettes_edit', {'id': recette.id}) }}">edit</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="10">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
 
-<a href="{{ path('app_recettes_new') }}">Create new</a>{% endblock %}
+	<a href="{{ path('app_recettes_new') }}">Create new</a>
+{% endblock %}

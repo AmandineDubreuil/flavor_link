@@ -63,4 +63,13 @@ class RecettesRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+public function findByUser($userId)
+{
+    return $this->createQueryBuilder('m')
+        ->andWhere('m.genres LIKE :user_id')
+        ->setParameter('user_id', "%$userId%")
+        ->getQuery()
+        ->getResult();
+}
 }

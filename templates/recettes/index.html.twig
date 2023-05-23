@@ -29,14 +29,8 @@
 					<td>{{ recette.titre }}</td>
 
 					<td>
-						<ul>
-                         {% for recette_id in recette.recetteIngredients %}
-							<li>{{ recetteIngredients.recette_id }}</li>
-						</ul>
-						</td>
-				{% else %}
-					<td colspan="10">pas d'ingrédients trouvés</td>
-				{% endfor %}
+					</td>
+			
 				<td>{{ recette.tpsPreparation }}</td>
 				<td>{{ recette.tpsCuisson }}</td>
 				<td>{{ recette.tpsRepos }}</td>

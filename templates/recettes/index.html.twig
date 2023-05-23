@@ -27,11 +27,8 @@
 				<tr>
 					<td>{{ recette.id }}</td>
 					<td>{{ recette.titre }}</td>
-
-					<td>
-					</td>
-			
-				<td>{{ recette.tpsPreparation }}</td>
+				<td>{{ recette.ingredientsAll | raw }}</td>
+							<td>{{ recette.tpsPreparation }}</td>
 				<td>{{ recette.tpsCuisson }}</td>
 				<td>{{ recette.tpsRepos }}</td>
 				<td>{{ recette.preparation | raw }}</td>

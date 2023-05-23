@@ -14,6 +14,7 @@ class RecettesType extends AbstractType
     {
         $builder
             ->add('titre')
+            ->add('ingredientsAll', CKEditorType::class)
             ->add('tpsPreparation')
             ->add('tpsCuisson')
             ->add('tpsRepos')

@@ -13,9 +13,10 @@
                 <th>NbPersonnes</th>
                 <th>actions</th>
             </tr>
-        </thead>
+        </thead>			
+
         <tbody>
-        {% for ami in amis %}
+        {% for ami in app.user.amis %}
             <tr>
                 <td>{{ ami.id }}</td>
                 <td>{{ ami.nom }}</td>

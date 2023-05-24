@@ -1,38 +1,32 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Amis index{% endblock %}
+{% block title %}Amis index
+{% endblock %}
 
 {% block body %}
-    <h1>Mes Amis</h1>
+	<h1>Mes Amis</h1>
+	<a href="{{ path('app_amis_new') }}">Créer</a>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom</th>
-                <th>NbPersonnes</th>
-                <th>actions</th>
-            </tr>
-        </thead>			
 
-        <tbody>
-        {% for ami in app.user.amis %}
-            <tr>
-                <td>{{ ami.id }}</td>
-                <td>{{ ami.nom }}</td>
-                <td>{{ ami.nbPersonnes }}</td>
-                <td>
-                    <a href="{{ path('app_amis_show', {'id': ami.id}) }}">Voir</a>
-                    <a href="{{ path('app_amis_edit', {'id': ami.id}) }}">Modifier</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">Aucun ami enregistré !</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+	{% for ami in app.user.amis %}
+		<div class="card shadow-1 hoverable-1 rounded-3 white">
+			<div class="card-header">
+				<i class="fa-solid fa-user"></i> {{ ami.nom }}
+			</div>
+			<div class="card-content">
+				
+				<div>
+					<a href="{{ path('app_amis_show', {'id': ami.id}) }}">Voir</a>
+					<a href="{{ path('app_amis_edit', {'id': ami.id}) }}">Modifier</a>
+				</div>
+			</div>
+		</div>
 
-    <a href="{{ path('app_amis_new') }}">Créer</a>
+	{% else %}
+		<div>
+			Aucun ami enregistré !
+		</div>
+	{% endfor %}
+
+
 {% endblock %}

@@ -46,9 +46,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Recettes::class, orphanRemoval: false)]
     private Collection $recettes;
 
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Amis::class)]
+    private Collection $amis;
+
     public function __construct()
     {
         $this->recettes = new ArrayCollection();
+        $this->amis = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -199,6 +203,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($recette->getUser() === $this) {
                 $recette->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Amis>
+     */
+    public function getAmis(): Collection
+    {
+        return $this->amis;
+    }
+
+    public function addAmi(Amis $ami): self
+    {
+        if (!$this->amis->contains($ami)) {
+            $this->amis->add($ami);
+            $ami->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAmi(Amis $ami): self
+    {
+        if ($this->amis->removeElement($ami)) {
+            // set the owning side to null (unless already changed)
+            if ($ami->getUser() === $this) {
+                $ami->setUser(null);
             }
         }
 

@@ -23,12 +23,14 @@
 				<div class="navbar-menu ml-auto">
 					<a class="navbar-link" href="{{path('app_home')}}">Home</a>
 					<a class="navbar-link" href="{{path('app_user_index')}}">Mon compte</a>
-					<a class="navbar-link" href="#">Mes recettes</a>
-					<a class="navbar-link" href="{{path('app_recettes_index')}}">Recettes</a>
+					<a class="navbar-link" href="{{path('app_recettes_index')}}">Mes recettes</a>
+					<a class="navbar-link" href="#">Recettes</a>
 					<a class="navbar-link" href="{{path('app_ingredients_index')}}">Ingrédients</a>
-					<a class="navbar-link" href="{{path('app_login')}}">Connexion</a>
-					<a class="navbar-link" href="{{path('app_logout')}}">Déconnexion</a>
-					<a class="navbar-link" href="#">Admin</a>
+					{% if is_granted('ROLE_USER') %}
+						<a class="navbar-link" href="{{path('app_logout')}}">Déconnexion</a>
+					{% else %}
+						<a class="navbar-link" href="{{path('app_login')}}">Connexion</a>
+					{% endif %}
 				</div>
 			</nav>
 		</header>
@@ -38,7 +40,16 @@
 		</main>
 
 		<footer class="footer primary">
-			Copyright © 2023 - Flavor Link
+			<div>
+				Copyright © 2023 - Flavor Link
+			</div>
+			<div>
+				{% if is_granted('ROLE_ADMIN') %}
+					<a class="btn" href="#">Admin</a>
+				{% endif %}
+			</div>
+
+
 		</footer>
 
 		<!-- Axentix JS minified version -->

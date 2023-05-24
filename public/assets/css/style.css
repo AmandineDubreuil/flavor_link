@@ -1,3 +1,17 @@
+:root {
+    --color-one: #192f01;
+    --color-two: #E0475B;
+    --color-three: #DBFEB7;
+    --color-four:#DED369;
+    --color-five: #f8efea;
+}
+main{
+    background-color: var(--color-four);
+}
 .primary {
-    background-color: darkolivegreen;
+    background-color: var(--color-one);
+    color: var(--color-five);
+}
+.btn{
+    background-color: var(--color-two);
 }

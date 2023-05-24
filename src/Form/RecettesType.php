@@ -5,6 +5,8 @@ namespace App\Form;
 use App\Entity\Recettes;
 use Symfony\Component\Form\AbstractType;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -13,7 +15,7 @@ class RecettesType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('titre')
+            ->add('titre', TextType::class)
             ->add('ingredientsAll', CKEditorType::class)
             ->add('tpsPreparation')
             ->add('tpsCuisson')
@@ -23,6 +25,7 @@ class RecettesType extends AbstractType
             ->add('saison')
             ->add('nbPersonnes')
             ->add('user')
+            ->add('Valider', SubmitType::class)
         ;
     }
 

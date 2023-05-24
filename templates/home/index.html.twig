@@ -10,12 +10,12 @@
 		<div class="container">
 			<a class="btn shadow-1 rounded-1" href="{{path('app_user_index')}}">Mon compte</a>
 			<a class="btn shadow-1 rounded-1" href="{{path('app_recettes_index')}}">Mes recettes</a>
-					<a class="btn shadow-1 rounded-1" href="{{path('app_amis_index')}}">Mes amis</a>
+			<a class="btn shadow-1 rounded-1" href="{{path('app_amis_index')}}">Mes amis</a>
 
-		{% if not is_granted('ROLE_USER') %}
-			<a class="btn shadow-1 rounded-1" href="{{path('app_login')}}">Connexion</a>
-			<a class="btn shadow-1 rounded-1" href="{{path('app_register')}}">Inscription</a>
-		{% endif %}
-</div>
+			{% if not is_granted('ROLE_USER') %}
+				<a class="btn shadow-1 rounded-1" href="{{path('app_login')}}">Connexion</a>
+				<a class="btn shadow-1 rounded-1" href="{{path('app_register')}}">Inscription</a>
+			{% endif %}
+		</div>
 	</div>
 {% endblock %}

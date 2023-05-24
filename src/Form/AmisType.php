@@ -14,8 +14,9 @@ class AmisType extends AbstractType
         $builder
             ->add('nom')
             ->add('nbPersonnes')
-            ->add('user')
+         //   ->add('user')
         ;
+        
     }
 
     public function configureOptions(OptionsResolver $resolver): void

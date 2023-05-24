@@ -3,7 +3,7 @@
 {% block title %}Amis index{% endblock %}
 
 {% block body %}
-    <h1>Amis index</h1>
+    <h1>Mes Amis</h1>
 
     <table class="table">
         <thead>
@@ -21,17 +21,17 @@
                 <td>{{ ami.nom }}</td>
                 <td>{{ ami.nbPersonnes }}</td>
                 <td>
-                    <a href="{{ path('app_amis_show', {'id': ami.id}) }}">show</a>
-                    <a href="{{ path('app_amis_edit', {'id': ami.id}) }}">edit</a>
+                    <a href="{{ path('app_amis_show', {'id': ami.id}) }}">Voir</a>
+                    <a href="{{ path('app_amis_edit', {'id': ami.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="4">no records found</td>
+                <td colspan="4">Aucun ami enregistré !</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_amis_new') }}">Create new</a>
+    <a href="{{ path('app_amis_new') }}">Créer</a>
 {% endblock %}

@@ -9,10 +9,17 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Security;
 
 #[Route('/amis')]
 class AmisController extends AbstractController
 {
+    private $security;
+    public function __construct(Security $security)
+    {
+        $this->security = $security;
+    }
+
     #[Route('/', name: 'app_amis_index', methods: ['GET'])]
     public function index(AmisRepository $amisRepository): Response
     {
@@ -24,11 +31,14 @@ class AmisController extends AbstractController
     #[Route('/new', name: 'app_amis_new', methods: ['GET', 'POST'])]
     public function new(Request $request, AmisRepository $amisRepository): Response
     {
+        $userId = $this->security->getUser();
+
         $ami = new Amis();
         $form = $this->createForm(AmisType::class, $ami);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $ami->setUser($userId);
             $amisRepository->save($ami, true);
 
             return $this->redirectToRoute('app_amis_index', [], Response::HTTP_SEE_OTHER);

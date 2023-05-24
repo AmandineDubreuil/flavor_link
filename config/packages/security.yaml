@@ -33,7 +33,9 @@ security:
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
          - { path: ^/user, roles: ROLE_USER }
-
+         - { path: ^/recettes, roles: ROLE_USER }
+         - { path: ^/amis, roles: ROLE_USER }
+         - { path: ^/ingredients, roles: ROLE_ADMIN }
 when@test:
     security:
         password_hashers:

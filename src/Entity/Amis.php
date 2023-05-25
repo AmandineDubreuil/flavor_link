@@ -27,9 +27,13 @@ class Amis
     #[ORM\ManyToMany(targetEntity: Recettes::class, inversedBy: 'amis')]
     private Collection $recettes;
 
+    #[ORM\ManyToMany(targetEntity: Repas::class, mappedBy: 'amis')]
+    private Collection $repas;
+
     public function __construct()
     {
         $this->recettes = new ArrayCollection();
+        $this->repas = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -93,6 +97,33 @@ class Amis
     public function removeRecette(Recettes $recette): self
     {
         $this->recettes->removeElement($recette);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Repas>
+     */
+    public function getRepas(): Collection
+    {
+        return $this->repas;
+    }
+
+    public function addRepa(Repas $repa): self
+    {
+        if (!$this->repas->contains($repa)) {
+            $this->repas->add($repa);
+            $repa->addAmi($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRepa(Repas $repa): self
+    {
+        if ($this->repas->removeElement($repa)) {
+            $repa->removeAmi($this);
+        }
 
         return $this;
     }

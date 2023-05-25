@@ -53,10 +53,14 @@ class Recettes
     #[ORM\ManyToMany(targetEntity: Amis::class, mappedBy: 'recettes')]
     private Collection $amis;
 
+    #[ORM\OneToMany(mappedBy: 'recette', targetEntity: Repas::class)]
+    private Collection $repas;
+
     public function __construct()
     {
         $this->ingredients = new ArrayCollection();
         $this->amis = new ArrayCollection();
+        $this->repas = new ArrayCollection();
     }
     
 
@@ -244,6 +248,36 @@ class Recettes
     {
         if ($this->amis->removeElement($ami)) {
             $ami->removeRecette($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Repas>
+     */
+    public function getRepas(): Collection
+    {
+        return $this->repas;
+    }
+
+    public function addRepa(Repas $repa): self
+    {
+        if (!$this->repas->contains($repa)) {
+            $this->repas->add($repa);
+            $repa->setRecette($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRepa(Repas $repa): self
+    {
+        if ($this->repas->removeElement($repa)) {
+            // set the owning side to null (unless already changed)
+            if ($repa->getRecette() === $this) {
+                $repa->setRecette(null);
+            }
         }
 
         return $this;

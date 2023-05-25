@@ -49,10 +49,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Amis::class)]
     private Collection $amis;
 
+    #[ORM\OneToMany(mappedBy: 'relation', targetEntity: Repas::class)]
+    private Collection $repas;
+
     public function __construct()
     {
         $this->recettes = new ArrayCollection();
         $this->amis = new ArrayCollection();
+        $this->repas = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -233,6 +237,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($ami->getUser() === $this) {
                 $ami->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Repas>
+     */
+    public function getRepas(): Collection
+    {
+        return $this->repas;
+    }
+
+    public function addRepa(Repas $repa): self
+    {
+        if (!$this->repas->contains($repa)) {
+            $this->repas->add($repa);
+            $repa->setRelation($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRepa(Repas $repa): self
+    {
+        if ($this->repas->removeElement($repa)) {
+            // set the owning side to null (unless already changed)
+            if ($repa->getRelation() === $this) {
+                $repa->setRelation(null);
             }
         }
 

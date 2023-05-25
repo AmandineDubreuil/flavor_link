@@ -258,6 +258,8 @@ class Recettes
      */
     public function getRepas(): Collection
     {
+             //  dd($this->repas);
+
         return $this->repas;
     }
 

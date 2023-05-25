@@ -72,4 +72,14 @@ public function findByUser($userId)
         ->getQuery()
         ->getResult();
 }
+public function findRecetteById($value): ?Recettes
+{
+    return $this->createQueryBuilder('u')
+        ->andWhere('u.id = :val')
+        ->setParameter('val', $value)
+        ->getQuery()
+        ->getOneOrNullResult()
+    ;
+}
+
 }

@@ -52,12 +52,23 @@
 			<tr>
 				<th>Amis</th>
 				<td>
-					{% for ami in amis %}
+					<pre>
+					
+				</pre>
 
-						{{ ami.nom }}
+					{% for repa in repas %}
+						{# {{ dump(repasAmis) }} #}
+						<div>
+							{{ repa.dateRepas ? repa.dateRepas|date('d-M-Y') : '' }}
+							- 
+						</div>
+						<div>{{ repa.resultat }}</div>
+						<div>{{ repa.commentaire }}</div>
 
 					{% else %}
-						Recette pas encore partagée !
+						<div>
+							Recette pas encore partagée !
+						</div>
 					{% endfor %}
 				</td>
 			</tr>

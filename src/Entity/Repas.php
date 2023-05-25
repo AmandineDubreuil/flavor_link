@@ -32,7 +32,7 @@ class Repas
     private ?string $commentaire = null;
 
     #[ORM\ManyToOne(inversedBy: 'repas')]
-    private ?User $relation = null;
+    private ?User $user = null;
 
     public function __construct()
     {
@@ -59,6 +59,12 @@ class Repas
     /**
      * @return Collection<int, Amis>
      */
+    public function __toString(): string
+     {
+         return $this->getId();   
+     }
+     
+
     public function getAmis(): Collection
     {
         return $this->amis;
@@ -116,14 +122,14 @@ class Repas
         return $this;
     }
 
-    public function getRelation(): ?User
+    public function getUser(): ?User
     {
-        return $this->relation;
+        return $this->user;
     }
 
-    public function setRelation(?User $relation): self
+    public function setUser(?User $user): self
     {
-        $this->relation = $relation;
+        $this->user = $user;
 
         return $this;
     }

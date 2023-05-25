@@ -104,8 +104,15 @@ class Amis
     /**
      * @return Collection<int, Repas>
      */
+
+     public function __toString(): string
+     {
+         return $this->getNom();   
+     }
+     
     public function getRepas(): Collection
     {
+      //  dd($this->repas);
         return $this->repas;
     }
 

@@ -21,17 +21,21 @@
 	</div>
 
 	<div>
-		<h3>Recettes</h3>
-		{% for recette in recettes %}
-			<div>
-				{{ recette.titre }}
-			</div>
-		{% else %}
-			<div>
-				Aucune recette enregistrée !
-			</div>
-		{% endfor %}
-	</div>
+
+		<div>
+			<h3>Repas</h3>
+			{% for repa in repas %}
+				<div>
+					{{ repa.dateRepas ? repa.dateRepas|date('d-M-Y') : '' }}
+					-
+					{{ repa.recette.titre}}
+				</div>
+			{% else %}
+				<div>
+					Aucun repas enregistré !
+				</div>
+			{% endfor %}
+		</div>
 
 
-{% endblock %}
+	{% endblock %}

@@ -49,7 +49,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Amis::class)]
     private Collection $amis;
 
-    #[ORM\OneToMany(mappedBy: 'relation', targetEntity: Repas::class)]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Repas::class)]
     private Collection $repas;
 
     public function __construct()
@@ -183,7 +183,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
      public function __toString(): string
      {
-         return $this->getPseudo();  // or some string field in your Vegetal Entity 
+         return $this->getPseudo();   
      }
 
     public function getRecettes(): Collection
@@ -255,7 +255,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if (!$this->repas->contains($repa)) {
             $this->repas->add($repa);
-            $repa->setRelation($this);
+            $repa->setUser($this);
         }
 
         return $this;
@@ -265,8 +265,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if ($this->repas->removeElement($repa)) {
             // set the owning side to null (unless already changed)
-            if ($repa->getRelation() === $this) {
-                $repa->setRelation(null);
+            if ($repa->getUser() === $this) {
+                $repa->setUser(null);
             }
         }
 

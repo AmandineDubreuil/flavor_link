@@ -55,10 +55,13 @@ class AmisController extends AbstractController
     #[Route('/{id}', name: 'app_amis_show', methods: ['GET'])]
     public function show(Amis $ami): Response
     {
-        $recettes = $ami->getRecettes();
+
+
+        $repas = $ami->getRepas();
+
         return $this->render('amis/show.html.twig', [
             'ami' => $ami,
-            'recettes' => $recettes,
+            'repas' => $repas,
         ]);
     }
 

@@ -71,7 +71,7 @@ class RecettesController extends AbstractController
     #[Route('/{id}', name: 'app_recettes_delete', methods: ['POST'])]
     public function delete(Request $request, Recettes $recette, RecettesRepository $recettesRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$recette->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $recette->getId(), $request->request->get('_token'))) {
             $recettesRepository->remove($recette, true);
         }
 

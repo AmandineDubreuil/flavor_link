@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\AmisRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: AmisRepository::class)]
@@ -21,6 +23,14 @@ class Amis
 
     #[ORM\ManyToOne(inversedBy: 'amis')]
     private ?User $user = null;
+
+    #[ORM\ManyToMany(targetEntity: Recettes::class, inversedBy: 'amis')]
+    private Collection $recettes;
+
+    public function __construct()
+    {
+        $this->recettes = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -59,6 +69,30 @@ class Amis
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Recettes>
+     */
+    public function getRecettes(): Collection
+    {
+        return $this->recettes;
+    }
+
+    public function addRecette(Recettes $recette): self
+    {
+        if (!$this->recettes->contains($recette)) {
+            $this->recettes->add($recette);
+        }
+
+        return $this;
+    }
+
+    public function removeRecette(Recettes $recette): self
+    {
+        $this->recettes->removeElement($recette);
 
         return $this;
     }

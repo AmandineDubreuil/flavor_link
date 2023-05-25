@@ -15,6 +15,7 @@ use Symfony\Component\Security\Core\Security;
 class AmisController extends AbstractController
 {
     private $security;
+
     public function __construct(Security $security)
     {
         $this->security = $security;
@@ -23,6 +24,7 @@ class AmisController extends AbstractController
     #[Route('/', name: 'app_amis_index', methods: ['GET'])]
     public function index(AmisRepository $amisRepository): Response
     {
+
         return $this->render('amis/index.html.twig', [
             'amis' => $amisRepository->findAll(),
         ]);
@@ -53,8 +55,10 @@ class AmisController extends AbstractController
     #[Route('/{id}', name: 'app_amis_show', methods: ['GET'])]
     public function show(Amis $ami): Response
     {
+        $recettes = $ami->getRecettes();
         return $this->render('amis/show.html.twig', [
             'ami' => $ami,
+            'recettes' => $recettes,
         ]);
     }
 
@@ -79,7 +83,7 @@ class AmisController extends AbstractController
     #[Route('/{id}', name: 'app_amis_delete', methods: ['POST'])]
     public function delete(Request $request, Amis $ami, AmisRepository $amisRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$ami->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $ami->getId(), $request->request->get('_token'))) {
             $amisRepository->remove($ami, true);
         }
 

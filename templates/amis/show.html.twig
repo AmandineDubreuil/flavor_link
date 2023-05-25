@@ -1,30 +1,37 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Amis{% endblock %}
+{% block title %}Amis
+{% endblock %}
 
 {% block body %}
-    <h1>Amis</h1>
+	<h1>{{ ami.nom }}</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ ami.id }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ ami.nom }}</td>
-            </tr>
-            <tr>
-                <th>NbPersonnes</th>
-                <td>{{ ami.nbPersonnes }}</td>
-            </tr>
-        </tbody>
-    </table>
+	<div>
+		Nombre de personnes :
+		{{ ami.nbPersonnes }}
+	</div>
+	<div>
+		<div>
+			<a href="{{ path('app_amis_index') }}">Retour</a>
+		</div>
+		<div>
+			<a href="{{ path('app_amis_edit', {'id': ami.id}) }}">Modifier</a>
+		</div>
+		{{ include('amis/_delete_form.html.twig') }}
+	</div>
 
-    <a href="{{ path('app_amis_index') }}">back to list</a>
+	<div>
+		<h3>Recettes</h3>
+		{% for recette in recettes %}
+			<div>
+				{{ recette.titre }}
+			</div>
+		{% else %}
+			<div>
+				Aucune recette enregistrée !
+			</div>
+		{% endfor %}
+	</div>
 
-    <a href="{{ path('app_amis_edit', {'id': ami.id}) }}">edit</a>
 
-    {{ include('amis/_delete_form.html.twig') }}
 {% endblock %}

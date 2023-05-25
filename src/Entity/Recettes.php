@@ -50,9 +50,13 @@ class Recettes
     #[ORM\Column(length: 255)]
     private ?string $ingredientsAll = null;
 
+    #[ORM\ManyToMany(targetEntity: Amis::class, mappedBy: 'recettes')]
+    private Collection $amis;
+
     public function __construct()
     {
         $this->ingredients = new ArrayCollection();
+        $this->amis = new ArrayCollection();
     }
     
 
@@ -214,6 +218,33 @@ class Recettes
     public function setIngredientsAll(string $ingredientsAll): self
     {
         $this->ingredientsAll = $ingredientsAll;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Amis>
+     */
+    public function getAmis(): Collection
+    {
+        return $this->amis;
+    }
+
+    public function addAmi(Amis $ami): self
+    {
+        if (!$this->amis->contains($ami)) {
+            $this->amis->add($ami);
+            $ami->addRecette($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAmi(Amis $ami): self
+    {
+        if ($this->amis->removeElement($ami)) {
+            $ami->removeRecette($this);
+        }
 
         return $this;
     }

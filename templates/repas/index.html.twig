@@ -24,10 +24,11 @@
 					<td>{{ repa.id }}</td>
 					<td>{{ repa.dateRepas ? repa.dateRepas|date('d-M-Y') : '' }}</td>
 					<td>{{ repa.recette.titre }}</td>
-					<td>{% for ami in repa.amis %}
-                    {{ ami.nom }}, 
-                    {% endfor %}
-                    </td>
+					<td>
+						{% for ami in repa.amis %}
+							{{ ami.nom }},
+						{% endfor %}
+					</td>
 
 					<td>{{ repa.resultat }}</td>
 					<td>{{ repa.commentaire }}</td>

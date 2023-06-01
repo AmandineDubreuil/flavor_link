@@ -1,34 +1,48 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Repas{% endblock %}
+{% block title %}Repas
+{% endblock %}
 
 {% block body %}
-    <h1>Repas</h1>
+	<h1>Repas</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ repa.id }}</td>
-            </tr>
-            <tr>
-                <th>DateRepas</th>
-                <td>{{ repa.dateRepas ? repa.dateRepas|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Resultat</th>
-                <td>{{ repa.resultat }}</td>
-            </tr>
-            <tr>
-                <th>Commentaire</th>
-                <td>{{ repa.commentaire }}</td>
-            </tr>
-        </tbody>
-    </table>
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>Id</th>
+				<td>{{ repa.id }}</td>
+			</tr>
+			<tr>
+				<th>DateRepas</th>
+				<td>{{ repa.dateRepas ? repa.dateRepas|date('Y-m-d') : '' }}</td>
+			</tr>
+			<tr>
+				<th>Recette</th>
+				<td>{{ repa.recette.titre }}</td>
+			</tr>
+			<tr>
+				<th>Amis</th>
+				<td>
+					{% for ami in repa.amis %}
+						{{ ami.nom }},
+					{% endfor %}
+				</td>
+			</tr>
 
-    <a href="{{ path('app_repas_index') }}">back to list</a>
+			<tr>
+				<th>Resultat</th>
+				<td>{{ repa.resultat }}</td>
+			</tr>
+			<tr>
+				<th>Commentaire</th>
+				<td>{{ repa.commentaire }}</td>
+			</tr>
+		</tbody>
+	</table>
 
-    <a href="{{ path('app_repas_edit', {'id': repa.id}) }}">edit</a>
+	<a href="{{ path('app_repas_index') }}">back to list</a>
 
-    {{ include('repas/_delete_form.html.twig') }}
+	<a href="{{ path('app_repas_edit', {'id': repa.id}) }}">edit</a>
+
+	{{ include('repas/_delete_form.html.twig') }}
 {% endblock %}

@@ -1,17 +1,160 @@
+@font-face {
+    font-family: "AlegreyaThin";
+    src: url(../font/alegreyaSans/AlegreyaSans-Thin.ttf);
+}
+
+@font-face {
+    font-family: "Alegreya";
+    src: url(../font/alegreyaSans/AlegreyaSans-Regular.ttf);
+}
+
+@font-face {
+    font-family: "AlegreyaBold";
+    src: url(../font/alegreyaSans/AlegreyaSans-Bold.ttf);
+}
+
+@font-face {
+    font-family: "AlegreyaBlack";
+    src: url(../font/alegreyaSans/AlegreyaSans-Black.ttf);
+}
+
+
+
 :root {
     --color-one: #192f01;
+    --color-oneLight: #2D5401;
     --color-two: #E0475B;
     --color-three: #DBFEB7;
-    --color-four:#DED369;
+    --color-threeDark: #C5E6A5;
+    --color-four : #DED052;
     --color-five: #f8efea;
 }
-main{
-    background-color: var(--color-four);
+
+* {
+    font-family: "Alegreya", Arial, Helvetica, sans-serif;
 }
+
+main {
+    background-color: var(--color-threeDark);
+}
+
+h1 {
+    font-family: "AlegreyaBold", Arial, Helvetica, sans-serif;
+
+}
+
 .primary {
     background-color: var(--color-one);
     color: var(--color-five);
 }
-.btn{
+
+.btnCreer {
     background-color: var(--color-two);
+    border-radius: 4px;
+    padding: .2rem .5rem;
+
+
+}
+
+.btnModifier {
+    background-color: var(--color-one);
+    color: var(--color-three);
+    font-size: small;
+    border-radius: 4px;
+    padding: .2rem .5rem;
+}
+
+.btnVoir {
+    background-color: var(--color-oneLight);
+    color: var(--color-threeDark);
+    font-size: small;
+    border-radius: 4px;
+    padding: .2rem .5rem;
+}
+
+/* base */
+
+/*base / header*/
+#logo {
+    font-family: "AlegreyaBlack", Arial, Helvetica, sans-serif;
+    letter-spacing: 1px;
+    font-size: 2rem;
+    color: var(--color-four);
+}
+
+.navbar-menu {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.navbar-link {
+    font-family: "Alegreya", Arial, Helvetica, sans-serif;
+    letter-spacing: .5px;
+    font-size: 1.1rem;
+    /* line-height: 1rem; */
+}
+
+/* base / footer */
+.footer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.footerAdmin {
+    color: #2c5003;
+}
+
+/*home index*/
+
+.accueil {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100vw;
+    height: 70vh;
+}
+
+.accueil .btn {
+    width: 15rem;
+    padding: 1rem;
+    font-family: "AlegreyaBold", Arial, Helvetica, sans-serif;
+    font-size: 2rem;
+    border-radius: 10px;
+    background-color: var(--color-two);
+
+}
+
+/* amis index */
+.amis .btnCreer {
+    margin: .5rem;
+}
+
+.amis .cards {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.amis .card {
+    margin: 1rem .5rem;
+    background-color: var(--color-three);
+    width: 45%;
+}
+
+.amis .card-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.amis .card-content div {
+    padding: 0 1rem;
 }

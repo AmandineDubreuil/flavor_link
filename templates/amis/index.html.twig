@@ -4,30 +4,34 @@
 {% endblock %}
 
 {% block body %}
-	<h1>Mes Amis</h1>
-	<a href="{{ path('app_amis_new') }}">Créer</a>
+	<section class="amis">
+		<h1>Mes Amis</h1>
+		<a class="btn btnCreer" href="{{ path('app_amis_new') }}">Créer</a>
 
+		<div class="cards">
+			{% for ami in app.user.amis %}
 
-	{% for ami in app.user.amis %}
-	
-		<div class="card shadow-1 hoverable-1 rounded-3 white">
-			<div class="card-header">
-				<i class="fa-solid fa-user"></i> {{ ami.nom }}
-			</div>
-			<div class="card-content">
-				
-				<div>
-					<a href="{{ path('app_amis_show', {'id': ami.id}) }}">Voir</a>
-					<a href="{{ path('app_amis_edit', {'id': ami.id}) }}">Modifier</a>
+				<div class="card shadow-1 hoverable-1 rounded-3 ">
+				<a href="{{ path('app_amis_show', {'id': ami.id}) }}"><div class="card-header">
+						<i class="fa-solid fa-user"></i>
+						{{ ami.nom }}
+					</div></a>
+					<div class="card-content">
+						<div>
+							<a class="btn btnVoir" href="{{ path('app_amis_show', {'id': ami.id}) }}">Voir</a>
+						</div>
+						<div>
+							<a class="btn btnModifier" href="{{ path('app_amis_edit', {'id': ami.id}) }}">Modifier</a>
+						</div>
+					</div>
 				</div>
-			</div>
-		</div>
 
-	{% else %}
-		<div>
-			Aucun ami enregistré !
+			{% else %}
+				<div>
+					Aucun ami enregistré !
+				</div>
+			{% endfor %}
 		</div>
-	{% endfor %}
-
+	</section>
 
 {% endblock %}

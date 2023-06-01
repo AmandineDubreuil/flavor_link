@@ -22,16 +22,26 @@
 	<body class="layout">
 		<header>
 			<nav class="navbar shadow-1 primary">
-				<a href="{{path('app_home')}}" class="navbar-brand">Flavor Link</a>
+				<a href="{{path('app_home')}}" class="navbar-brand" id="logo">Flavor Link</a>
 				<div class="navbar-menu ml-auto">
-					<a class="navbar-link" href="{{path('app_home')}}">Home</a>
-					<a class="navbar-link" href="{{path('app_user_index')}}">Mon compte</a>
-					<a class="navbar-link" href="{{path('app_repas_index')}}">Mes repas</a>
-					<a class="navbar-link" href="{{path('app_recettes_index')}}">Mes recettes</a>
-					<a class="navbar-link" href="{{path('app_amis_index')}}">Mes amis</a>
-					<a class="navbar-link" href="#">Recettes</a>
-					<a class="navbar-link" href="{{path('app_ingredients_index')}}">Ingrédients</a>
+					<a class="navbar-link" href="{{path('app_recettes_index')}}">
+						<i class="fa-solid fa-book"></i>
+					</a>
+					<a class="navbar-link" href="{{path('app_repas_index')}}">
+						<i class="fa-solid fa-utensils"></i>
+					</a>
+					<a class="navbar-link" href="{{path('app_amis_index')}}">
+						<i class="fa-solid fa-people-group"></i>
+					</a>
+					{% if is_granted('ROLE_ADMIN') %}
+						<a class="navbar-link" href="{{path('app_ingredients_index')}}">Ingrédients</a>
+					{% endif %}
+
 					{% if is_granted('ROLE_USER') %}
+					
+						<a class="navbar-link" href="{{path('app_user_index')}}">
+							<i class="fa-solid fa-user"></i>
+						</a>
 						<a class="navbar-link" href="{{path('app_logout')}}">Déconnexion</a>
 					{% else %}
 						<a class="navbar-link" href="{{path('app_login')}}">Connexion</a>
@@ -50,7 +60,7 @@
 			</div>
 			<div>
 				{% if is_granted('ROLE_ADMIN') %}
-					<a class="btn" href="#">Admin</a>
+					<a class="footerAdmin" href="#">Admin</a>
 				{% endif %}
 			</div>
 

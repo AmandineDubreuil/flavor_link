@@ -6,6 +6,7 @@ use App\Entity\Repas;
 use App\Form\RepasType;
 use App\Repository\RecettesRepository;
 use App\Repository\RepasRepository;
+use Doctrine\ORM\Mapping\Id;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,23 +27,28 @@ class RepasController extends AbstractController
     #[Route('/', name: 'app_repas_index', methods: ['GET'])]
     public function index(RepasRepository $repasRepository): Response
     {
+        $user = $this->security->getUser();
+
         return $this->render('repas/index.html.twig', [
-            'repas' => $repasRepository->findAll(),
+            'repas' => $repasRepository->findByUser($user),
         ]);
     }
 
     #[Route('/new', name: 'app_repas_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, RepasRepository $repasRepository, RecettesRepository $recettesRepository): Response
+    public function new(Request $request, RepasRepository $repasRepository): Response
     {
-        $userId = $this->security->getUser();
-        $recettesUser = $this->findByUser($userId);
-        dd($recettesUser);
+        
+       $user = $this->security->getUser();
+        
         $repa = new Repas();
-        $form = $this->createForm(RepasType::class, $repa, $recettesUser);
+     // dd($userId);
+        // $recettesUser = $repa->;
+       
+        $form = $this->createForm(RepasType::class, $repa);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $repa->setUser($userId);
+            $repa->setUser($user);
             $repasRepository->save($repa, true);
 
             return $this->redirectToRoute('app_repas_index', [], Response::HTTP_SEE_OTHER);

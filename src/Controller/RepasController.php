@@ -37,13 +37,13 @@ class RepasController extends AbstractController
     #[Route('/new', name: 'app_repas_new', methods: ['GET', 'POST'])]
     public function new(Request $request, RepasRepository $repasRepository): Response
     {
-        
-       $user = $this->security->getUser();
-        
+
+        $user = $this->security->getUser();
+
         $repa = new Repas();
-     // dd($userId);
-        // $recettesUser = $repa->;
-       
+        // $recettesUser = $repa->getRecette();
+        // dd($recettesUser);
+
         $form = $this->createForm(RepasType::class, $repa);
         $form->handleRequest($request);
 

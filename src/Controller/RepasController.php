@@ -41,9 +41,6 @@ class RepasController extends AbstractController
         $user = $this->security->getUser();
 
         $repa = new Repas();
-        // $recettesUser = $repa->getRecette();
-        // dd($recettesUser);
-
         $form = $this->createForm(RepasType::class, $repa);
         $form->handleRequest($request);
 

@@ -9,10 +9,18 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Security;
 
 #[Route('/recettes')]
 class RecettesController extends AbstractController
 {
+    private $security;
+
+    public function __construct(Security $security)
+    {
+        $this->security = $security;
+    }
+
     #[Route('/', name: 'app_recettes_index', methods: ['GET'])]
     public function index(RecettesRepository $recettesRepository): Response
     {
@@ -24,11 +32,14 @@ class RecettesController extends AbstractController
     #[Route('/new', name: 'app_recettes_new', methods: ['GET', 'POST'])]
     public function new(Request $request, RecettesRepository $recettesRepository): Response
     {
+        $user = $this->security->getUser();
+
         $recette = new Recettes();
         $form = $this->createForm(RecettesType::class, $recette);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $recette->setUser($user);
             $recettesRepository->save($recette, true);
 
             return $this->redirectToRoute('app_recettes_index', [], Response::HTTP_SEE_OTHER);

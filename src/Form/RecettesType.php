@@ -24,7 +24,7 @@ class RecettesType extends AbstractType
             ->add('photo')
             ->add('saison')
             ->add('nbPersonnes')
-            ->add('user')
+           // ->add('user')
             ->add('Valider', SubmitType::class)
         ;
     }

@@ -127,6 +127,16 @@ h1 {
 .login form input{
     border-radius: 4px;
 }
+.login form .btnValider{
+    margin-bottom: 0;
+}
+.login form p{
+    margin-top: 0;
+    margin-left: 1rem;
+}
+.login form p a{
+    text-decoration: underline;
+}
 /*home index*/
 
 .accueil {

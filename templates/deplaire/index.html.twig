@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Deplaire index{% endblock %}
+
+{% block body %}
+    <h1>Deplaire index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Ingredient</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for deplaire in deplaires %}
+            <tr>
+                <td>{{ deplaire.id }}</td>
+                <td>{{ deplaire.ingredient }}</td>
+                <td>
+                    <a href="{{ path('app_deplaire_show', {'id': deplaire.id}) }}">show</a>
+                    <a href="{{ path('app_deplaire_edit', {'id': deplaire.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_deplaire_new') }}">Create new</a>
+{% endblock %}

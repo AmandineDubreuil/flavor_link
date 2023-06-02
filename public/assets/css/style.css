@@ -26,7 +26,7 @@
     --color-two: #E0475B;
     --color-three: #DBFEB7;
     --color-threeDark: #C5E6A5;
-    --color-four : #DED052;
+    --color-four: #DED052;
     --color-five: #f8efea;
 }
 
@@ -47,13 +47,15 @@ h1 {
     background-color: var(--color-one);
     color: var(--color-five);
 }
-.btnValider{
+
+.btnValider {
     background-color: var(--color-two);
     border-radius: 4px;
     padding: .7rem;
     margin: 1rem;
 
 }
+
 .btnCreer {
     background-color: var(--color-two);
     border-radius: 4px;
@@ -75,6 +77,7 @@ h1 {
     border-radius: 4px;
     padding: .2rem .5rem;
 }
+
 .btnRetour {
     background-color: var(--color-threeDark);
     font-size: 1rem;
@@ -82,7 +85,8 @@ h1 {
     padding: .7rem 1rem;
     margin: 1rem;
     border: 1px solid gray;
-  }
+}
+
 /* base */
 
 /*base / header*/
@@ -120,22 +124,63 @@ h1 {
 
 /*security login*/
 
-.login form{
+.login form {
     margin: 1rem;
 }
 
-.login form input{
+.login form input {
     border-radius: 4px;
 }
-.login form .btnValider{
+
+.login form .btnValider {
     margin-bottom: 0;
 }
-.login form p{
+
+.login form p {
     margin-top: 0;
     margin-left: 1rem;
 }
-.login form p a{
+
+.login form p a {
     text-decoration: underline;
+}
+
+/*registration register*/
+.inscription h1{
+    margin-left: 1rem;
+}
+.inscription form {
+    margin: 1rem;
+}
+
+.inscription .inscriptionFormInput div {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+}
+
+.inscription form input {
+    border-radius: 4px;
+    border: 1px solid gray;
+    background-color: var(--color-threeDark);
+}
+.inscription .personnes input{
+width: 5rem;
+}
+.inscription .personnes {
+    display: flex;
+    flex-direction: row;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+}
+.inscription .accepteCGU div {
+    display: flex;
+    flex-direction: row-reverse;
+    margin-top: 1rem;
+   justify-content: flex-end;
+}
+.inscription .accepteCGU div label {
+ padding-left: .5rem;
 }
 /*home index*/
 
@@ -192,13 +237,13 @@ h1 {
 }
 
 /* amis modifier */
-.amisModifier{
+.amisModifier {
 
     position: relative;
 }
 
-.amisModifier .btnRetour{
-position: absolute;
-right: 0;
-margin-top: 0;
+.amisModifier .btnRetour {
+    position: absolute;
+    right: 0;
+    margin-top: 0;
 }

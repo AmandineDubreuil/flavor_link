@@ -4,38 +4,54 @@
 {% endblock %}
 
 {% block body %}
-	<h1>{{ ami.nom }}</h1>
+	<section class="amisShow">
+		<h1>{{ ami.nom }}</h1>
 
-	<div>
-		Nombre de personnes :
-		{{ ami.nbPersonnes }}
-	</div>
-	<div>
 		<div>
-			<a href="{{ path('app_amis_index') }}">Retour</a>
+			Nombre de personnes :
+			{{ ami.nbPersonnes }}
 		</div>
-		<div>
-			<a href="{{ path('app_amis_edit', {'id': ami.id}) }}">Modifier</a>
-		</div>
-		{{ include('amis/_delete_form.html.twig') }}
-	</div>
-
-	<div>
-
-		<div>
-			<h3>Repas</h3>
-			{% for repa in repas %}
-				<div>
-					{{ repa.dateRepas ? repa.dateRepas|date('d-M-Y') : '' }}
-					-
-					{{ repa.recette.titre}}
-				</div>
+		<div class="amisShowAllergies">
+			<h5>Allergies</h5>
+			<a class="btn btnCreer" href="{{ path('app_allergies_new', {'idAmi': ami.id}) }}">Ajouter</a>
+			{% for allergie in ami.allergies %}
+				<p>{{ allergie.ingredient }}</p>
 			{% else %}
-				<div>
-					Aucun repas enregistré !
-				</div>
+				<p>
+					Aucune allergie !
+				</p>
+
 			{% endfor %}
+
 		</div>
 
+		<div>
+			<div>
+				<a class="btn btnRetour" href="{{ path('app_amis_index') }}">Retour</a>
+			</div>
+			<div>
+				<a class="btn btnModifier" href="{{ path('app_amis_edit', {'id': ami.id}) }}">Modifier</a>
+			</div>
+			{{ include('amis/_delete_form.html.twig') }}
+		</div>
 
-	{% endblock %}
+		<div>
+
+			<div>
+				<h3>Repas</h3>
+				{% for repa in repas %}
+					<div>
+						{{ repa.dateRepas ? repa.dateRepas|date('d-M-Y') : '' }}
+						-
+						{{ repa.recette.titre}}
+					</div>
+				{% else %}
+					<div>
+						Aucun repas enregistré !
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+
+	</section>
+{% endblock %}

@@ -2,26 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\Amis;
+use App\Entity\Allergies;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Amis>
+ * @extends ServiceEntityRepository<Allergies>
  *
- * @method Amis|null find($id, $lockMode = null, $lockVersion = null)
- * @method Amis|null findOneBy(array $criteria, array $orderBy = null)
- * @method Amis[]    findAll()
- * @method Amis[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Allergies|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Allergies|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Allergies[]    findAll()
+ * @method Allergies[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class AmisRepository extends ServiceEntityRepository
+class AllergiesRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Amis::class);
+        parent::__construct($registry, Allergies::class);
     }
 
-    public function save(Amis $entity, bool $flush = false): void
+    public function save(Allergies $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class AmisRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(Amis $entity, bool $flush = false): void
+    public function remove(Allergies $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -40,7 +40,7 @@ class AmisRepository extends ServiceEntityRepository
     }
 
 //    /**
-//     * @return Amis[] Returns an array of Amis objects
+//     * @return Allergies[] Returns an array of Allergies objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -54,7 +54,7 @@ class AmisRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Amis
+//    public function findOneBySomeField($value): ?Allergies
 //    {
 //        return $this->createQueryBuilder('a')
 //            ->andWhere('a.exampleField = :val')
@@ -63,14 +63,4 @@ class AmisRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
-
-   public function findOneById($value): ?Amis
-   {
-       return $this->createQueryBuilder('a')
-           ->andWhere('a.id = :val')
-           ->setParameter('val', $value)
-           ->getQuery()
-           ->getOneOrNullResult()
-       ;
-   }
 }

@@ -30,10 +30,14 @@ class Amis
     #[ORM\ManyToMany(targetEntity: Repas::class, mappedBy: 'amis')]
     private Collection $repas;
 
+    #[ORM\OneToMany(mappedBy: 'ami', targetEntity: Allergies::class)]
+    private Collection $allergies;
+
     public function __construct()
     {
         $this->recettes = new ArrayCollection();
         $this->repas = new ArrayCollection();
+        $this->allergies = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -130,6 +134,36 @@ class Amis
     {
         if ($this->repas->removeElement($repa)) {
             $repa->removeAmi($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Allergies>
+     */
+    public function getAllergies(): Collection
+    {
+        return $this->allergies;
+    }
+
+    public function addAllergy(Allergies $allergy): self
+    {
+        if (!$this->allergies->contains($allergy)) {
+            $this->allergies->add($allergy);
+            $allergy->setAmi($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAllergy(Allergies $allergy): self
+    {
+        if ($this->allergies->removeElement($allergy)) {
+            // set the owning side to null (unless already changed)
+            if ($allergy->getAmi() === $this) {
+                $allergy->setAmi(null);
+            }
         }
 
         return $this;

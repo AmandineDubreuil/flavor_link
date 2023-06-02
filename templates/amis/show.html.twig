@@ -32,7 +32,25 @@
 			{% endfor %}
 
 		</div>
+		<div class="amisShowDetestes">
+			<h5>Aliments détestés</h5>
+			<a class="btn btnCreer" href="{{ path('app_detestes_new', {'idAmi': ami.id}) }}">Ajouter</a>
+			{% for deteste in ami.detestes %}
+				<div class="cardDeteste">
+					<p>
+						{{ deteste.ingredient }}
+						<a class="btn btnModifier" href="{{ path('app_detestes_edit', {'id': deteste.id, 'idAmi': ami.id}) }}">Modifier</a>
+						<a class="btn btnSupprimer" href="{{ path('app_detestes_delete', {'id': deteste.id}) }}">Supprimer</a>
+					</p>
+				</div>
+			{% else %}
+				<p>
+					Aucune Aliment détesté !
+				</p>
 
+			{% endfor %}
+
+		</div>
 
 		<div>
 			<div>

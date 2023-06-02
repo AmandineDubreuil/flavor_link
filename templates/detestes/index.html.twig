@@ -14,13 +14,13 @@
             </tr>
         </thead>
         <tbody>
-        {% for detestis in detestes %}
+        {% for deteste in detestes %}
             <tr>
-                <td>{{ detestis.id }}</td>
-                <td>{{ detestis.ingredient }}</td>
+                <td>{{ deteste.id }}</td>
+                <td>{{ deteste.ingredient }}</td>
                 <td>
-                    <a href="{{ path('app_detestes_show', {'id': detestis.id}) }}">show</a>
-                    <a href="{{ path('app_detestes_edit', {'id': detestis.id}) }}">edit</a>
+                    <a href="{{ path('app_detestes_show', {'id': deteste.id}) }}">show</a>
+                    <a href="{{ path('app_detestes_edit', {'id': deteste.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}

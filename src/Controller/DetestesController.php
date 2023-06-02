@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Detestes;
 use App\Form\DetestesType;
 use App\Repository\DetestesRepository;
+use App\Repository\AmisRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,57 +23,67 @@ class DetestesController extends AbstractController
     }
 
     #[Route('/new', name: 'app_detestes_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, DetestesRepository $detestesRepository): Response
+    public function new(Request $request, DetestesRepository $detestesRepository, AmisRepository $amisRepository): Response
     {
-        $detestis = new Detestes();
-        $form = $this->createForm(DetestesType::class, $detestis);
+        $idAmi = $_GET['idAmi'];
+
+        $deteste = new Detestes();
+        $ami = $amisRepository->findOneById($idAmi);
+        $form = $this->createForm(DetestesType::class, $deteste);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $detestesRepository->save($detestis, true);
+            $deteste->setAmi($ami);
+            $detestesRepository->save($deteste, true);
 
-            return $this->redirectToRoute('app_detestes_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_amis_show', [
+                'id' => $idAmi,
+            ], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('detestes/new.html.twig', [
-            'detestis' => $detestis,
+            'detestes' => $deteste,
             'form' => $form,
         ]);
     }
 
     #[Route('/{id}', name: 'app_detestes_show', methods: ['GET'])]
-    public function show(Detestes $detestis): Response
+    public function show(Detestes $deteste): Response
     {
         return $this->render('detestes/show.html.twig', [
-            'detestis' => $detestis,
+            'deteste' => $deteste,
         ]);
     }
 
     #[Route('/{id}/edit', name: 'app_detestes_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Detestes $detestis, DetestesRepository $detestesRepository): Response
+    public function edit(Request $request, Detestes $deteste, DetestesRepository $detestesRepository): Response
     {
-        $form = $this->createForm(DetestesType::class, $detestis);
+        $idAmi = $_GET['idAmi'];
+
+        $form = $this->createForm(DetestesType::class, $deteste);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $detestesRepository->save($detestis, true);
+            $detestesRepository->save($deteste, true);
 
-            return $this->redirectToRoute('app_detestes_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_amis_show', [
+                'id' => $idAmi,
+            ], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('detestes/edit.html.twig', [
-            'detestis' => $detestis,
+            'deteste' => $deteste,
             'form' => $form,
         ]);
     }
 
     #[Route('/{id}', name: 'app_detestes_delete', methods: ['POST'])]
-    public function delete(Request $request, Detestes $detestis, DetestesRepository $detestesRepository): Response
+    public function delete(Request $request, Detestes $deteste, DetestesRepository $detestesRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$detestis->getId(), $request->request->get('_token'))) {
-            $detestesRepository->remove($detestis, true);
+        if ($this->isCsrfTokenValid('delete'.$deteste->getId(), $request->request->get('_token'))) {
+            $detestesRepository->remove($deteste, true);
         }
 
-        return $this->redirectToRoute('app_detestes_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_amis_index', [], Response::HTTP_SEE_OTHER);
     }
 }

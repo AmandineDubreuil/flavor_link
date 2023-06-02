@@ -13,7 +13,7 @@ class DetestesType extends AbstractType
     {
         $builder
             ->add('ingredient')
-            ->add('ami')
+          //  ->add('ami')
         ;
     }
 

@@ -47,13 +47,17 @@ h1 {
     background-color: var(--color-one);
     color: var(--color-five);
 }
+.btnValider{
+    background-color: var(--color-two);
+    border-radius: 4px;
+    padding: .7rem;
+    margin: 1rem;
 
+}
 .btnCreer {
     background-color: var(--color-two);
     border-radius: 4px;
     padding: .2rem .5rem;
-
-
 }
 
 .btnModifier {
@@ -71,7 +75,14 @@ h1 {
     border-radius: 4px;
     padding: .2rem .5rem;
 }
-
+.btnRetour {
+    background-color: var(--color-threeDark);
+    font-size: 1rem;
+    border-radius: 4px;
+    padding: .7rem 1rem;
+    margin: 1rem;
+    border: 1px solid gray;
+  }
 /* base */
 
 /*base / header*/
@@ -107,6 +118,15 @@ h1 {
     color: #2c5003;
 }
 
+/*security login*/
+
+.login form{
+    margin: 1rem;
+}
+
+.login form input{
+    border-radius: 4px;
+}
 /*home index*/
 
 .accueil {
@@ -128,12 +148,14 @@ h1 {
 
 }
 
+/* amis */
+
 /* amis index */
-.amis .btnCreer {
+.amisIndex .btnCreer {
     margin: .5rem;
 }
 
-.amis .cards {
+.amisIndex .cards {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -141,13 +163,13 @@ h1 {
     flex-wrap: wrap;
 }
 
-.amis .card {
+.amisIndex .card {
     margin: 1rem .5rem;
     background-color: var(--color-three);
     width: 45%;
 }
 
-.amis .card-content {
+.amisIndex .card-content {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -155,6 +177,18 @@ h1 {
     flex-wrap: wrap;
 }
 
-.amis .card-content div {
+.amisIndex .card-content div {
     padding: 0 1rem;
+}
+
+/* amis modifier */
+.amisModifier{
+
+    position: relative;
+}
+
+.amisModifier .btnRetour{
+position: absolute;
+right: 0;
+margin-top: 0;
 }

@@ -1,13 +1,20 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Flavor Link - Amis{% endblock %}
+{% block title %}Flavor Link - Amis
+{% endblock %}
 
 {% block body %}
-    <h1>Modifier le profil d'un ami</h1>
 
-    {{ include('amis/_form.html.twig', {'button_label': 'Update'}) }}
+	<section class="amisModifier">
 
-    <a href="{{ path('app_amis_index') }}">back to list</a>
+		<h1>Modifier le profil d'un ami</h1>
+		<a class="btn btnRetour" href="{{ path('app_amis_index') }}">Retour</a>
+		{{ include('amis/_form.html.twig', {'button_label': 'Modifier'}) }}
 
-    {{ include('amis/_delete_form.html.twig') }}
+
+		{{ include('amis/_delete_form.html.twig') }}
+
+	</section>
+
+
 {% endblock %}

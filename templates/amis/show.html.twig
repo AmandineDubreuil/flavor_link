@@ -11,11 +11,19 @@
 			Nombre de personnes :
 			{{ ami.nbPersonnes }}
 		</div>
+
+
 		<div class="amisShowAllergies">
 			<h5>Allergies</h5>
 			<a class="btn btnCreer" href="{{ path('app_allergies_new', {'idAmi': ami.id}) }}">Ajouter</a>
 			{% for allergie in ami.allergies %}
-				<p>{{ allergie.ingredient }}</p>
+				<div class="cardAllergie">
+					<p>
+						{{ allergie.ingredient }}
+						<a class="btn btnModifier" href="{{ path('app_allergies_edit', {'id': allergie.id, 'idAmi': ami.id}) }}">Modifier</a>
+						<a class="btn btnSupprimer" href="{{ path('app_allergies_delete', {'id': allergie.id}) }}">Supprimer</a>
+					</p>
+				</div>
 			{% else %}
 				<p>
 					Aucune allergie !
@@ -24,6 +32,7 @@
 			{% endfor %}
 
 		</div>
+
 
 		<div>
 			<div>

@@ -63,4 +63,14 @@ class AllergiesRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+   public function findAmiByID($value): ?Allergies
+   {
+       return $this->createQueryBuilder('a')
+           ->andWhere('a.ami = :val')
+           ->setParameter('val', $value)
+           ->getQuery()
+           ->getOneOrNullResult()
+       ;
+   }
 }

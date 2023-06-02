@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controller;
+
 use App\Entity\Amis;
 use App\Entity\Allergies;
 use App\Form\AllergiesType;
@@ -30,7 +31,7 @@ class AllergiesController extends AbstractController
 
         $allergy = new Allergies();
         $ami = $amisRepository->findOneById($idAmi);
-       // dd($ami);
+        // dd($ami);
         $form = $this->createForm(AllergiesType::class, $allergy);
         $form->handleRequest($request);
 
@@ -60,13 +61,17 @@ class AllergiesController extends AbstractController
     #[Route('/{id}/edit', name: 'app_allergies_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Allergies $allergy, AllergiesRepository $allergiesRepository): Response
     {
+        $idAmi = $_GET['idAmi'];
+
         $form = $this->createForm(AllergiesType::class, $allergy);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $allergiesRepository->save($allergy, true);
 
-            return $this->redirectToRoute('app_allergies_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_amis_show', [
+                'id' => $idAmi,
+            ], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('allergies/edit.html.twig', [
@@ -82,6 +87,6 @@ class AllergiesController extends AbstractController
             $allergiesRepository->remove($allergy, true);
         }
 
-        return $this->redirectToRoute('app_allergies_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_amis_index', [], Response::HTTP_SEE_OTHER);
     }
 }

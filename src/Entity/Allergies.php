@@ -47,4 +47,9 @@ class Allergies
 
         return $this;
     }
+    public function __toString(): string
+    {
+        return $this->getAmi();  // or some string field in your Vegetal Entity 
+    }
+
 }

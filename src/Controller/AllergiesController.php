@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\Amis;
+
 use App\Entity\Allergies;
 use App\Form\AllergiesType;
 use App\Repository\AllergiesRepository;

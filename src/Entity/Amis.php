@@ -33,11 +33,15 @@ class Amis
     #[ORM\OneToMany(mappedBy: 'ami', targetEntity: Allergies::class)]
     private Collection $allergies;
 
+    #[ORM\OneToMany(mappedBy: 'ami', targetEntity: Detestes::class)]
+    private Collection $detestes;
+
     public function __construct()
     {
         $this->recettes = new ArrayCollection();
         $this->repas = new ArrayCollection();
         $this->allergies = new ArrayCollection();
+        $this->detestes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -163,6 +167,36 @@ class Amis
             // set the owning side to null (unless already changed)
             if ($allergy->getAmi() === $this) {
                 $allergy->setAmi(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Detestes>
+     */
+    public function getDetestes(): Collection
+    {
+        return $this->detestes;
+    }
+
+    public function addDetestis(Detestes $detestis): self
+    {
+        if (!$this->detestes->contains($detestis)) {
+            $this->detestes->add($detestis);
+            $detestis->setAmi($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDetestis(Detestes $detestis): self
+    {
+        if ($this->detestes->removeElement($detestis)) {
+            // set the owning side to null (unless already changed)
+            if ($detestis->getAmi() === $this) {
+                $detestis->setAmi(null);
             }
         }
 

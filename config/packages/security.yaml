@@ -35,6 +35,7 @@ security:
          - { path: ^/user, roles: ROLE_USER }
          - { path: ^/recettes, roles: ROLE_USER }
          - { path: ^/amis, roles: ROLE_USER }
+         - { path: ^/repas, roles: ROLE_USER }
          - { path: ^/ingredients, roles: ROLE_ADMIN }
 when@test:
     security:

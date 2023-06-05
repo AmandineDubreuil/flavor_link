@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ChoixrepasController!
+{% endblock %}
+
+{% block body %}
+
+
+	<section class="choixRepas">
+
+		<h2>Les amis</h2>
+		<form method="POST">
+
+			{% for ami in amis %}
+				<div><input type="checkbox" id="{{ ami.nom }}" name="amisPourRecettes[]" value="{{ ami.id }}">
+					<label for="{{ ami.nom }}">{{ ami.nom }}</label>
+				</div>
+			{% endfor %}
+			<input type="submit" value="Chercher" name="submit">
+		</form>
+
+		<div>
+			{% for ami in amisPresents %}
+				{{ ami.nom }}
+			{% endfor %}
+
+		</div>
+
+		<div>
+			{% for recette in recettesSansAllergie %}
+				{{ recette.titre }}
+			{% endfor %}
+
+		</div>
+	</section>
+{% endblock %}

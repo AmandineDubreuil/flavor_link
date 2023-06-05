@@ -23,7 +23,7 @@
 				<tr>
 					<td>{{ repa.id }}</td>
 					<td>{{ repa.dateRepas ? repa.dateRepas|date('d-M-Y') : '' }}</td>
-					<td>{{ repa.recette.titre }}</td>
+					<td>{{ repa.recette.titre }} {{ repa.recette.ingredientsAll }}</td>
 					<td>
 						{% for ami in repa.amis %}
 							{{ ami.nom }},

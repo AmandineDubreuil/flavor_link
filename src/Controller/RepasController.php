@@ -27,7 +27,7 @@ class RepasController extends AbstractController
     public function index(RepasRepository $repasRepository): Response
     {
         $user = $this->security->getUser();
-
+              // dd($recettes);
         return $this->render('repas/index.html.twig', [
             'repas' => $repasRepository->findByUser($user),
         ]);

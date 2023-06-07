@@ -103,7 +103,7 @@ public function findByUserAndAllergie($ingredient, $user): array
     $query = $entityManager->createQuery(
         'SELECT r
 FROM App\Entity\Recettes r
-WHERE r.user = :user AND r.ingredientsAll NOT LIKE :ingredientsAll 
+WHERE r.user = :user AND r.ingredientsAll LIKE :ingredientsAll 
 ORDER BY r.ingredientsAll ASC'
     )->setParameter('ingredientsAll', '%' . $ingredient . '%')
         ->setParameter('user', $user);

@@ -49,7 +49,7 @@ class Allergies
     }
     public function __toString(): string
     {
-        return $this->getAmi();  // or some string field in your Vegetal Entity 
+        return $this->getIngredient();  // or some string field in your Vegetal Entity 
     }
 
 }

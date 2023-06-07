@@ -83,9 +83,10 @@ class RepasRepository extends ServiceEntityRepository
     FROM App\Entity\Recettes r
     WHERE r.ingredientsAll NOT LIKE :ingredientsAll
     ORDER BY r.ingredientsAll ASC'
-        )->setParameter('ingredientsAll', '%'.$value .'%');
+        )->setParameter('ingredientsAll', '%' . $value . '%');
 
         // returns an array of Product objects
         return $query->getResult();
     }
-}
+
+    }

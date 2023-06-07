@@ -31,13 +31,17 @@ class ChoixrepasController extends AbstractController
 
         $amis = $amisRepository->findBy(['user' => $user]);
         $recettes = $recettesRepository->findBy(['user' => $user]);
+        $amisPresents = "";
+        $recettesSansAllergie = "";
+        $amisPresentsId = "";
 
         if ($request->isMethod('POST') && $request->request->has('submit')) {
             // définir les amis présents
             $amisPresentsId = $request->request->all('amisPourRecettes');
             $amisPresents = $amisRepository->findBy(['id' => $amisPresentsId]);
             // filtrer les recettes selon les amis présents
-            $recettesSansAllergie = $recettesRepository->findByAllergie('cabillaud');
+            $recettesSansAllergie = $recettesRepository->findByUserAndAllergie('cabillaud', $user);
+           // dd($recettesSansAllergie);
         }
 
         return $this->render('choixrepas/index.html.twig', [
@@ -45,6 +49,7 @@ class ChoixrepasController extends AbstractController
             'amis' => $amis,
             'recettesSansAllergie' => $recettesSansAllergie,
             'amisPresents' => $amisPresents,
+            'amisId' => $amisPresentsId,
         ]);
     }
 }

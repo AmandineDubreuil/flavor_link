@@ -96,4 +96,20 @@ ORDER BY r.ingredientsAll ASC'
     return $query->getResult();
 }
 
+public function findByUserAndAllergie($ingredient, $user): array
+{
+    $entityManager = $this->getEntityManager();
+
+    $query = $entityManager->createQuery(
+        'SELECT r
+FROM App\Entity\Recettes r
+WHERE r.user = :user AND r.ingredientsAll NOT LIKE :ingredientsAll 
+ORDER BY r.ingredientsAll ASC'
+    )->setParameter('ingredientsAll', '%' . $ingredient . '%')
+        ->setParameter('user', $user);
+
+    // returns an array of Product objects
+    return $query->getResult();
 }
+}
+

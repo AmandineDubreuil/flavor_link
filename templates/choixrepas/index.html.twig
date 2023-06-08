@@ -8,28 +8,37 @@
 
 	<section class="choixRepas">
 
-		<h2>Les amis</h2>
-		<form method="POST">
+		<h2>Amis invités</h2>
 
-			{% for ami in amis %}
-				<div><input type="checkbox" id="{{ ami.nom }}" name="amisPourRecettes[]" value="{{ ami.id }}">
-					<label for="{{ ami.nom }}">{{ ami.nom }}</label>
-				</div>
-			{% endfor %}
-			<input type="submit" value="Chercher" name="submit">
-		</form>
+		{% if amisPresents %}
+			<div>
+				{% for ami in amisPresents %}
+					{{ ami.nom }}
+				{% endfor %}
+
+			</div>
+		{% else %}
+
+
+			<form method="POST">
+
+				{% for ami in amis %}
+					<div><input type="checkbox" id="{{ ami.nom }}" name="amisPourRecettes[]" value="{{ ami.id }}">
+						<label for="{{ ami.nom }}">{{ ami.nom }}</label>
+					</div>
+				{% endfor %}
+				<input type="submit" value="Chercher" name="submit">
+			</form>
+		{% endif %}
 
 		<div>
-			{% for ami in amisPresents %}
-				{{ ami.id }}
-			{% endfor %}
-
-		</div>
-
-		<div>
-        <h3>Repas proposés</h3>
+			<h3>Repas proposés</h3>
 			{% for recette in recettesOk %}
-				<div><a href="{{ path('app_recettes_show', {'id': recette.id}) }}">{{ recette.titre }}</a> - <a href="{{ path('app_repas_new', {'recetteId': recette.id, 'amisId': amisId}) }}">Choisir</a></div>
+				<div>
+					<a href="{{ path('app_recettes_show', {'id': recette.id}) }}">{{ recette.titre }}</a>
+					-
+					<a href="{{ path('app_repas_new', {'recetteId': recette.id, 'amisId': amisId}) }}">Choisir</a>
+				</div>
 			{% endfor %}
 
 		</div>

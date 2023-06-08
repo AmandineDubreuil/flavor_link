@@ -34,7 +34,7 @@ class ChoixrepasController extends AbstractController
         $amisPresentsId = "";
         $recettesAvecAllergie = [];
         $recettesSansAllergie = [];
-
+        $recettesOk = [];
         if ($request->isMethod('POST') && $request->request->has('submit')) {
             // définir les amis présents
             $amisPresentsId = $request->request->all('amisPourRecettes');
@@ -45,9 +45,12 @@ class ChoixrepasController extends AbstractController
 
             $allergieArray = [];
             $recettesAvecAllergie = [];
-            $recettesOkId = [];
+
             $recettesOui = [];
             $recettesNon = [];
+            $recettesOkId = [];
+
+
             foreach ($allergiesPresentes as $allergie) {
                 $allergieArray[] = $allergie->getIngredient();
             }
@@ -59,8 +62,7 @@ class ChoixrepasController extends AbstractController
                 $recettesAvecAllergie[] = $recettesRepository->findByUserAndAllergie($allergie, $user);
             }
 
-            // supprimer les recettes avec allergie de l'affichage des recettes
-
+            // pour chaque recette récupérer l'id et mettre dans un tableau si allergie possible
             foreach ($recettes as $recette) {
                 $recetteId = $recette->getId();
                 $recettesOui[] = $recetteId;
@@ -73,18 +75,18 @@ class ChoixrepasController extends AbstractController
                     }
                 }
             }
-            // supprimer les doublons dans recette oui
+            // supprimer les doublons
             $recettesOuiUnique = array_unique($recettesOui);
             $recettesNonUnique = array_unique($recettesNon);
 
-            // supprimer les recettes non
+            // supprimer les recettes non du tableau recettes oui
             $recettesOkId = array_diff($recettesOuiUnique, $recettesNonUnique);
 
             // récupère les objets recettes
             foreach ($recettesOkId as $recetteId) {
                 $recettesOk[] = $recettesRepository->find($recetteId);
             }
-          //  dd($recettesOk);
+            //  dd($recettesOk);
         }
 
         return $this->render('choixrepas/index.html.twig', [

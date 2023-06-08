@@ -45,6 +45,9 @@ class ChoixrepasController extends AbstractController
 
             $allergieArray = [];
             $recettesAvecAllergie = [];
+            $recettesOk = [];
+            $recettesOui = [];
+            $recettesNon = [];
             foreach ($allergiesPresentes as $allergie) {
                 $allergieArray[] = $allergie->getIngredient();
             }
@@ -55,17 +58,27 @@ class ChoixrepasController extends AbstractController
             foreach ($allergieArrayUnique as $allergie) {
                 $recettesAvecAllergie[] = $recettesRepository->findByUserAndAllergie($allergie, $user);
             }
-  dd($recettesAvecAllergie);
-            // supprimer les recettes avec allergie de l'affichage des recettes
-            foreach ($recettesAvecAllergie as $recetteAl) {
 
-                if (in_array($recetteAl, $recettes)) {
-                  
-                 //   unset($recetteAl);
+            // supprimer les recettes avec allergie de l'affichage des recettes
+
+            foreach ($recettes as $recette) {
+                $recetteId = $recette->getId();
+                $recettesOui[] = $recetteId;
+                foreach ($recettesAvecAllergie as $recetteAl => $value) {
+
+                    foreach ($value as $valueUnique) {
+                        if ($valueUnique == $recetteId) {
+                            $recettesNon[] = $recetteId;
+                        }
+                    }
                 }
             }
+            // supprimer les doublons dans recette oui
+            $recettesOuiUnique = array_unique($recettesOui);
+            $recettesNonUnique = array_unique($recettesNon);
 
-            //   dd($recettesAvecAllergie);
+            // supprimer les recettes non
+            $recettesOk = array_diff($recettesOuiUnique, $recettesNonUnique);
         }
 
         return $this->render('choixrepas/index.html.twig', [

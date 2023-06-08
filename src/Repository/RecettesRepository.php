@@ -107,9 +107,22 @@ WHERE r.user = :user AND r.ingredientsAll LIKE :ingredientsAll
 ORDER BY r.ingredientsAll ASC'
     )->setParameter('ingredientsAll', '%' . $ingredient . '%')
         ->setParameter('user', $user);
+       
 
-    // returns an array of Product objects
-    return $query->getResult();
+    // // returns an array of Product objects
+    // return $query->getResult();
+
+    //execute the query and get the results as an array of associative arrays
+    $results = $query->getArrayResult();
+
+     // extract the IDs from the result array
+     $ids = array_column($results, 'id');
+
+       // convert the IDs to string format
+    $idsAsString = array_map('strval', $ids);
+
+    return $idsAsString;
+
 }
 }
 

@@ -28,7 +28,7 @@
 
 		<div>
         <h3>Repas proposés</h3>
-			{% for recette in recettesSansAllergie %}
+			{% for recette in recettesOk %}
 				<div><a href="{{ path('app_recettes_show', {'id': recette.id}) }}">{{ recette.titre }}</a> - <a href="{{ path('app_repas_new', {'recetteId': recette.id, 'amisId': amisId}) }}">Choisir</a></div>
 			{% endfor %}
 

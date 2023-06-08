@@ -45,7 +45,7 @@ class ChoixrepasController extends AbstractController
 
             $allergieArray = [];
             $recettesAvecAllergie = [];
-            $recettesOk = [];
+            $recettesOkId = [];
             $recettesOui = [];
             $recettesNon = [];
             foreach ($allergiesPresentes as $allergie) {
@@ -78,13 +78,19 @@ class ChoixrepasController extends AbstractController
             $recettesNonUnique = array_unique($recettesNon);
 
             // supprimer les recettes non
-            $recettesOk = array_diff($recettesOuiUnique, $recettesNonUnique);
+            $recettesOkId = array_diff($recettesOuiUnique, $recettesNonUnique);
+
+            // récupère les objets recettes
+            foreach ($recettesOkId as $recetteId) {
+                $recettesOk[] = $recettesRepository->find($recetteId);
+            }
+          //  dd($recettesOk);
         }
 
         return $this->render('choixrepas/index.html.twig', [
             'controller_name' => 'ChoixrepasController',
             'amis' => $amis,
-            'recettesSansAllergie' => $recettesSansAllergie,
+            'recettesOk' => $recettesOk,
             'amisPresents' => $amisPresents,
             'amisId' => $amisPresentsId,
         ]);

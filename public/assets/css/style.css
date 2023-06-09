@@ -23,8 +23,8 @@
 :root {
     --color-one: #192f01;
     /* --color-oneLight: #2D5401; */
-     /* --color-two: #304717; */
-   
+    /* --color-two: #304717; */
+
     --color-two: #E0475B;
     --color-three: #f5fced;
     --color-threeDark: #f1fbe6;
@@ -53,59 +53,51 @@ h1 {
 
 /* boutons */
 
+.btnValider,
+.btnCreer,
+.btnModifier,
+.btnVoir,
+.btnSupprimer,
+.btnRetour {
+    border-radius: 50px;
+    font-size: 1rem;
+    padding: .5rem;
+    width: 5rem;
+    height: 2rem;
+
+}
+
 .btnValider {
     background-color: var(--color-two);
-    border-radius: 50px;
-    padding: .7rem;
-    margin: 1rem;
 
 }
 
 .btnCreer {
     background-color: var(--color-two);
-    border-radius: 50px;
-    padding: .2rem .5rem;
+
 }
 
 .btnModifier {
     background-color: var(--color-one);
     color: var(--color-three);
-    font-size: .7rem;
-
-    border-radius: 50px;
-    padding: .5rem;
-    width: 4.5rem;
-    height: 2rem;
-}
-
-.btnVoir {
-    background-color: var(--color-four);
-    /* color: var(--color-four); */
-    font-size: .7rem;
-    border-radius: 50px;
-    padding: .5rem;
-    width: 4.5rem;
-    height: 2rem;
+   
 }
 
 .btnSupprimer {
+    background-color: var(--color-four);
+    /* color: var(--color-four); */
+   
+}
+
+/* .btnVoir {
     background-color: var(--color-one);
     color: var(--color-two);
-    font-size: small;
-    border-radius: 50px;
-    padding: .5rem;
-    width: 4.5rem;
-    height: 2rem;
-}
+    
+} */
+
 .btnRetour {
     background-color: var(--color-threeDark);
-    font-size: 1rem;
-    border-radius: 50px;
-    padding: .5rem;;
-    width: 4.5rem;
-    height: 2rem;
-    margin: 1rem;
-    border: 1px solid gray;
+       border: 1px solid gray;
 }
 
 /* base */
@@ -253,16 +245,23 @@ h1 {
 .amisIndex .card {
     margin: 1rem .5rem;
     background-color: var(--color-three);
-    width: 45%;
+    width: 31%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
-.amisIndex .card-content {
+
+/* .amisIndex .card-content {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-}
+} */
 
 .amisIndex .card-content div {
     padding: 0 1rem;
@@ -274,54 +273,62 @@ h1 {
     margin: 1rem;
 }
 
-.amisShow .groupeBoutons{
+.amisShow .groupeBoutons,
+.amisModifier .groupeBoutons {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
 }
-.groupeBoutons .btnRetour{
+
+.groupeBoutons .btnRetour {
     margin-left: 0;
 }
-.amisShow .btnModifier{
+
+.amisShow .btnModifier {
     padding: calc(.6rem + 2px) 1.25rem;
 }
+
 .amisShow .btnCreer {
     font-size: .9rem;
     padding: .3rem .5rem;
 }
+
 .amisShow .cards {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
 
 }
-.cardAllergie{
+
+.cardAllergie {
     width: fit-content;
- }
- .cardAllergie .btn{
-       font-size: .9rem;
- }
-.amisShow .cards .btn{
+}
+
+.cardAllergie .btn {
+    font-size: .9rem;
+}
+
+.amisShow .cards .btn {
     padding: .2rem .7rem;
 }
-.amisShow .cardRepas{
+
+.amisShow .cardRepas {
     padding: 1rem;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
 }
+
 .amisShow .cardRepas .cardRepasTitre {
     font-family: "AlegreyaBold", Arial, Helvetica, sans-serif;
 }
+
 /* amis modifier */
 .amisModifier {
-margin: 1rem;
-    position: relative;
+    margin: 1rem;
 }
-
-.amisModifier .btnRetour {
-    position: absolute;
-    right: 0;
-    margin-top: 0;
+.amisModifier .form-control{
+    max-width: fit-content;
+    min-width: fit-content;
 }

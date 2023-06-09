@@ -12,18 +12,22 @@
 			{% for ami in app.user.amis %}
 
 				<div class="card shadow-1 hoverable-1 rounded-3 ">
-				<a href="{{ path('app_amis_show', {'id': ami.id}) }}"><div class="card-header">
-						<i class="fa-solid fa-user"></i>
-						{{ ami.nom }}
-					</div></a>
-					<div class="card-content">
-						<div>
-							<a class="btn btnVoir" href="{{ path('app_amis_show', {'id': ami.id}) }}">Voir</a>
+					<a href="{{ path('app_amis_show', {'id': ami.id}) }}">
+						<div class="card-header">
+							<i class="fa-solid fa-user"></i>
 						</div>
-						<div>
-							<a class="btn btnModifier" href="{{ path('app_amis_edit', {'id': ami.id}) }}">Modifier</a>
+						<div class="card-header">
+							{{ ami.nom }}
 						</div>
-					</div>
+					</a>
+					{# <div class="card-content">
+											<div>
+												<a class="btn btnVoir" href="{{ path('app_amis_show', {'id': ami.id}) }}">Voir</a>
+											</div>
+											<div>
+												<a class="btn btnModifier" href="{{ path('app_amis_edit', {'id': ami.id}) }}">Modifier</a>
+											</div>
+										</div> #}
 				</div>
 
 			{% else %}

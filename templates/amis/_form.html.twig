@@ -1,4 +1,15 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn btnValider">{{ button_label|default('Enregistrer') }}</button>
+
+<div class="form-field">
+	<label for="nom">Nom</label>
+	<input name="{{ field_name(form.nom) }}" value="{{ field_value(form.nom) }}" placeholder="{{ field_label(form.nom) }}" class="form-control rounded-1"/>
+</div>
+
+<div class="form-field">
+	<label for="nom">Nombre de personnes</label>
+	<input name="{{ field_name(form.nbPersonnes) }}" value="{{ field_value(form.nbPersonnes) }}" placeholder="{{ field_label(form.nbPersonnes) }}" class="form-control rounded-1"/>
+</div>
+
+{# {{form_row(form.nbPersonnes)}} #}
+<button class="btn btnValider">{{ button_label|default('Enregistrer') }}</button>
 {{ form_end(form) }}

@@ -56,7 +56,6 @@ h1 {
 .btnValider,
 .btnCreer,
 .btnModifier,
-.btnVoir,
 .btnSupprimer,
 .btnRetour {
     border-radius: 50px;
@@ -274,7 +273,7 @@ h1 {
 }
 
 .amisShow .groupeBoutons,
-.amisModifier .groupeBoutons {
+.amisModifier .groupeBoutons, .allergieNew .groupeBoutons {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -283,15 +282,6 @@ h1 {
 
 .groupeBoutons .btnRetour {
     margin-left: 0;
-}
-
-.amisShow .btnModifier {
-    padding: calc(.6rem + 2px) 1.25rem;
-}
-
-.amisShow .btnCreer {
-    font-size: .9rem;
-    padding: .3rem .5rem;
 }
 
 .amisShow .cards {
@@ -331,4 +321,19 @@ h1 {
 .amisModifier .form-control{
     max-width: fit-content;
     min-width: fit-content;
+}
+
+/* allergie ajouter */
+
+.allergieNew{
+    margin: 1rem;
+}
+.allergieNewForm{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+
+}
+.allergieNew .form-control{
+    width: fit-content;
 }

@@ -1,4 +1,9 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+<div class="form-field">
+	<label for="nom">Ingrédient</label>
+	<input name="{{ field_name(form.ingredient) }}" value="{{ field_value(form.ingredient) }}" placeholder="{{ field_label(form.ingredient) }}" class="form-control rounded-1"/>
+</div>
+
+
+    <button class="btn btnValider">{{ button_label|default('Ajouter') }}</button>
 {{ form_end(form) }}

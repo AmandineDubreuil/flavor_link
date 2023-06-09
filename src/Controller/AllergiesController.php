@@ -41,6 +41,7 @@ class AllergiesController extends AbstractController
 
             return $this->redirectToRoute('app_amis_show', [
                 'id' => $idAmi,
+              
             ], Response::HTTP_SEE_OTHER);
         }
 

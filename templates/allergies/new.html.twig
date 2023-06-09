@@ -1,11 +1,20 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Allergies{% endblock %}
+{% block title %}New Allergies
+{% endblock %}
 
 {% block body %}
-    <h1>Create new Allergies</h1>
-
-    {{ include('allergies/_form.html.twig') }}
-
-    <a href="{{ path('app_allergies_index') }}">back to list</a>
+	<section class="allergieNew">
+		<h1>Ingrédient à éviter</h1>
+		<div class="allergieNewForm">
+			<div>
+				<a class="btn btnRetour" href="javascript:history.go(-1)">Retour</a>
+			</div>
+			<div>
+				<p>Ajoute les ingrédients un par un.</p>
+				<p>{{ include('allergies/_form.html.twig') }}
+				</p>
+			</div>
+		</div>
+	</section>
 {% endblock %}

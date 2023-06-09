@@ -1,77 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Amis
+{% block title %}Flavor Link
+	{{ ami.nom }}
 {% endblock %}
 
 {% block body %}
 	<section class="amisShow">
 		<h1>{{ ami.nom }}</h1>
-
-		<div>
-			Nombre de personnes :
-			{{ ami.nbPersonnes }}
-		</div>
-
-
-		<div class="amisShowCategorie">
-			<h5>Est allergique</h5>
-			<a class="btn btnCreer" href="{{ path('app_allergies_new', {'idAmi': ami.id}) }}">Ajouter</a>
-			{% for allergie in ami.allergies %}
-				<div class="cardAllergie">
-					<p>
-						{{ allergie.ingredient }}
-						<a class="btn btnModifier" href="{{ path('app_allergies_edit', {'id': allergie.id, 'idAmi': ami.id}) }}">Modifier</a>
-						<a class="btn btnSupprimer" href="{{ path('app_allergies_delete', {'id': allergie.id}) }}">Supprimer</a>
-					</p>
-				</div>
-			{% else %}
-				<p>
-					Aucune allergie !
-				</p>
-
-			{% endfor %}
-
-		</div>
-		<div class="amisShowCategorie">
-			<h5>Déteste</h5>
-			<a class="btn btnCreer" href="{{ path('app_detestes_new', {'idAmi': ami.id}) }}">Ajouter</a>
-			{% for deteste in ami.detestes %}
-				<div class="cardDeteste">
-					<p>
-						{{ deteste.ingredient }}
-						<a class="btn btnModifier" href="{{ path('app_detestes_edit', {'id': deteste.id, 'idAmi': ami.id}) }}">Modifier</a>
-						<a class="btn btnSupprimer" href="{{ path('app_detestes_delete', {'id': deteste.id}) }}">Supprimer</a>
-					</p>
-				</div>
-			{% else %}
-				<p>
-					Aucune Aliment détesté !
-				</p>
-
-			{% endfor %}
-
-		</div>
-		<div class="amisShowCategorie">
-			<h5>N'y tient pas</h5>
-			<a class="btn btnCreer" href="{{ path('app_deplaire_new', {'idAmi': ami.id}) }}">Ajouter</a>
-			{% for deplaire in ami.deplaires %}
-				<div class="cardDeplaire">
-					<p>
-						{{ deplaire.ingredient }}
-						<a class="btn btnModifier" href="{{ path('app_deplaire_edit', {'id': deplaire.id, 'idAmi': ami.id}) }}">Modifier</a>
-						<a class="btn btnSupprimer" href="{{ path('app_deplaire_delete', {'id': deplaire.id}) }}">Supprimer</a>
-					</p>
-				</div>
-			{% else %}
-				<p>
-					Rien à signaler !
-				</p>
-
-			{% endfor %}
-
-		</div>
-
-		<div>
+		<div class="groupeBoutons">
 			<div>
 				<a class="btn btnRetour" href="{{ path('app_amis_index') }}">Retour</a>
 			</div>
@@ -80,19 +16,92 @@
 			</div>
 			{{ include('amis/_delete_form.html.twig') }}
 		</div>
+		<div>
+			Nombre de personnes :
+			{{ ami.nbPersonnes }}
+		</div>
+
+
+		<div>
+			<h5>Ingrédients à éviter</h5>
+			<a class="btn btnCreer" href="{{ path('app_allergies_new', {'idAmi': ami.id}) }}">Ajouter</a>
+			<div class='cards'>
+				{% for allergie in ami.allergies %}
+					<div class="card shadow-1 hoverable-1 rounded-3  cardAllergie">
+						<a class="btn" href="{{ path('app_allergies_edit', {'id': allergie.id, 'idAmi': ami.id}) }}">
+							{{ allergie.ingredient }}
+						</a>
+					</div>
+				{% else %}
+					<p>
+						Aucun ingrédient à éviter !
+					</p>
+
+				{% endfor %}
+			</div>
+
+		</div>
+		{# <div class="amisShowCategorie">
+																			<h5>Déteste</h5>
+																			<a class="btn btnCreer" href="{{ path('app_detestes_new', {'idAmi': ami.id}) }}">Ajouter</a>
+																			{% for deteste in ami.detestes %}
+																				<div class="cardDeteste">
+																					<p>
+																						{{ deteste.ingredient }}
+																						<a class="btn btnModifier" href="{{ path('app_detestes_edit', {'id': deteste.id, 'idAmi': ami.id}) }}">Modifier</a>
+																						<a class="btn btnSupprimer" href="{{ path('app_detestes_delete', {'id': deteste.id}) }}">Supprimer</a>
+																					</p>
+																				</div>
+																			{% else %}
+																				<p>
+																					Aucune Aliment détesté !
+																				</p>
+																
+																			{% endfor %}
+																
+																		</div> #}
+		{# <div class="amisShowCategorie">
+																			<h5>N'y tient pas</h5>
+																			<a class="btn btnCreer" href="{{ path('app_deplaire_new', {'idAmi': ami.id}) }}">Ajouter</a>
+																			{% for deplaire in ami.deplaires %}
+																				<div class="cardDeplaire">
+																					<p>
+																						{{ deplaire.ingredient }}
+																						<a class="btn btnModifier" href="{{ path('app_deplaire_edit', {'id': deplaire.id, 'idAmi': ami.id}) }}">Modifier</a>
+																						<a class="btn btnSupprimer" href="{{ path('app_deplaire_delete', {'id': deplaire.id}) }}">Supprimer</a>
+																					</p>
+																				</div>
+																			{% else %}
+																				<p>
+																					Rien à signaler !
+																				</p>
+																
+																			{% endfor %}
+																
+																		</div> #}
+
 
 		<div>
 
 			<div>
 				<h3>Repas</h3>
 				{% for repa in repas %}
-					<div>
-						{{ repa.dateRepas ? repa.dateRepas|date('d-M-Y') : '' }}
-						-
-						{{ repa.recette.titre}}
-					</div>
+					<a href="{{ path('app_repas_show', {'id': repa.id}) }}">
+
+						<div class="card shadow-1 hoverable-1 rounded-3 cardRepas">
+							<div>
+								{{ repa.dateRepas ? repa.dateRepas|date('d-M-Y') : '' }}
+							</div>
+							<div class="cardRepasTitre">
+								&nbsp;
+								{{ repa.recette.titre}}
+
+							</div>
+
+						</div>
+					</a>
 				{% else %}
-					<div>
+					<div class="card shadow-1 hoverable-1 rounded-3 cardRepas">
 						Aucun repas enregistré !
 					</div>
 				{% endfor %}

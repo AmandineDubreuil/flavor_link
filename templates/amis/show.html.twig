@@ -9,7 +9,7 @@
 		<h1>{{ ami.nom }}</h1>
 		<div class="groupeBoutons">
 			<div>
-				<a class="btn btnRetour" href="{{ path('app_amis_index') }}">Retour</a>
+				<a class="btn btnRetour" href="javascript:history.go(-1)">Retour</a>
 			</div>
 			<div>
 				<a class="btn btnModifier" href="{{ path('app_amis_edit', {'id': ami.id}) }}">Modifier</a>

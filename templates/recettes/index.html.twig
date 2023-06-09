@@ -4,45 +4,50 @@
 {% endblock %}
 
 {% block body %}
-	<h1>Mes recettes</h1>
+	<section class="recettesIndex">
+		<h1>Mes recettes</h1>
+		<a class="btn btnCreer" href="{{ path('app_recettes_new') }}">Créer</a>
 
-	<table class="table">
-		<thead>
-			<tr>
-				<th>Id</th>
-				<th>Photo</th>
-				<th>Titre</th>
-				<th>Préparation</th>
-				<th>Cuisson</th>
-				<th>Repos</th>
-				<th>Saison</th>
-				<th>actions</th>
-			</tr>
-		</thead>
-
-		<tbody>
+		<div class="cards">
 			{% for recette in app.user.recettes %}
-				<tr>
-					<td>{{ recette.id }}</td>
-					<td>{{ recette.photo }}</td>
-					<td>{{ recette.titre }}</td>
+				<div class="card shadow-1 hoverable-1 rounded-3 ">
+					<a
+						class="cardRecette" href="{{ path('app_recettes_show', {'id': recette.id}) }}">
 
-					<td>{{ recette.tpsPreparation }} min</td>
-					<td>{{ recette.tpsCuisson }} min</td>
-					<td>{{ recette.tpsRepos }} min</td>
-					<td>{{ recette.saison }}</td>
-					<td>
-						<a href="{{ path('app_recettes_show', {'id': recette.id}) }}">Voir</a>
-						<a href="{{ path('app_recettes_edit', {'id': recette.id}) }}">Modifier</a>
-					</td>
-				</tr>
+						{# <div class="imgRecette"><img src="{{ recette.photo }}" alt="{{ recette.titre }}"> #}
+						<div class="imgRecette"><img src="{{asset('./assets/img/Image.jpg')}}" alt="{{ recette.titre }}">
+						</div>
+						<div class="slugRecette">
+							<div class="titreRecette">{{ recette.titre }}</div>
+							<div class="tpsRecette">
+								<div>
+									<div>Préparation</div>
+									<div>{{ recette.tpsPreparation }}
+										min</div>
+								</div>
+								<div>
+									<div>Repos</div>
+									<div>{{ recette.tpsRepos }}
+										min</div>
+								</div>
+								<div>
+									<div>Cuisson</div>
+									<div>{{ recette.tpsCuisson }}
+										min</div>
+								</div>
+								
+							</div>
+							<div>{{ recette.saison }}</div>
+						</div>
+
+
+					</a>
+				</div>
 			{% else %}
-				<tr>
-					<td colspan="10">Aucune recette enregistrée !</td>
-				</tr>
-			{% endfor %}
-		</tbody>
-	</table>
+				<div>Aucune recette enregistrée !</div>
 
-	<a href="{{ path('app_recettes_new') }}">Créer</a>
+			{% endfor %}
+		</div>
+
+	</section>
 {% endblock %}

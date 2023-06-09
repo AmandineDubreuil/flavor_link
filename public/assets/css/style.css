@@ -34,7 +34,9 @@
 
 * {
     font-family: "Alegreya", Arial, Helvetica, sans-serif;
+
 }
+
 
 main {
 
@@ -273,7 +275,8 @@ h1 {
 }
 
 .amisShow .groupeBoutons,
-.amisModifier .groupeBoutons, .allergieNew .groupeBoutons {
+.amisModifier .groupeBoutons, .allergieNew .groupeBoutons
+ {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -337,3 +340,44 @@ h1 {
 .allergieNew .form-control{
     width: fit-content;
 }
+
+/* recettes index */
+
+.recettesIndex {
+    margin: 1rem;
+}
+.recettesIndex .cardRecette {
+    display: flex;
+    flex-wrap: wrap;
+   
+
+}
+.recettesIndex .imgRecette img{
+    width: 100%;
+}
+.recettesIndex .imgRecette {
+    width: 25%;
+}
+.recettesIndex .slugRecette {
+    padding: 1rem;
+    width: 75%;
+}
+.recettesIndex .titreRecette {
+    font-family: "AlegreyaBold", Arial, Helvetica, sans-serif;
+font-size: 1.2rem;
+}
+.recettesIndex .tpsRecette{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 20rem;
+    padding-bottom: 1rem;
+}
+.recettesIndex .tpsRecette div {
+display: flex;
+flex-direction: column;
+
+}
+
+/* recettes ajout */
+

@@ -278,7 +278,8 @@ h1 {
 .amisShow .groupeBoutons,
 .amisModifier .groupeBoutons,
 .allergieNew .groupeBoutons,
-.recettesShow .groupeBoutons {
+.recettesShow .groupeBoutons,
+.repasShow .groupeBoutons {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -482,4 +483,10 @@ h1 {
     font-family: "AlegreyaBold", Arial, Helvetica, sans-serif;
 
 
+}
+
+/* repas show */
+
+.repasShow {
+    margin: 1rem;
 }

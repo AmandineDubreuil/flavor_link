@@ -1,48 +1,58 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Repas
+{% block title %}Repas du
+	{{ repa.dateRepas ? repa.dateRepas|date('d-m-Y') : '' }}
+	- Flavor Link
 {% endblock %}
 
 {% block body %}
-	<h1>Repas</h1>
-<a class="btn btnRetour" href=javascript:history.go(-1)>Retour</a>
-	<table class="table">
-		<tbody>
-			<tr>
-				<th>Id</th>
-				<td>{{ repa.id }}</td>
-			</tr>
-			<tr>
-				<th>DateRepas</th>
-				<td>{{ repa.dateRepas ? repa.dateRepas|date('Y-m-d') : '' }}</td>
-			</tr>
-			<tr>
-				<th>Recette</th>
-				<td>{{ repa.recette.titre }}</td>
-			</tr>
-			<tr>
-				<th>Amis</th>
-				<td>
-					{% for ami in repa.amis %}
-						{{ ami.nom }},
-					{% endfor %}
-				</td>
-			</tr>
+	<section class="repasShow">
 
-			<tr>
-				<th>Resultat</th>
-				<td>{{ repa.resultat }}</td>
-			</tr>
-			<tr>
-				<th>Commentaire</th>
-				<td>{{ repa.commentaire }}</td>
-			</tr>
-		</tbody>
-	</table>
+		<h1>Repas du
+			{{ repa.dateRepas ? repa.dateRepas|date('d-m-Y') : '' }}</h1>
+		<div class="groupeBoutons">
+			<div>
+				<a class="btn btnRetour" href="javascript:history.go(-1)">Retour</a>
+			</div>
+			<div>
+				<a class="btn btnModifier" href="{{ path('app_repas_edit', {'id': repa.id}) }}">Modifier</a>
+			</div>
+			{{ include('repas/_delete_form.html.twig') }}
+		</div>
 
-	<a href="{{ path('app_repas_index') }}">back to list</a>
+		<h5>Recette
+		</h5>
+		<p>
+			<a href="{{ path('app_recettes_show', {'id': repa.recette.id}) }}">{{ repa.recette.titre }}</a>
+		</p>
+		<h5>Amis
+		</h5>
+		{% for ami in repa.amis %}
+			<p>
+				<a href="{{ path('app_amis_show', {'id': ami.id}) }}">
+					{{ ami.nom }}</a>
+			</p>
+		{% endfor %}
 
-	<a href="{{ path('app_repas_edit', {'id': repa.id}) }}">edit</a>
+		<h5>Résultat</h5>
+		{% if repa.resultat %}
+			<p>{{ repa.resultat }}</p>
+		{% else  %}
+			<p>
+				<a href="{{ path('app_repas_edit', {'id': repa.id}) }}">Indiquer un résultat.</a>
+			</p>
 
-	{{ include('repas/_delete_form.html.twig') }}
+		{% endif  %}
+
+		<h5>Commentaire</h5>
+		{% if repa.commentaire %}
+			<p>{{ repa.commentaire }}</p>
+		{% else  %}
+			<p>
+				<a href="{{ path('app_repas_edit', {'id': repa.id}) }}">Indiquer un commentaire.</a>
+			</p>
+
+		{% endif  %}
+
+	</section>
 {% endblock %}

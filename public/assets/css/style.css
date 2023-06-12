@@ -276,7 +276,8 @@ h1 {
 
 .amisShow .groupeBoutons,
 .amisModifier .groupeBoutons,
-.allergieNew .groupeBoutons, .recettesShow .groupeBoutons {
+.allergieNew .groupeBoutons,
+.recettesShow .groupeBoutons {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -397,15 +398,19 @@ h1 {
 }
 
 .recettesForm .nbPersonnes label,
-.recettesForm .nbPersonnes p,.recettesForm .recettesTemps .form-field label, .recettesForm .recettesTemps .form-field p {
+.recettesForm .nbPersonnes p,
+.recettesForm .recettesTemps .form-field label,
+.recettesForm .recettesTemps .form-field p {
     margin: 1rem;
 }
 
-.recettesForm .nbPersonnes label, .recettesForm .recettesTemps .form-field label {
+.recettesForm .nbPersonnes label,
+.recettesForm .recettesTemps .form-field label {
     margin-left: 0;
 }
 
-.recettesForm .nbPersonnes input, .recettesForm .recettesTemps .form-field input {
+.recettesForm .nbPersonnes input,
+.recettesForm .recettesTemps .form-field input {
     max-width: 10rem;
 }
 
@@ -413,15 +418,18 @@ h1 {
     flex-direction: row;
     align-items: center;
 }
+
 .recettesForm .photo {
     margin-top: 1rem;
     margin-bottom: 1rem;
- 
+
 }
-.recettesForm .photo input{
+
+.recettesForm .photo input {
     border: 1px solid gray;
     border-radius: 4px;
 }
+
 /* recette ajouter */
 .recetteNew {
     margin: 1rem;
@@ -432,21 +440,28 @@ h1 {
     margin: 1rem;
 }
 
-.recettesShow .recetteImg{
+.recettesShow .imgRecette {
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 1rem;
 }
+
+.recettesShow .imgRecette img {
+    max-width: 70vw;
+}
+
 .tempsGroupe {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-.recettesShow .cardRepasRecette{
+
+.recettesShow .cardRepasRecette {
     padding: 1rem;
     background-color: var(--color-three);
 }
+
 .recettesShow .cardRepasRecette span {
     font-family: "AlegreyaBold", Arial, Helvetica, sans-serif;
 

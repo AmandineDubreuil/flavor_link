@@ -19,10 +19,11 @@
 		</div>
 
 		{% if recette.photo %}
-			<div class="recetteImg"><img src="{{ recette.photo }}" alt="{{ recette.titre }}"></div>
+			<div class="imgRecette"><img src="{{asset('uploads/photos/')}}{{ recette.photo }}" alt="{{ recette.titre }}"></div>
 		{% else  %}
-			<div class="recetteImg"><img src="{{asset('./assets/img/Image.jpg')}}" alt="{{ recette.titre }}"></div>
+			<div class="imgRecette"><img src="{{asset('./assets/img/Image.jpg')}}" alt="{{ recette.titre }}"></div>
 		{% endif  %}
+
 
 		<div class="tempsGroupe">
 			<div class="temps">

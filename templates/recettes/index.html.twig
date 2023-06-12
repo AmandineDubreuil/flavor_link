@@ -11,43 +11,45 @@
 		<div class="cards">
 			{% for recette in app.user.recettes %}
 				<div class="card shadow-1 hoverable-1 rounded-3 ">
-					<a
-						class="cardRecette" href="{{ path('app_recettes_show', {'id': recette.id}) }}">
+					<a class="cardRecette" href="{{ path('app_recettes_show', {'id': recette.id}) }}">
+						{% if recette.photo %}
+							<div class="imgRecette"><img src="{{ recette.photo }}" alt="{{ recette.titre }}">
+							{% else  %}
+								<div class="imgRecette"><img src="{{asset('./assets/img/Image.jpg')}}" alt="{{ recette.titre }}">
+								{% endif  %}
 
-						{# <div class="imgRecette"><img src="{{ recette.photo }}" alt="{{ recette.titre }}"> #}
-						<div class="imgRecette"><img src="{{asset('./assets/img/Image.jpg')}}" alt="{{ recette.titre }}">
-						</div>
-						<div class="slugRecette">
-							<div class="titreRecette">{{ recette.titre }}</div>
-							<div class="tpsRecette">
-								<div>
-									<div>Préparation</div>
-									<div>{{ recette.tpsPreparation }}
-										min</div>
-								</div>
-								<div>
-									<div>Repos</div>
-									<div>{{ recette.tpsRepos }}
-										min</div>
-								</div>
-								<div>
-									<div>Cuisson</div>
-									<div>{{ recette.tpsCuisson }}
-										min</div>
-								</div>
-								
 							</div>
-							<div>{{ recette.saison }}</div>
-						</div>
+							<div class="slugRecette">
+								<div class="titreRecette">{{ recette.titre }}</div>
+								<div class="tpsRecette">
+									<div>
+										<div>Préparation</div>
+										<div>{{ recette.tpsPreparation }}
+											min</div>
+									</div>
+									<div>
+										<div>Repos</div>
+										<div>{{ recette.tpsRepos }}
+											min</div>
+									</div>
+									<div>
+										<div>Cuisson</div>
+										<div>{{ recette.tpsCuisson }}
+											min</div>
+									</div>
+
+								</div>
+								<div>{{ recette.saison }}</div>
+							</div>
 
 
-					</a>
-				</div>
-			{% else %}
-				<div>Aucune recette enregistrée !</div>
+						</a>
+					</div>
+				{% else %}
+					<div>Aucune recette enregistrée !</div>
 
-			{% endfor %}
-		</div>
+				{% endfor %}
+			</div>
 
-	</section>
-{% endblock %}
+		</section>
+	{% endblock %}

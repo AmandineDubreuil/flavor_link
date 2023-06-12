@@ -81,13 +81,13 @@ h1 {
 .btnModifier {
     background-color: var(--color-one);
     color: var(--color-three);
-   
+
 }
 
 .btnSupprimer {
     background-color: var(--color-four);
     /* color: var(--color-four); */
-   
+
 }
 
 /* .btnVoir {
@@ -98,7 +98,7 @@ h1 {
 
 .btnRetour {
     background-color: var(--color-threeDark);
-       border: 1px solid gray;
+    border: 1px solid gray;
 }
 
 /* base */
@@ -275,8 +275,8 @@ h1 {
 }
 
 .amisShow .groupeBoutons,
-.amisModifier .groupeBoutons, .allergieNew .groupeBoutons
- {
+.amisModifier .groupeBoutons,
+.allergieNew .groupeBoutons, .recettesShow .groupeBoutons {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -321,23 +321,26 @@ h1 {
 .amisModifier {
     margin: 1rem;
 }
-.amisModifier .form-control{
+
+.amisModifier .form-control {
     max-width: fit-content;
     min-width: fit-content;
 }
 
 /* allergie ajouter */
 
-.allergieNew{
+.allergieNew {
     margin: 1rem;
 }
-.allergieNewForm{
+
+.allergieNewForm {
     display: flex;
     flex-direction: row-reverse;
     justify-content: space-between;
 
 }
-.allergieNew .form-control{
+
+.allergieNew .form-control {
     width: fit-content;
 }
 
@@ -346,38 +349,105 @@ h1 {
 .recettesIndex {
     margin: 1rem;
 }
+
 .recettesIndex .cardRecette {
     display: flex;
     flex-wrap: wrap;
-   
+
 
 }
-.recettesIndex .imgRecette img{
+
+.recettesIndex .imgRecette img {
     width: 100%;
 }
+
 .recettesIndex .imgRecette {
     width: 25%;
 }
+
 .recettesIndex .slugRecette {
     padding: 1rem;
     width: 75%;
 }
+
 .recettesIndex .titreRecette {
     font-family: "AlegreyaBold", Arial, Helvetica, sans-serif;
-font-size: 1.2rem;
+    font-size: 1.2rem;
 }
-.recettesIndex .tpsRecette{
+
+.recettesIndex .tpsRecette {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     max-width: 20rem;
     padding-bottom: 1rem;
 }
+
 .recettesIndex .tpsRecette div {
-display: flex;
-flex-direction: column;
+    display: flex;
+    flex-direction: column;
 
 }
 
-/* recettes ajout */
+/* recettes form*/
+.recettesForm .nbPersonnes {
+    flex-direction: row;
+    align-items: center;
 
+}
+
+.recettesForm .nbPersonnes label,
+.recettesForm .nbPersonnes p,.recettesForm .recettesTemps .form-field label, .recettesForm .recettesTemps .form-field p {
+    margin: 1rem;
+}
+
+.recettesForm .nbPersonnes label, .recettesForm .recettesTemps .form-field label {
+    margin-left: 0;
+}
+
+.recettesForm .nbPersonnes input, .recettesForm .recettesTemps .form-field input {
+    max-width: 10rem;
+}
+
+.recettesForm .recettesTemps .form-field {
+    flex-direction: row;
+    align-items: center;
+}
+.recettesForm .photo {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+ 
+}
+.recettesForm .photo input{
+    border: 1px solid gray;
+    border-radius: 4px;
+}
+/* recette ajouter */
+.recetteNew {
+    margin: 1rem;
+}
+
+/*recette show*/
+.recettesShow {
+    margin: 1rem;
+}
+
+.recettesShow .recetteImg{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem;
+}
+.tempsGroupe {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.recettesShow .cardRepasRecette{
+    padding: 1rem;
+    background-color: var(--color-three);
+}
+.recettesShow .cardRepasRecette span {
+    font-family: "AlegreyaBold", Arial, Helvetica, sans-serif;
+
+}

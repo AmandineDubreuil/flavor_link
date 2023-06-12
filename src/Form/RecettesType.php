@@ -16,16 +16,15 @@ class RecettesType extends AbstractType
     {
         $builder
             ->add('titre', TextType::class)
-            ->add('ingredientsAll', CKEditorType::class)
+            ->add('ingredientsAll', CKEditorType::class, ['label' => 'Liste des Ingrédients :'])
             ->add('tpsPreparation')
             ->add('tpsCuisson')
             ->add('tpsRepos')
-            ->add('preparation', CKEditorType::class)
+            ->add('preparation', CKEditorType::class, ['label' => 'Préparation :'])
             ->add('photo')
             ->add('saison')
             ->add('nbPersonnes')
            // ->add('user')
-            ->add('Valider', SubmitType::class)
         ;
     }
 

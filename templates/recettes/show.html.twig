@@ -4,81 +4,84 @@
 {% endblock %}
 
 {% block body %}
-	<h1>Recettes</h1>
+	<section class="recettesShow">
 
-	<table class="table">
-		<tbody>
-			<tr>
-				<th>Id</th>
-				<td>{{ recette.id }}</td>
-			</tr>
-			<tr>
-				<th>Titre</th>
-				<td>{{ recette.titre }}</td>
-			</tr>
-			<tr>
-				<th>Ingrédients</th>
-				<td>{{ recette.ingredientsAll | raw }}</td>
-			</tr>
+		<h1>{{ recette.titre }}</h1>
 
-			<tr>
-				<th>TpsPreparation</th>
-				<td>{{ recette.tpsPreparation }}</td>
-			</tr>
-			<tr>
-				<th>TpsCuisson</th>
-				<td>{{ recette.tpsCuisson }}</td>
-			</tr>
-			<tr>
-				<th>TpsRepos</th>
-				<td>{{ recette.tpsRepos }}</td>
-			</tr>
-			<tr>
-				<th>Preparation</th>
-				<td>{{ recette.preparation | raw }}</td>
-			</tr>
-			<tr>
-				<th>Photo</th>
-				<td>{{ recette.photo }}</td>
-			</tr>
-			<tr>
-				<th>Saison</th>
-				<td>{{ recette.saison }}</td>
-			</tr>
-			<tr>
-				<th>NbPersonnes</th>
-				<td>{{ recette.nbPersonnes }}</td>
-			</tr>
-			<tr>
-				<th>Amis</th>
-				<td>
-					<pre>
-					
-				</pre>
+		<div class="groupeBoutons">
+			<div>
+				<a class="btn btnRetour" href="javascript:history.go(-1)">Retour</a>
+			</div>
+			<div>
+				<a class="btn btnModifier" href="{{ path('app_recettes_edit', {'id': recette.id}) }}">Modifier</a>
+			</div>
+			{{ include('recettes/_delete_form.html.twig') }}
+		</div>
 
-					{% for repa in repas %}
-						{# {{ dump(repasAmis) }} #}
-						<div>
-							{{ repa.dateRepas ? repa.dateRepas|date('d-M-Y') : '' }}
-							- 
-						</div>
-						<div>{{ repa.resultat }}</div>
-						<div>{{ repa.commentaire }}</div>
+		{% if recette.photo %}
+			<div class="recetteImg"><img src="{{ recette.photo }}" alt="{{ recette.titre }}"></div>
+		{% else  %}
+			<div class="recetteImg"><img src="{{asset('./assets/img/Image.jpg')}}" alt="{{ recette.titre }}"></div>
+		{% endif  %}
 
-					{% else %}
-						<div>
-							Recette pas encore testée !
-						</div>
-					{% endfor %}
-				</td>
-			</tr>
+		<div class="tempsGroupe">
+			<div class="temps">
+				<div>Temps de préparation</div>
+				<div>{{ recette.tpsPreparation }}
+					min</div>
+			</div>
+			<div class="temps">
+				<div>Temps de repos</div>
+				<div>{{ recette.tpsRepos }}
+					min</div>
+			</div>
+			<div class="temps">
+				<div>Temps de cuisson</div>
+				<div>{{ recette.tpsCuisson }}
+					min</div>
+			</div>
+		</div>
+		<p>Saison :
+			{{ recette.saison }}</p>
 
-		</tbody>
-	</table>
+		<div>
+			<h5>Ingrédients</h5>
+			<p class="nbPersonnes">pour
+				{{ recette.nbPersonnes }}
+				personnes</p>
+			<p>{{ recette.ingredientsAll | raw }}</p>
 
-	<a href="{{ path('app_recettes_index') }}">back to list</a>
+		</div>
 
-	<a href="{{ path('app_recettes_edit', {'id': recette.id}) }}">edit</a>
+		<div>
+			<h5>Préparation</h5>
+			<p>{{ recette.preparation | raw }}</p>
 
-	{{ include('recettes/_delete_form.html.twig') }}
-{% endblock %}
+		</div>
+
+		<h5>Repas effectués</h5>
+		<div class="cards">
+			{% for repa in repas %}
+				<div class="card shadow-1 hoverable-1 rounded-3 cardRepasRecette ">
+					<div>
+						{{ repa.dateRepas ? repa.dateRepas|date('d-M-Y') : '' }}
+						-
+						{% for ami in repa.amis %}
+
+							<span>{{ ami.nom }}</span>
+						{% endfor %}
+
+					</div>
+					<div>{{ repa.resultat }}</div>
+					<div>{{ repa.commentaire }}</div>
+				</div>
+
+			{% else %}
+				<div>
+					Recette pas encore effectuée !
+				</div>
+			{% endfor %}
+			<div>
+
+				{{ include('recettes/_delete_form.html.twig') }}</section>
+		{% endblock %}

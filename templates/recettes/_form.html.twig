@@ -1,28 +1,62 @@
 {{ form_start(form) }}
+<div class="recettesForm">
+	<div class="recettesTitre">
+		<div class="form-field">
+			<label for="titre">Titre de la recette :</label>
+			<input name="{{ field_name(form.titre) }}" value="{{ field_value(form.titre) }}" placeholder="{{ field_label(form.titre) }}" class="form-control rounded-1"/>
+		</div>
 
-<div class="recettesTitre">
-{{form_row(form.titre)}}
-{{form_row(form.saison)}}
-{{form_row(form.nbPersonnes)}}
+		<div class="form-field">
+			<label for="saison">Saison :</label>
+			<input name="{{ field_name(form.saison) }}" value="{{ field_value(form.saison) }}" placeholder="{{ field_label(form.saison) }}" class="form-control rounded-1"/>
+		</div>
+
+
+		<div class="form-field nbPersonnes ">
+			<label for="nbPersonnes">Recette pour
+			</label>
+			<input name="{{ field_name(form.nbPersonnes) }}" value="{{ field_value(form.nbPersonnes) }}" class="form-control rounded-1 "/>
+			<p>
+				personnes.</p>
+		</div>
+	</div>
+	<div class="ingredients">
+		<h4>Ingrédients :</h4>
+
+		{{form_row(form.ingredientsAll)}}
+		{# <a href="{{ path('app_recette_ingredients_new') }}" class="btn">Ajouter</a> #}
+
+	</div>
+	<div class="preparation">
+		<div class="recettesTemps">
+			<div class="form-field">
+				<label for="tpsPreparation">Temps de préparation :</label>
+				<input name="{{ field_name(form.tpsPreparation) }}" value="{{ field_value(form.tpsPreparation) }}" class="form-control rounded-1"/>
+				<p>
+					min.</p>
+			</div>
+
+			<div class="form-field">
+				<label for="tpsRepos">Temps de repos :</label>
+				<input name="{{ field_name(form.tpsRepos) }}" value="{{ field_value(form.tpsRepos) }}" class="form-control rounded-1"/>
+				<p>
+					min.</p>
+			</div>
+
+			<div class="form-field">
+				<label for="tpsCuisson">Temps de cuisson :</label>
+				<input name="{{ field_name(form.tpsCuisson) }}" value="{{ field_value(form.tpsCuisson) }}" class="form-control rounded-1"/>
+				<p>
+					min.</p>
+			</div>
+		</div>
+		<div class="recettesPreparation">
+			{{form_row(form.preparation)}}
+		</div>
+	</div>
+	<div class="photo">
+		{{form_row(form.photo)}}
+	</div>
+	<button class="btn btnValider">{{ button_label|default('Ajouter') }}</button>
 </div>
-<div class="ingredients">
-<h4>ingredients :</h4>
-	{{form_row(form.ingredientsAll)}}
-{# <a href="{{ path('app_recette_ingredients_new') }}" class="btn">Ajouter</a> #}
-
-</div>
-
-<div class="recettesTemps">
-	{{form_row(form.tpsPreparation)}}
-	{{form_row(form.tpsCuisson)}}
-	{{form_row(form.tpsRepos)}}
-</div>
-
-<div class="recettesPreparation">
-{{form_row(form.preparation)}}
-</div>
-
-{{form_row(form.photo)}}
-
-<button class="btn">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}

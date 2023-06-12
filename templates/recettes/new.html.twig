@@ -1,11 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Recettes{% endblock %}
+{% block title %}Nouvelle recette - Flavor Link
+{% endblock %}
 
 {% block body %}
-    <h1>Create new Recettes</h1>
+<section class="recetteNew">
+	<h1>Nouvelle recette</h1>
+	<div>
+		<a class="btn btnRetour" href="javascript:history.go(-1)">Retour</a>
+	</div>
 
-    {{ include('recettes/_form.html.twig') }}
 
-    <a href="{{ path('app_recettes_index') }}">back to list</a>
+	{{ include('recettes/_form.html.twig') }}
+
+</section>
 {% endblock %}

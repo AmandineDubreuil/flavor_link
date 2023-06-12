@@ -30,6 +30,7 @@
     --color-threeDark: #f1fbe6;
     --color-four: #DED052;
     /* --color-five: #f8efea; */
+    --color-five: #fff;
 }
 
 * {
@@ -40,7 +41,7 @@
 
 main {
 
-    background-color: var(--color-threeDark);
+    background-color: var(--color-five);
 }
 
 h1 {
@@ -97,7 +98,7 @@ h1 {
 } */
 
 .btnRetour {
-    background-color: var(--color-threeDark);
+    background-color: var(--color-five);
     border: 1px solid gray;
 }
 
@@ -294,7 +295,9 @@ h1 {
     align-items: center;
 
 }
-
+.amisShow .cardRepas{
+    background-color: var(--color-three);
+}
 .cardAllergie {
     width: fit-content;
 }
@@ -354,8 +357,7 @@ h1 {
 .recettesIndex .cardRecette {
     display: flex;
     flex-wrap: wrap;
-
-
+    background-color: var(--color-three);
 }
 
 .recettesIndex .imgRecette img {
@@ -464,5 +466,20 @@ h1 {
 
 .recettesShow .cardRepasRecette span {
     font-family: "AlegreyaBold", Arial, Helvetica, sans-serif;
+
+}
+
+/* repas index*/
+
+.repasIndex .cardRepas .card-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 1.4rem;
+}
+.repasIndex .cardRepas .cardRepasTitre {
+    font-family: "AlegreyaBold", Arial, Helvetica, sans-serif;
+
 
 }

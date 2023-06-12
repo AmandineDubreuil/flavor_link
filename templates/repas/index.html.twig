@@ -1,49 +1,46 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Repas index
+{% block title %}Mes repas - Flavor Link
 {% endblock %}
 
 {% block body %}
-	<h1>Repas index</h1>
+	<section class="repasIndex">
+		<h1>Mes repas</h1>
+		<a class="btn btnCreer" href="{{ path('app_choixrepas') }}">Créer</a>
 
-	<table class="table">
-		<thead>
-			<tr>
-				<th>Id</th>
-				<th>DateRepas</th>
-				<th>Recette</th>
-				<th>Amis</th>
-				<th>Resultat</th>
-				<th>Commentaire</th>
-				<th>actions</th>
-			</tr>
-		</thead>
-		<tbody>
+		<div class="cards">
 			{% for repa in repas %}
-				<tr>
-					<td>{{ repa.id }}</td>
-					<td>{{ repa.dateRepas ? repa.dateRepas|date('d-M-Y') : '' }}</td>
-					<td>{{ repa.recette.titre }} {{ repa.recette.ingredientsAll }}</td>
-					<td>
-						{% for ami in repa.amis %}
-							{{ ami.nom }},
-						{% endfor %}
-					</td>
+				<div class="card shadow-1 hoverable-1 rounded-3 ">
+					<a class="cardRepas" href="{{ path('app_repas_show', {'id': repa.id}) }}">
+						<div class="card-header">
+							<div>
+								{{ repa.dateRepas ? repa.dateRepas|date('d-M-Y') : '' }}&nbsp;
+							</div>
+							<div class="cardRepasTitre">
+								&nbsp;{{ repa.recette.titre}}&nbsp;
+							</div>
+							<div>
+								{% for ami in repa.amis %}
+									&nbsp;{{ ami.nom }},&nbsp;
+								{% endfor %}
+							</div>
+						</div>
+						<div class="card-content">
+							<div>
+								{{ repa.resultat}}
+							</div>
+							<div>
+								{{ repa.commentaire}}
+							</div>
+						</div>
+					</a>
 
-					<td>{{ repa.resultat }}</td>
-					<td>{{ repa.commentaire }}</td>
-					<td>
-						<a href="{{ path('app_repas_show', {'id': repa.id}) }}">show</a>
-						<a href="{{ path('app_repas_edit', {'id': repa.id}) }}">edit</a>
-					</td>
-				</tr>
+				</div>
 			{% else %}
-				<tr>
-					<td colspan="5">no records found</td>
-				</tr>
-			{% endfor %}
-		</tbody>
-	</table>
+				<div>Aucun repas enregistré !</div>
 
-	<a href="{{ path('app_choixrepas') }}">Create new</a>
+			{% endfor %}
+		</div>
+
+	</section>
 {% endblock %}

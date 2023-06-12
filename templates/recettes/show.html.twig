@@ -63,26 +63,28 @@
 		<h5>Repas effectués</h5>
 		<div class="cards">
 			{% for repa in repas %}
-				<div class="card shadow-1 hoverable-1 rounded-3 cardRepasRecette ">
-					<div>
-						{{ repa.dateRepas ? repa.dateRepas|date('d-M-Y') : '' }}
-						-
-						{% for ami in repa.amis %}
+				<a href="{{ path('app_repas_show', {'id': repa.id}) }}">
 
-							<span>{{ ami.nom }}</span>
-						{% endfor %}
+					<div class="card shadow-1 hoverable-1 rounded-3 cardRepasRecette ">
 
+						<div>
+							{{ repa.dateRepas ? repa.dateRepas|date('d-M-Y') : '' }}
+							-
+							{% for ami in repa.amis %}
+
+								<span>{{ ami.nom }}</span>
+							{% endfor %}
+
+						</div>
+						<div>{{ repa.resultat }}</div>
+						<div>{{ repa.commentaire }}</div>
 					</div>
-					<div>{{ repa.resultat }}</div>
-					<div>{{ repa.commentaire }}</div>
-				</div>
-
+				</a>
 			{% else %}
 				<div>
 					Recette pas encore effectuée !
 				</div>
 			{% endfor %}
-			<div>
-
-				{{ include('recettes/_delete_form.html.twig') }}</section>
-		{% endblock %}
+		</div>
+	</section>
+{% endblock %}

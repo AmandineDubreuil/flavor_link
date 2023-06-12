@@ -23,8 +23,8 @@ class RecettesType extends AbstractType
             ->add('ingredientsAll', CKEditorType::class, ['label' => 'Liste des Ingrédients :'])
             ->add('tpsPreparation', NumberType::class, [               'required' => true, 
             ])
-            ->add('tpsCuisson')
-            ->add('tpsRepos')
+            ->add('tpsCuisson', NumberType::class)
+            ->add('tpsRepos', NumberType::class)
             ->add('preparation', CKEditorType::class, ['label' => 'Préparation :'])
             ->add('photo', FileType::class, [
                 'label' => 'photo (fichier image) ',
@@ -40,8 +40,8 @@ class RecettesType extends AbstractType
                     ])
                 ]
             ])
-            ->add('saison')
-            ->add('nbPersonnes')
+            ->add('saison', TextType::class)
+            ->add('nbPersonnes', NumberType::class)
             // ->add('user')
         ;
     }

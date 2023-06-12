@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\AllergiesRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: AllergiesRepository::class)]
 class Allergies
@@ -13,6 +14,9 @@ class Allergies
     #[ORM\Column]
     private ?int $id = null;
 
+    /**
+     * @Assert\NotBlank
+     */
     #[ORM\Column(length: 50)]
     private ?string $ingredient = null;
 
@@ -51,5 +55,4 @@ class Allergies
     {
         return $this->getIngredient();  // or some string field in your Vegetal Entity 
     }
-
 }

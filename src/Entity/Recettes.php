@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: RecettesRepository::class)]
 class Recettes
@@ -16,27 +17,48 @@ class Recettes
     #[ORM\Column]
     private ?int $id = null;
 
+    /**
+     * @Assert\NotBlank
+     */
     #[ORM\Column(length: 255)]
     private ?string $titre = null;
 
+    /**
+     * @Assert\NotBlank
+     */
     #[ORM\Column]
     private ?int $tpsPreparation = null;
 
+    /**
+     * @Assert\NotBlank
+     */
     #[ORM\Column]
     private ?int $tpsCuisson = null;
 
+    /**
+     * @Assert\NotBlank
+     */
     #[ORM\Column]
     private ?int $tpsRepos = null;
 
+    /**
+     * @Assert\NotBlank
+     */
     #[ORM\Column(type: Types::TEXT)]
     private ?string $preparation = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $photo = null;
 
+    /**
+     * @Assert\NotBlank
+     */
     #[ORM\Column(length: 255)]
     private ?string $saison = null;
 
+    /**
+     * @Assert\NotBlank
+     */
     #[ORM\Column]
     private ?int $nbPersonnes = null;
 
@@ -62,7 +84,7 @@ class Recettes
         $this->amis = new ArrayCollection();
         $this->repas = new ArrayCollection();
     }
-    
+
 
     public function getId(): ?int
     {
@@ -182,10 +204,10 @@ class Recettes
      * 
      */
 
-     public function __toString(): string
-     {
-         return $this->getId();  // or some string field in your Vegetal Entity 
-     }
+    public function __toString(): string
+    {
+        return $this->getId();  // or some string field in your Vegetal Entity 
+    }
 
     public function getIngredients(): Collection
     {
@@ -258,7 +280,7 @@ class Recettes
      */
     public function getRepas(): Collection
     {
-             //  dd($this->repas);
+        //  dd($this->repas);
 
         return $this->repas;
     }
@@ -284,5 +306,4 @@ class Recettes
 
         return $this;
     }
-
 }

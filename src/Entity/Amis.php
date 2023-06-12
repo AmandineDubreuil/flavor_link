@@ -6,6 +6,7 @@ use App\Repository\AmisRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: AmisRepository::class)]
 class Amis
@@ -15,9 +16,15 @@ class Amis
     #[ORM\Column]
     private ?int $id = null;
 
+    /**
+     * @Assert\NotBlank
+     */
     #[ORM\Column(length: 100)]
     private ?string $nom = null;
 
+    /**
+     * @Assert\NotBlank
+     */
     #[ORM\Column]
     private ?int $nbPersonnes = null;
 
@@ -117,14 +124,14 @@ class Amis
      * @return Collection<int, Repas>
      */
 
-     public function __toString(): string
-     {
-         return $this->getNom();   
-     }
-     
+    public function __toString(): string
+    {
+        return $this->getNom();
+    }
+
     public function getRepas(): Collection
     {
-      //  dd($this->repas);
+        //  dd($this->repas);
         return $this->repas;
     }
 

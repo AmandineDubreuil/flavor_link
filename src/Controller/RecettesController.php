@@ -11,6 +11,7 @@ use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
@@ -26,7 +27,7 @@ class RecettesController extends AbstractController
         $this->entityManager = $entityManager;
     }
 
-
+    protected static $saisons = array('Printemps', 'Été', 'Automne', 'Hiver');
 
 
     #[Route('/', name: 'app_recettes_index', methods: ['GET'])]
@@ -38,8 +39,9 @@ class RecettesController extends AbstractController
         ]);
     }
 
+
     #[Route('/new', name: 'app_recettes_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, RecettesRepository $recettesRepository,  SluggerInterface $slugger): Response
+    public function new(Request $request, RecettesRepository $recettesRepository,  SluggerInterface $slugger, ValidatorInterface $validator): Response
     {
         $user = $this->security->getUser();
 
@@ -47,7 +49,13 @@ class RecettesController extends AbstractController
         $form = $this->createForm(RecettesType::class, $recette);
         $form->handleRequest($request);
 
+
+        //validation du formulaire
         if ($form->isSubmitted() && $form->isValid()) {
+
+           
+
+
             $recette->setUser($user);
             $recettesRepository->save($recette, true);
             $photoFile = $form->get('photo')->getData();
@@ -77,14 +85,15 @@ class RecettesController extends AbstractController
                 $entityManager->persist($recette);
                 $entityManager->flush();
             }
-            //  dd($recette);
-
+          
             return $this->redirectToRoute('app_recettes_index', [], Response::HTTP_SEE_OTHER);
         }
+
 
         return $this->renderForm('recettes/new.html.twig', [
             'recette' => $recette,
             'form' => $form,
+
         ]);
     }
 

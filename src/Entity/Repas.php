@@ -17,15 +17,11 @@ class Repas
     #[ORM\Column]
     private ?int $id = null;
 
-    /**
-     * @Assert\NotBlank
-     */
+   
     #[ORM\ManyToOne(inversedBy: 'repas')]
     private ?Recettes $recette = null;
 
-    /**
-     * @Assert\NotBlank
-     */
+
     #[ORM\ManyToMany(targetEntity: Amis::class, inversedBy: 'repas')]
     private Collection $amis;
 
@@ -38,9 +34,6 @@ class Repas
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $commentaire = null;
 
-    /**
-     * @Assert\NotBlank
-     */
     #[ORM\ManyToOne(inversedBy: 'repas')]
     private ?User $user = null;
 

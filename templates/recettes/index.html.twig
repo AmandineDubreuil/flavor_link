@@ -1,14 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Recettes index
+{% block title %}Recettes - Flavor Link
 {% endblock %}
 
 {% block body %}
 	<section class="recettesIndex">
 		<h1>Mes recettes</h1>
-		<a class="btn btnCreer" href="{{ path('app_recettes_new') }}">Créer</a>
+		<div>
+			<a class="btn btnCreer" href="{{ path('app_recettes_new') }}">Créer</a>
+		</div>
+		<div
+			class="cards">
+			{# {% if recette %} #}
 
-		<div class="cards">
 			{% for recette in app.user.recettes %}
 				<div class="card shadow-1 hoverable-1 rounded-3 ">
 					<a class="cardRecette" href="{{ path('app_recettes_show', {'id': recette.id}) }}">

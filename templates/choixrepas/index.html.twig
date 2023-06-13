@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ChoixrepasController!
+{% block title %}Nouveau repas - Flavor Link
 {% endblock %}
 
 {% block body %}
@@ -9,6 +9,10 @@
 	<section class="choixRepas">
 
 		<h2>Amis invités</h2>
+
+		<div>
+			<a class="btn btnRetour" href="javascript:history.go(-1)">Retour</a>
+		</div>
 
 		{% if amisPresents %}
 			<div>
@@ -27,18 +31,68 @@
 						<label for="{{ ami.nom }}">{{ ami.nom }}</label>
 					</div>
 				{% endfor %}
-				<input type="submit" value="Chercher" name="submit">
+				<input type="submit" value="Chercher" name="submit" class="btn btnValider">
 			</form>
 		{% endif %}
 
 		<div>
 			<h3>Repas proposés</h3>
 			{% for recette in recettesOk %}
-				<div>
-					<a href="{{ path('app_recettes_show', {'id': recette.id}) }}">{{ recette.titre }}</a>
-					-
-					<a href="{{ path('app_repas_new', {'recetteId': recette.id, 'amisId': amisId}) }}">Choisir</a>
+
+				<div class="card shadow-1 hoverable-1 rounded-3 ">
+					<div
+						class="cardRecette">
+
+						{% if recette.photo %}
+							<div class="imgRecette">
+								<a href="{{ path('app_recettes_show', {'id': recette.id}) }}"><img src="{{asset('uploads/photos/')}}{{ recette.photo }}" alt="{{ recette.titre }}"></a>
+							</div>
+						{% else  %}
+							<div class="imgRecette">
+								<a href="{{ path('app_recettes_show', {'id': recette.id}) }}"><img src="{{asset('./assets/img/Image.jpg')}}" alt="{{ recette.titre }}"></a>
+							</div>
+						{% endif  %}
+
+						<div class="slugRecette">
+							<div class="titreRecette">
+								<a href="{{ path('app_recettes_show', {'id': recette.id}) }}">{{ recette.titre }}</a>
+							</div>
+							<div class="tpsRecette">
+								<div>
+									<div>Préparation</div>
+									<div>{{ recette.tpsPreparation }}
+										min</div>
+								</div>
+								<div>
+									<div>Repos</div>
+									<div>{{ recette.tpsRepos }}
+										min</div>
+								</div>
+								<div>
+									<div>Cuisson</div>
+									<div>{{ recette.tpsCuisson }}
+										min</div>
+								</div>
+
+							</div>
+							<div>{{ recette.saison }}</div>
+
+							<a href="{{ path('app_repas_new', {'recetteId': recette.id, 'amisId': amisId}) }}" class="btn btnValider">Choisir</a>
+
+						</div>
+
+
+						{# </a> #}
+					</div>
 				</div>
+			{% else %}
+				<div>Aucune recette ne correspond...</div>
+
+				{# <div>
+																					<a href="{{ path('app_recettes_show', {'id': recette.id}) }}">{{ recette.titre }}</a>
+																					-
+																					<a href="{{ path('app_repas_new', {'recetteId': recette.id, 'amisId': amisId}) }}">Choisir</a>
+																				</div> #}
 			{% endfor %}
 
 		</div>

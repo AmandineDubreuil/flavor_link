@@ -1,11 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Amis{% endblock %}
+{% block title %}Nouvel ami - Flavor Link
+{% endblock %}
 
 {% block body %}
-    <h1>Create new Amis</h1>
+	<section class="amisCreer">
+		<h1>Nouvelle fiche ami</h1>
+		<div>
+			<a class="btn btnRetour" href="javascript:history.go(-1)">Retour</a>
+		</div>
 
-    {{ include('amis/_form.html.twig') }}
-
-    <a href="{{ path('app_amis_index') }}">back to list</a>
+		{{ include('amis/_form.html.twig') }}
+	</section>
 {% endblock %}

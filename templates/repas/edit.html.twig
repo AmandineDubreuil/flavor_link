@@ -1,13 +1,21 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Repas{% endblock %}
+{% block title %}Modification repas - Flavor Link
+{% endblock %}
 
 {% block body %}
-    <h1>Edit Repas</h1>
+	<section class="repasModifier">
+		<h1>
+			Modifications repas</h1>
+		<div class="groupeBoutons">
+			<div>
+				<a class="btn btnRetour" href="javascript:history.go(-1)">Retour</a>
+			</div>
+			<div>
+				{{ include('repas/_delete_form.html.twig') }}
+			</div>
+		</div>
 
-    {{ include('repas/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('app_repas_index') }}">back to list</a>
-
-    {{ include('repas/_delete_form.html.twig') }}
+		{{ include('repas/_form.html.twig', {'button_label': 'Modifier'} ) }}
+	</section>
 {% endblock %}

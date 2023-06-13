@@ -275,11 +275,7 @@ h1 {
     margin: 1rem;
 }
 
-.amisShow .groupeBoutons,
-.amisModifier .groupeBoutons,
-.allergieNew .groupeBoutons,
-.recettesShow .groupeBoutons,
-.repasShow .groupeBoutons {
+.groupeBoutons {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -296,9 +292,11 @@ h1 {
     align-items: center;
 
 }
-.amisShow .cardRepas{
+
+.amisShow .cardRepas {
     background-color: var(--color-three);
 }
+
 .cardAllergie {
     width: fit-content;
 }
@@ -479,6 +477,11 @@ h1 {
     justify-content: flex-start;
     font-size: 1.4rem;
 }
+
+.repasIndex .cardRepas {
+    background-color: var(--color-three);
+}
+
 .repasIndex .cardRepas .cardRepasTitre {
     font-family: "AlegreyaBold", Arial, Helvetica, sans-serif;
 
@@ -490,3 +493,14 @@ h1 {
 .repasShow {
     margin: 1rem;
 }
+
+/* repas modifier */
+.repasModifier {
+    margin: 1rem;
+}
+
+.repasModifier .dateRepas{
+    width: 15rem;
+}
+
+@media screen and (min-width: 576px) {}

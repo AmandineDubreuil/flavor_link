@@ -13,6 +13,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\ChoiceList\ChoiceList;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 class RepasType extends AbstractType
 {
@@ -28,7 +29,10 @@ class RepasType extends AbstractType
         $user = $this->security->getUser();
 
         $builder
-            ->add('dateRepas')
+            ->add('dateRepas', DateType::class, array(
+                'widget' => 'single_text', 
+                'format' => 'yyyy-MM-dd', 
+            ))
         //   //  ->add('recette', EntityType::class, [
         //         'class' => Recettes::class,
         //         'choice_label' => 'titre',
@@ -38,18 +42,18 @@ class RepasType extends AbstractType
         //                 ->andWhere('a.user = :user')
         //                 ->setParameter('user', $user);
         //         },
+        // //      ])
+        //     ->add('amis', EntityType::class, [
+        //         'class' => Amis::class,
+        //         'choice_label' => 'nom',
+        //         'multiple' => true,
+        //         'expanded' => true,
+        //         'query_builder' => function (AmisRepository $er) use ($user) {
+        //             return $er->createQueryBuilder('a')
+        //                 ->andWhere('a.user = :user')
+        //                 ->setParameter('user', $user);
+        //         },
         //      ])
-            // ->add('amis', EntityType::class, [
-            //     'class' => Amis::class,
-            //     'choice_label' => 'nom',
-            //     'multiple' => true,
-            //     'expanded' => true,
-            //     'query_builder' => function (AmisRepository $er) use ($user) {
-            //         return $er->createQueryBuilder('a')
-            //             ->andWhere('a.user = :user')
-            //             ->setParameter('user', $user);
-            //     },
-            //  ])
             ->add('resultat')
             ->add('commentaire')
 

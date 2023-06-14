@@ -27,7 +27,7 @@
 		</p>
 		<h5>Amis
 		</h5>
-		{% for ami in repa.amis %}
+		{% for ami in repa.amis  | sort((a, b)=> a.nom <=> b.nom) %}
 			<p>
 				<a href="{{ path('app_amis_show', {'id': ami.id}) }}">
 					{{ ami.nom }}</a>

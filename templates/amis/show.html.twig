@@ -26,7 +26,7 @@
 			<h5>Ingrédients à éviter</h5>
 			<a class="btn btnCreer" href="{{ path('app_allergies_new', {'idAmi': ami.id}) }}">Ajouter</a>
 			<div class='cards'>
-				{% for allergie in ami.allergies %}
+				{% for allergie in ami.allergies | sort((a, b)=> a.ingredient <=> b.ingredient)  %}
 					<div class="card shadow-1 hoverable-1 rounded-3  cardAllergie">
 						<a class="btn" href="{{ path('app_allergies_edit', {'id': allergie.id, 'idAmi': ami.id}) }}">
 							{{ allergie.ingredient }}
@@ -85,7 +85,7 @@
 
 			<div>
 				<h3>Repas</h3>
-				{% for repa in repas %}
+				{% for repa in repas | sort((b, a)=> a.dateRepas <=> b.dateRepas)  %}
 					<a href="{{ path('app_repas_show', {'id': repa.id}) }}">
 
 						<div class="card shadow-1 hoverable-1 rounded-3 cardRepas">

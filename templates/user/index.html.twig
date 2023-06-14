@@ -28,7 +28,7 @@
 		<div class="recettes">
 			<h2 class="col-xs4">Recettes ({{app.user.recettes|length}})</h2>
 
-			{% for recette in app.user.recettes %}
+			{% for recette in app.user.recettes  | sort((a, b)=> a.titre <=> b.titre) %}
 				<div class="card shadow-1 hoverable-1 rounded-3 ">
 					<a class="cardRecette" href="{{ path('app_recettes_show', {'id': recette.id}) }}">
 

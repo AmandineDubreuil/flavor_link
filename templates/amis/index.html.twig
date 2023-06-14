@@ -9,7 +9,7 @@
 		<a class="btn btnCreer" href="{{ path('app_amis_new') }}">Créer</a>
 
 		<div class="cards">
-			{% for ami in app.user.amis %}
+			{% for ami in app.user.amis | sort((a, b)=> a.nom <=> b.nom)  %}
 
 				<div class="card shadow-1 hoverable-1 rounded-3 ">
 					<a href="{{ path('app_amis_show', {'id': ami.id}) }}">

@@ -9,7 +9,7 @@
 		<a class="btn btnCreer" href="{{ path('app_choixrepas') }}">Créer</a>
 
 		<div class="cards">
-			{% for repa in repas %}
+			{% for repa in repas  | sort((b, a)=> a.dateRepas <=> b.dateRepas)%}
 				<div class="card shadow-1 hoverable-1 rounded-3 ">
 					<a class="cardRepas" href="{{ path('app_repas_show', {'id': repa.id}) }}">
 						<div class="card-header">
@@ -20,7 +20,7 @@
 								&nbsp;{{ repa.recette.titre}}&nbsp;
 							</div>
 							<div>
-								{% for ami in repa.amis %}
+								{% for ami in repa.amis  | sort((a, b)=> a.nom <=> b.nom)%}
 									&nbsp;{{ ami.nom }},&nbsp;
 								{% endfor %}
 							</div>

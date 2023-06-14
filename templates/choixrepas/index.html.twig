@@ -16,7 +16,7 @@
 
 		{% if amisPresents %}
 			<div>
-				{% for ami in amisPresents %}
+				{% for ami in amisPresents | sort((a, b)=> a.nom <=> b.nom)  %}
 					{{ ami.nom }}
 				{% endfor %}
 
@@ -26,7 +26,7 @@
 
 			<form method="POST">
 
-				{% for ami in amis %}
+				{% for ami in amis | sort((a, b)=> a.nom <=> b.nom) %}
 					<div><input type="checkbox" id="{{ ami.nom }}" name="amisPourRecettes[]" value="{{ ami.id }}">
 						<label for="{{ ami.nom }}">{{ ami.nom }}</label>
 					</div>
@@ -37,7 +37,7 @@
 
 		<div>
 			<h3>Repas proposés</h3>
-			{% for recette in recettesOk %}
+			{% for recette in recettesOk  | sort((a, b)=> a.titre <=> b.titre) %}
 
 				<div class="card shadow-1 hoverable-1 rounded-3 ">
 					<div

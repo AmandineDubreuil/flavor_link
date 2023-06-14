@@ -220,6 +220,66 @@ height: 2.5rem;
     width: 5.5rem;
 }
 
+/* user index */
+
+.profilUser{
+    margin: 1rem;
+}
+
+.profilUser .profilChamps{
+    display: flex;
+        flex-wrap: wrap;
+align-items: center;
+margin-top: 1rem;
+}
+.profilUser .groupeBoutons {
+    justify-content: space-around;
+}
+.profilUser .groupeBoutons .btnModifier {
+    margin-top: 1rem;
+    width: 12rem;
+    height: 2.5rem;
+  }
+
+  .profilUser .cardRecette {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: var(--color-three);
+}
+
+.profilUser .imgRecette img {
+    width: 100%;
+}
+
+.profilUser .imgRecette {
+    width: 25%;
+}
+
+.profilUser .slugRecette {
+    padding: 1rem;
+    width: 75%;
+}
+
+.profilUser .titreRecette {
+    font-family: "AlegreyaBold", Arial, Helvetica, sans-serif;
+    font-size: 1.2rem;
+}
+
+.profilUser .tpsRecette {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 20rem;
+    padding-bottom: 1rem;
+}
+
+.profilUser .tpsRecette div {
+    display: flex;
+    flex-direction: column;
+
+}
+
+
 /*home index*/
 
 .accueil {

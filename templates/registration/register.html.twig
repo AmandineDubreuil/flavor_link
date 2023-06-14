@@ -1,44 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Flavor Link - Inscription
-{% endblock %}
+{% block title %}Register{% endblock %}
 
 {% block body %}
-	<section class="inscription">
-		<h1>Inscription</h1>
-		<form>
-			<div class="inscriptionFormInput">
-				{{ form_start(registrationForm)}}
-			</div>
-			<div class="inscriptionFormInput">
-				{{ form_row(registrationForm.pseudo) }}
-			</div>
-			<div class=" personnes">
-				{{ form_row(registrationForm.nbPersonnes) }}<div> personne(s)</div>
-			</div>
-			<div class="inscriptionFormInput">
-				{{ form_row(registrationForm.email) }}
-			</div>
-			<div class="inscriptionFormInput">
-				{{ form_row(registrationForm.plainPassword, {
-				label: 'Mot de passe '
-			}) }}
-			</div>
-			<div class="inscriptionFormInput">
-				{{ form_row(registrationForm.confPassword, {
-				label: 'Confirmation du mot de passe '
-			}) }}
-			</div>
-			<div class="accepteCGU">
-				{{ form_row(registrationForm.agreeTerms, {
-				label: ' J\'ai lu et j\'accepte les CGU du site Flavor Link.'
-			}) }}
-			</div>
+    <h1>Register</h1>
 
-			<div class="boutons">
-				<button type="submit" class="btn btnValider">Inscription</button>
-			</div>
-			{{ form_end(registrationForm) }}
-		</form>
-	</section>
+    {{ form_start(registrationForm) }}
+        {{ form_row(registrationForm.email) }}
+        {{ form_row(registrationForm.plainPassword, {
+            label: 'Password'
+        }) }}
+        {{ form_row(registrationForm.agreeTerms) }}
+
+        <button type="submit" class="btn">Register</button>
+    {{ form_end(registrationForm) }}
 {% endblock %}

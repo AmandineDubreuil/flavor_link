@@ -151,7 +151,10 @@ h1 {
 }
 
 .login form .btnValider {
+    margin-top: 1rem;
     margin-bottom: 0;
+width: 8rem;
+height: 2.5rem;
 }
 
 .login form p {
@@ -181,7 +184,8 @@ h1 {
 .inscription form input {
     border-radius: 4px;
     border: 1px solid gray;
-    background-color: var(--color-threeDark);
+    padding: .5rem;
+    /* background-color: var(--color-threeDark); */
 }
 
 .inscription .personnes input {
@@ -193,6 +197,7 @@ h1 {
     flex-direction: row;
     margin-top: 1rem;
     flex-wrap: wrap;
+    align-items: center;
 }
 
 .inscription .accepteCGU div {
@@ -204,6 +209,10 @@ h1 {
 
 .inscription .accepteCGU div label {
     padding-left: .5rem;
+}
+.inscription .btnValider {
+    margin-top: 1rem;
+    width: 5.5rem;
 }
 
 /*home index*/

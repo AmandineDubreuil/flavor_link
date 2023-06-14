@@ -24,6 +24,7 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+                if ($form->get('plainPassword')->getData() === $form->get('confirmPassword')->getData()) {
             $user->setCreatedAt(new \DateTimeImmutable);
             $user->setModifiedAt(new \DateTimeImmutable);
             $user->setRoles(['ROLE_USER']);
@@ -45,6 +46,12 @@ class RegistrationController extends AbstractController
                 $authenticator,
                 $request
             );
+                } else {
+                return $this->render('registration/register.html.twig', [
+                    'registrationForm' => $form->createView(),
+                    'passError' => 'Les mots de passe ne sont pas identiques.'
+                ]);
+            }
         }
 
         return $this->render('registration/register.html.twig', [

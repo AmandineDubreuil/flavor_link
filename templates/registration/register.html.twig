@@ -1,17 +1,53 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}Inscription - Flavor Link
+{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
+	<section class="inscription">
+		<h1>Inscription</h1>
+	<div>
+			<a class="btn btnRetour" href="javascript:history.go(-1)">Retour</a>
+		</div>
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
+
+		{{ form_start(registrationForm) }}
+		<div class="inscriptionFormInput">
+			{{ form_row(registrationForm.pseudo, {
+            label: 'Pseudo : '
         }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
-
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
-{% endblock %}
+		</div>
+		<div class="personnes">
+			{{ form_row(registrationForm.nbPersonnes, {
+            label: 'Composition du foyer : '
+        }) }}<div>
+					personne(s)</div>
+		</div>
+		<div class="inscriptionFormInput">
+			{{ form_row(registrationForm.email, {
+            label: 'E-mail : '
+        }) }}
+		</div>
+		<div class="password">
+			<div class="inscriptionFormInput">
+				{{ form_row(registrationForm.plainPassword, {
+            label: 'Mot de passe : '
+        }) }}
+			</div>
+			<div class="inscriptionFormInput">
+				{{ form_row(registrationForm.confirmPassword, {
+            label: 'Confirmation du Mot de passe : '
+        }) }}
+			</div>
+			<div class="accepteCGU">
+				{{ form_row(registrationForm.agreeTerms, {
+            label: 'J\'ai lu et j\'accepte les CGU de Flavor Link.'
+        }) }}
+			</div>
+			{% if passError is defined %}
+				<div class="alert alert-danger" role="alert">{{ passError }}</div>
+			{% endif %}
+			<button type="submit" class="btn btnValider">Inscription</button>
+			{{ form_end(registrationForm) }}
+		</section>
+	{% endblock %}

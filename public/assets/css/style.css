@@ -69,6 +69,13 @@ h1 {
 
 }
 
+.groupeBoutons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .btnValider {
     background-color: var(--color-two);
 
@@ -167,11 +174,7 @@ height: 2.5rem;
 }
 
 /*registration register*/
-.inscription h1 {
-    margin-left: 1rem;
-}
-
-.inscription form {
+.inscription {
     margin: 1rem;
 }
 
@@ -185,9 +188,11 @@ height: 2.5rem;
     border-radius: 4px;
     border: 1px solid gray;
     padding: .5rem;
-    /* background-color: var(--color-threeDark); */
 }
-
+.inscription .inscriptionFormInput input {
+    width: 90%;
+    max-width: 30rem;
+}
 .inscription .personnes input {
     width: 5rem;
 }
@@ -274,13 +279,6 @@ height: 2.5rem;
 
 .amisShow {
     margin: 1rem;
-}
-
-.groupeBoutons {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
 }
 
 .groupeBoutons .btnRetour {

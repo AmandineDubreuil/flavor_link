@@ -1,5 +1,23 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
+
+		<div class="form-field inscriptionFormInput">
+			<label for="pseudo">Pseudo :</label>
+			<input name="{{ field_name(form.pseudo) }}" value="{{ field_value(form.pseudo) }}" placeholder="{{ field_label(form.pseudo) }}" class="form-control rounded-1"/>
+		</div>
+		<div class="form-field inscriptionFormInput">
+			<label for="email">Email :</label>
+			<input name="{{ field_name(form.email) }}" value="{{ field_value(form.email) }}" placeholder="{{ field_label(form.email) }}" class="form-control rounded-1"/>
+		</div>
+
+
+        <div class="form-field personnes">
+				<label for="nbPersonnes">Nombre de personnes dans le foyer :</label>
+				<input name="{{ field_name(form.nbPersonnes) }}" value="{{ field_value(form.nbPersonnes) }}" class="form-control rounded-1"/>
+				<p>
+					personne(s)</p>
+			</div>
+
+    {# {{ form_widget(form) }} #}
     
-    <button class="btn">{{ button_label|default('Save') }}</button>
+    <button class="btn btnValider">{{ button_label|default('Modifier') }}</button>
 {{ form_end(form) }}

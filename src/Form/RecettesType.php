@@ -18,13 +18,19 @@ class RecettesType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('titre', TextType::class,['required' => true, 
+            ->add('titre', TextType::class, [
+                'required' => true,
             ])
             ->add('ingredientsAll', CKEditorType::class, ['label' => 'Liste des Ingrédients :'])
-            ->add('tpsPreparation', NumberType::class, [               'required' => true, 
+            ->add('tpsPreparation', NumberType::class, [
+                'required' => true,
             ])
-            ->add('tpsCuisson', NumberType::class)
-            ->add('tpsRepos', NumberType::class)
+            ->add('tpsCuisson', NumberType::class, [
+                'required' => true,
+            ])
+            ->add('tpsRepos', NumberType::class, [
+                'required' => true,
+            ])
             ->add('preparation', CKEditorType::class, ['label' => 'Préparation :'])
             ->add('photo', FileType::class, [
                 'label' => 'photo (fichier image) ',
@@ -40,8 +46,12 @@ class RecettesType extends AbstractType
                     ])
                 ]
             ])
-            ->add('saison', TextType::class)
-            ->add('nbPersonnes', NumberType::class)
+            ->add('saison', TextType::class, [
+                'required' => true,
+            ])
+            ->add('nbPersonnes', NumberType::class, [
+                'required' => true,
+            ])
             // ->add('user')
         ;
     }
@@ -53,3 +63,6 @@ class RecettesType extends AbstractType
         ]);
     }
 }
+
+
+

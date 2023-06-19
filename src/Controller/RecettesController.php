@@ -11,7 +11,6 @@ use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
-use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
@@ -27,9 +26,6 @@ class RecettesController extends AbstractController
         $this->entityManager = $entityManager;
     }
 
-    protected static $saisons = array('Printemps', 'Été', 'Automne', 'Hiver');
-
-
     #[Route('/', name: 'app_recettes_index', methods: ['GET'])]
     public function index(RecettesRepository $recettesRepository): Response
     {
@@ -41,7 +37,7 @@ class RecettesController extends AbstractController
 
 
     #[Route('/new', name: 'app_recettes_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, RecettesRepository $recettesRepository,  SluggerInterface $slugger, ValidatorInterface $validator): Response
+    public function new(Request $request, RecettesRepository $recettesRepository,  SluggerInterface $slugger): Response
     {
         $user = $this->security->getUser();
 
@@ -52,10 +48,6 @@ class RecettesController extends AbstractController
 
         //validation du formulaire
         if ($form->isSubmitted() && $form->isValid()) {
-
-           
-
-
             $recette->setUser($user);
             $recettesRepository->save($recette, true);
             $photoFile = $form->get('photo')->getData();

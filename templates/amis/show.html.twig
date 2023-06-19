@@ -1,7 +1,8 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-	{{ ami.nom }} - Flavor Link
+	{{ ami.nom }}
+	- Flavor Link
 {% endblock %}
 
 {% block body %}
@@ -41,45 +42,6 @@
 			</div>
 
 		</div>
-		{# <div class="amisShowCategorie">
-																			<h5>Déteste</h5>
-																			<a class="btn btnCreer" href="{{ path('app_detestes_new', {'idAmi': ami.id}) }}">Ajouter</a>
-																			{% for deteste in ami.detestes %}
-																				<div class="cardDeteste">
-																					<p>
-																						{{ deteste.ingredient }}
-																						<a class="btn btnModifier" href="{{ path('app_detestes_edit', {'id': deteste.id, 'idAmi': ami.id}) }}">Modifier</a>
-																						<a class="btn btnSupprimer" href="{{ path('app_detestes_delete', {'id': deteste.id}) }}">Supprimer</a>
-																					</p>
-																				</div>
-																			{% else %}
-																				<p>
-																					Aucune Aliment détesté !
-																				</p>
-																
-																			{% endfor %}
-																
-																		</div> #}
-		{# <div class="amisShowCategorie">
-																			<h5>N'y tient pas</h5>
-																			<a class="btn btnCreer" href="{{ path('app_deplaire_new', {'idAmi': ami.id}) }}">Ajouter</a>
-																			{% for deplaire in ami.deplaires %}
-																				<div class="cardDeplaire">
-																					<p>
-																						{{ deplaire.ingredient }}
-																						<a class="btn btnModifier" href="{{ path('app_deplaire_edit', {'id': deplaire.id, 'idAmi': ami.id}) }}">Modifier</a>
-																						<a class="btn btnSupprimer" href="{{ path('app_deplaire_delete', {'id': deplaire.id}) }}">Supprimer</a>
-																					</p>
-																				</div>
-																			{% else %}
-																				<p>
-																					Rien à signaler !
-																				</p>
-																
-																			{% endfor %}
-																
-																		</div> #}
-
 
 		<div>
 

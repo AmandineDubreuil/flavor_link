@@ -33,7 +33,6 @@ class ChoixrepasController extends AbstractController
         $amisPresents = "";
         $amisPresentsId = "";
         $recettesAvecAllergie = [];
-        $recettesSansAllergie = [];
         $recettesOk = [];
         if ($request->isMethod('POST') && $request->request->has('submit')) {
             // définir les amis présents
@@ -86,7 +85,7 @@ class ChoixrepasController extends AbstractController
             foreach ($recettesOkId as $recetteId) {
                 $recettesOk[] = $recettesRepository->find($recetteId);
             }
-            //  dd($recettesOk);
+            
         }
 
         return $this->render('choixrepas/index.html.twig', [

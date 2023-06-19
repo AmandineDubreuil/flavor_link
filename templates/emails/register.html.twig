@@ -1,0 +1,7 @@
+<h1>Activez votre compte</h1>
+
+<p> Bonjour {{ user.pseudo}},</p>
+
+<p>Merci pour votre inscription. Vous pouvez finaliser celle-ci en cliquant sur le lien ci-dessous :</p>
+<p><a href="{{ absolute_url( path('app_verify_user',{token:token} )) }}" class="btn btnValider">Lien</a></p>
+<p>Ce lien expirera dans 3 heures.</p>

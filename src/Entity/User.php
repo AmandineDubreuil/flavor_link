@@ -48,6 +48,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?\DateTimeImmutable $modifiedAt = null;
 
+    #[ORM\Column(type: 'boolean')]
+    private $is_verified = false;
+
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Recettes::class, orphanRemoval: false)]
     private Collection $recettes;
 
@@ -181,6 +184,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    public function getIsVerified(): ?bool
+    {
+        return $this->is_verified;
+    }
+    
+    public function setIsVerified(bool $is_verified): self
+    {
+        $this->is_verified = $is_verified;
+
+        return $this;
+    }
+
 
     /**
      * @return Collection<int, Recettes>

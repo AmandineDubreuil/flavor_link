@@ -160,9 +160,12 @@ h1 {
 /* base / footer */
 .footer {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
+}
+.footer .mentions{
+    font-size: .8rem;
 }
 
 .footerAdmin {
@@ -196,6 +199,10 @@ height: 2.5rem;
 }
 
 /*registration register*/
+
+.has-text-underline{
+    text-decoration: underline;
+}
 .inscription, .userModifier, .reinitPwd {
     margin: 1rem;
 }

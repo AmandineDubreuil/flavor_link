@@ -53,7 +53,29 @@ h1 {
     background-color: var(--color-one);
     color: var(--color-three);
 }
+.alert-success .alert-message{
+    background-color: rgba(0, 100, 0, 0.3);
+    color: darkgreen;
+    padding: 1rem;
+    font-weight: bold;
+    width: 100%;
+}
 
+.alert-danger .alert-message{
+    background-color: rgba(220, 20, 60, 0.3);
+    color: crimson;
+    padding: 1rem;
+    font-weight: bold;
+    width: 100%;
+}
+
+.alert-waring .alert-message{
+    background-color: rgba(255, 140, 0, 0.3);
+    color: darkorange;
+    padding: 1rem;
+    font-weight: bold;
+    width: 100%;
+}
 /* boutons */
 
 .btnValider,

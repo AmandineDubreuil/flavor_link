@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Form\ResetPasswordRequestType;
+use App\Form\ResetPasswordType;
 use Symfony\Component\Mime\Email;
 use App\Repository\UserRepository;
 use App\Service\SendMailService;
@@ -111,7 +112,30 @@ $user = $userRepository->findOneByResetToken($token);
 
 if($user)
 {
+$form = $this->createForm(ResetPasswordType::class);
 
+$form->handleRequest($request);
+
+if($form->isSubmitted() && $form->isValid() )
+{
+    // effacer le token
+    $user->setResetToken('');
+    $user->setPassword(
+        $passwordHasher->hashPassword(
+            $user,
+            $form->get('password')->getData()
+        )
+        );
+        $entityManager->persist($user);
+        $entityManager->flush();
+
+        $this->addFlash('success', 'Mot de passe changé avec succès !');
+        return $this->redirectToRoute('app_login');
+}
+
+return $this->render('security/reset_password.html.twig',[
+    'passForm' => $form->createView()
+]);
 }
 
 // token absent de la bdd

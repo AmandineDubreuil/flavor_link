@@ -39,91 +39,81 @@ class RecettesRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Recettes[] Returns an array of Recettes objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('r')
-//            ->andWhere('r.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('r.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    //    /**
+    //     * @return Recettes[] Returns an array of Recettes objects
+    //     */
+    //    public function findByExampleField($value): array
+    //    {
+    //        return $this->createQueryBuilder('r')
+    //            ->andWhere('r.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->orderBy('r.id', 'ASC')
+    //            ->setMaxResults(10)
+    //            ->getQuery()
+    //            ->getResult()
+    //        ;
+    //    }
 
-//    public function findOneBySomeField($value): ?Recettes
-//    {
-//        return $this->createQueryBuilder('r')
-//            ->andWhere('r.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    //    public function findOneBySomeField($value): ?Recettes
+    //    {
+    //        return $this->createQueryBuilder('r')
+    //            ->andWhere('r.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->getQuery()
+    //            ->getOneOrNullResult()
+    //        ;
+    //    }
 
-public function findByUser($userId)
-{
-    return $this->createQueryBuilder('m')
-        ->andWhere('m.genres LIKE :user_id')
-        ->setParameter('user_id', "%$userId%")
-        ->orderBy('titre', 'ASC')
-        ->getQuery()
-        ->getResult();
-}
-public function findRecetteById($value): ?Recettes
-{
-    return $this->createQueryBuilder('u')
-        ->andWhere('u.id = :val')
-        ->setParameter('val', $value)
-        ->getQuery()
-        ->getOneOrNullResult()
-    ;
-}
-public function findByAllergie($value): array
-{
-    $entityManager = $this->getEntityManager();
+    public function findByUser($userId)
+    {
+        return $this->createQueryBuilder('m')
+            ->andWhere('m.genres LIKE :user_id')
+            ->setParameter('user_id', "%$userId%")
+            ->orderBy('titre', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+    public function findRecetteById($value): ?Recettes
+    {
+        return $this->createQueryBuilder('u')
+            ->andWhere('u.id = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+    public function findByAllergie($value): array
+    {
+        $entityManager = $this->getEntityManager();
 
-    $query = $entityManager->createQuery(
-        'SELECT r
+        $query = $entityManager->createQuery(
+            'SELECT r
 FROM App\Entity\Recettes r
 WHERE r.ingredientsAll NOT LIKE :ingredientsAll
 ORDER BY r.ingredientsAll ASC'
-    )->setParameter('ingredientsAll', '%'.$value .'%');
+        )->setParameter('ingredientsAll', '%' . $value . '%');
 
-    // returns an array of Product objects
-    return $query->getResult();
-}
+        // returns an array of Product objects
+        return $query->getResult();
+    }
 
-public function findByUserAndAllergie($ingredient, $user): array
-{
-    $entityManager = $this->getEntityManager();
-
-    $query = $entityManager->createQuery(
-        'SELECT r
+    public function findByUserAndAllergie($ingredient, $user): array
+    {
+        $entityManager = $this->getEntityManager();
+        $query = $entityManager->createQuery(
+            'SELECT r
 FROM App\Entity\Recettes r
 WHERE r.user = :user AND r.ingredientsAll LIKE :ingredientsAll 
 ORDER BY r.ingredientsAll ASC'
-    )->setParameter('ingredientsAll', '%' . $ingredient . '%')
-        ->setParameter('user', $user);
-       
-
-    // // returns an array of Product objects
-    // return $query->getResult();
-
-    //execute the query and get the results as an array of associative arrays
-    $results = $query->getArrayResult();
-
-     // extract the IDs from the result array
-     $ids = array_column($results, 'id');
-
-       // convert the IDs to string format
-    $idsAsString = array_map('strval', $ids);
-
-    return $idsAsString;
-
+        )->setParameter('ingredientsAll', '%' . $ingredient . '%')
+            ->setParameter('user', $user);
+        // // returns an array of Product objects
+        // return $query->getResult();
+        //execute the query and get the results as an array of associative arrays
+        $results = $query->getArrayResult();
+        // extract the IDs from the result array
+        $ids = array_column($results, 'id');
+        // convert the IDs to string format
+        $idsAsString = array_map('strval', $ids);
+        return $idsAsString;
+    }
 }
-}
-

@@ -51,7 +51,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'boolean')]
     private $is_verified = false;
 
-    #[ORM\Column(length:100 )]
+    #[ORM\Column(length:100, nullable:true )]
     private ?string $resetToken = null;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Recettes::class, orphanRemoval: false)]

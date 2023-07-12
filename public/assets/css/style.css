@@ -69,7 +69,7 @@ h1 {
     width: 100%;
 }
 
-.alert-waring .alert-message{
+.alert-warning .alert-message{
     background-color: rgba(255, 140, 0, 0.3);
     color: darkorange;
     padding: 1rem;

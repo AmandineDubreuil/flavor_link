@@ -40,14 +40,11 @@ class RepasController extends AbstractController
     {
 
         $user = $this->security->getUser();
-
         $recetteId = $_GET['recetteId'];
         $recette = $recettesRepository->find($recetteId);
-        //dd($recette);
-
         $amisIds = $_GET['amisId'];
-      
-        
+
+
         $repa = new Repas();
         $form = $this->createForm(RepasType::class, $repa);
         $form->handleRequest($request);
@@ -57,12 +54,8 @@ class RepasController extends AbstractController
             $repa->setRecette($recette);
             foreach ($amisIds as $amiId) {
                 $ami = $amisRepository->find($amiId);
-               // dd($ami);
                 $repa->addAmi($ami);
             }
-
-
-            //   dd($repa);
             $repasRepository->save($repa, true);
 
             return $this->redirectToRoute('app_repas_index', [], Response::HTTP_SEE_OTHER);

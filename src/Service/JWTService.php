@@ -8,8 +8,6 @@ class JWTService
 {
     // on génère le token (validity = 3h00 en secondes) via site https://jwt.io/
 
-
-
     /**
      * Génération du JWT
      *
@@ -21,7 +19,6 @@ class JWTService
      */
     public function generate(array $header, array $payload, string $secret, int $validity = 10800): string
     {
-
         //pour avoir payload
         if ($validity > 0) {
             $now = new DateTimeImmutable();
@@ -30,24 +27,17 @@ class JWTService
             $payload['iat'] = $now->getTimestamp();
             $payload['exp'] = $exp;
         }
-
-
         // encoder en base64 (en passant par un encodage json en 1er)
-
         $base64Header = base64_encode(json_encode($header));
         $base64Payload = base64_encode(json_encode($payload));
-
         // nettoyer les valeurs encodées (retrait des + / et =)
         $base64Header = str_replace(['+', '/', '='], ['-', '_', ''], $base64Header);
         $base64Payload = str_replace(['+', '/', '='], ['-', '_', ''], $base64Payload);
-
         // générer la signature
         $secret = base64_encode($secret);
         $signature = hash_hmac('sha256', $base64Header . '.' . $base64Payload, $secret, true);
         $base64Signature = base64_encode($signature);
-
         $base64Signature = str_replace(['+', '/', '='], ['-', '_', ''], $base64Signature);
-
         // créer le token
         $jwt = $base64Header . '.' . $base64Payload . '.' . $base64Signature;
         return $jwt;

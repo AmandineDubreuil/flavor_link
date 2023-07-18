@@ -8,7 +8,7 @@ Flavor Link est une application permettant à un utilisateur de choisir une rece
 - PHP 8.2
 - Symfony 6.2
 - MySql
-- Bundle : CKEditor
+- Bundle : CKEditor, easyadmin 4
 
 ## License
 

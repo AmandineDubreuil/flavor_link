@@ -36,6 +36,7 @@
 						</a>
 						{% if is_granted('ROLE_ADMIN') %}
 							<a class="navbar-link" href="{{path('app_ingredients_index')}}">Ingrédients</a>
+							<a class="navbar-link" href="{{path('admin')}}"><i class="fa-solid fa-file-shield"></i></a>
 						{% endif %}
 
 						{% if is_granted('ROLE_USER') %}

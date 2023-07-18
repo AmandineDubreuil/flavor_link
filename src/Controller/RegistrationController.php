@@ -98,8 +98,10 @@ class RegistrationController extends AbstractController
                 $user->setIsVerified(true);
                 $user->setRoles(['ROLE_MEMBER']);
                 $entityManager->flush($user);
-                $this->addFlash('success', 'Compte utilisateur activé');
-                return $this->redirectToRoute('app_user_index');
+                
+               // dd($user);
+                $this->addFlash('success', 'Félicitations ! Ton compte utilisateur est activé !');
+                return $this->redirectToRoute('app_login');
             }
         }
         // ici un problème dans le token
@@ -114,7 +116,7 @@ class RegistrationController extends AbstractController
 
         // vérifie que l'utilisateur est connecté
         if (!$user) {
-            $this->addFlash('danger', 'Vous devez être connecté pour accéder à cette page.');
+            $this->addFlash('danger', 'Tu dois être connecté pour accéder à cette page.');
             return $this->redirectToRoute('app_login');
         }
 
@@ -145,11 +147,11 @@ class RegistrationController extends AbstractController
         $sendMailService->send(
             'no-reply@flavorlink.fr',
             $user->getEmail(),
-            'Activation de votre compte Flavor Link',
+            'Activation de ton compte Flavor Link',
             'register',
             compact('user', 'token')
         );
-        $this->addFlash('success', 'Un e-mail vient de vous être envoyé à l\'adresse que vous nous avez communiquée.');
+        $this->addFlash('success', 'Un e-mail vient de t\'être envoyé à l\'adresse que tu nous as communiquée.');
         return $this->redirectToRoute('app_login');
     }
 }

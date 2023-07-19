@@ -17,7 +17,10 @@
     font-family: "AlegreyaBlack";
     src: url(../font/alegreyaSans/AlegreyaSans-Black.ttf);
 }
-
+@font-face {
+    font-family: "Fredericka";
+    src: url(../font/frederickatheGreat/FrederickatheGreat-Regular.ttf);
+}
 
 
 :root {
@@ -142,6 +145,10 @@ h1 {
     color: var(--color-four);
 }
 
+#logo span{
+    font-family: "Fredericka", Arial, Helvetica, sans-serif;
+ 
+}
 .navbar-menu {
     display: flex;
     flex-direction: row;

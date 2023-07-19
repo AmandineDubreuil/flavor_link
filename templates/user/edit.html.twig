@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Modification profil - Flavor Link
+{% block title %}Modification profil - Amiam
 {% endblock %}
 
 {% block body %}
@@ -11,6 +11,10 @@
 	</div>
 
 	{{ include('user/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+		<div>
+		<a class="btn btnSupprimer" href="{{ path('app_user_delete', {'id': app.user.id})}}">Supprimer</a>
+	</div>
 
 </section>
 {% endblock %}

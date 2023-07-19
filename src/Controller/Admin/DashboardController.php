@@ -24,7 +24,7 @@ class DashboardController extends AbstractDashboardController
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('Flavor Link Copie - Administration')
+            ->setTitle('Amiam Copie - Administration')
             ->renderContentMaximized();
     }
 

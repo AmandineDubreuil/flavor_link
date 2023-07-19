@@ -60,7 +60,7 @@ class RegistrationController extends AbstractController
                 $sendMailService->send(
                     'no-reply@flavorlink.fr',
                     $user->getEmail(),
-                    'Activation de votre compte Flavor Link',
+                    'Activation de votre compte Amiam',
                     'register',
                     compact('user', 'token')
                 );
@@ -147,7 +147,7 @@ class RegistrationController extends AbstractController
         $sendMailService->send(
             'no-reply@flavorlink.fr',
             $user->getEmail(),
-            'Activation de ton compte Flavor Link',
+            'Activation de ton compte Amiam',
             'register',
             compact('user', 'token')
         );

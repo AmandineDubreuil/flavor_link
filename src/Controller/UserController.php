@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\UserRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,7 +19,7 @@ class UserController extends AbstractController
     {
         return $this->render('user/index.html.twig');
     }
-   
+
     #[Route('/new', name: 'app_user_new', methods: ['GET', 'POST'])]
     public function new(Request $request, UserRepository $userRepository): Response
     {
@@ -65,14 +66,17 @@ class UserController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_user_delete', methods: ['POST'])]
-    public function delete(Request $request, User $user, UserRepository $userRepository): Response
+    public function delete(Request $request, User $user, UserRepository $userRepository, EntityManagerInterface $em): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
-            $userRepository->remove($user, true);
-            
-        }
+      
+        $this->container->get('security.token_storage')->setToken(null);
+
+        $em->remove($user);
+        $em->flush();
+
+        // Ceci ne fonctionne pas avec la création d'une nouvelle session !
+        $this->addFlash('success', 'Votre compte utilisateur a bien été supprimé !');
 
         return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);
     }
-  
 }

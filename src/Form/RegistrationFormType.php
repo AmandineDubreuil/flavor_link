@@ -57,7 +57,7 @@ class RegistrationFormType extends AbstractType
             ])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
-                'label' => 'Je confirme avoir lu et accepter les #DOCUMENTATION# du site Flavor Link.',
+                'label' => 'Je confirme avoir lu et accepter les #DOCUMENTATION# du site Amiam.',
                 'label_html' => true,
                 'constraints' => [
                     new IsTrue(),

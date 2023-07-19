@@ -1,7 +1,7 @@
 
-# Flavor Link
+# Amiam
 
-Flavor Link est une application permettant à un utilisateur de choisir une recette parmi son catalogue de recettes en excluant les recettes qui contiennent des ingrédients que ses amis ne souhaitent pas manger.
+Amiam est une application permettant à un utilisateur de choisir une recette parmi son catalogue de recettes en excluant les recettes qui contiennent des ingrédients que ses amis ne souhaitent pas manger.
 
 ## Requirements
 

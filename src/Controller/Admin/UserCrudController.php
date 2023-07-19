@@ -26,7 +26,7 @@ class UserCrudController extends AbstractCrudController
         return $crud
             ->setEntityLabelInPlural('Utilisateurs')
             ->setEntityLabelInSingular('Utilisateur')
-            ->setPageTitle('index', 'Flavor Link - Administration des Utilisateurs');
+            ->setPageTitle('index', 'Amiam - Administration des Utilisateurs');
     }
 
 

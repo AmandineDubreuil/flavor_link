@@ -13,16 +13,12 @@ use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
-class RecettesType extends AbstractType
+class RecettesFinCreationType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('titre', TextType::class, [
-                'required' => true,
-            ])
-            ->add('ingredientsAll', CKEditorType::class, ['label' => 'Liste des Ingrédients :'])
-            ->add('tpsPreparation', NumberType::class, [])
+               ->add('tpsPreparation', NumberType::class, [])
             ->add('tpsCuisson', NumberType::class, [])
             ->add('tpsRepos', NumberType::class, [])
             ->add('preparation', CKEditorType::class, ['label' => 'Préparation :'])
@@ -40,10 +36,7 @@ class RecettesType extends AbstractType
                     ])
                 ]
             ])
-            ->add('saison', TextType::class, [])
-            ->add('nbPersonnes', NumberType::class, [
-                'required' => true,
-            ])
+ 
             // ->add('user')
         ;
     }

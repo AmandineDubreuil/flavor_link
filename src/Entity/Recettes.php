@@ -17,48 +17,27 @@ class Recettes
     #[ORM\Column]
     private ?int $id = null;
 
-    /**
-     * @Assert\NotBlank
-     */
     #[ORM\Column(length: 255)]
     private ?string $titre = null;
 
-    /**
-     * @Assert\NotBlank
-     */
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $tpsPreparation = null;
 
-    /**
-     * @Assert\NotBlank
-     */
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $tpsCuisson = null;
 
-    /**
-     * @Assert\NotBlank
-     */
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $tpsRepos = null;
 
-    /**
-     * @Assert\NotBlank
-     */
-    #[ORM\Column(type: Types::TEXT)]
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $preparation = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $photo = null;
 
-    /**
-     * @Assert\NotBlank
-     */
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $saison = null;
 
-    /**
-     * @Assert\NotBlank
-     */
     #[ORM\Column]
     private ?int $nbPersonnes = null;
 
@@ -69,7 +48,7 @@ class Recettes
     #[ORM\OneToMany(mappedBy: 'recetteId', targetEntity: RecetteIngredients::class)]
     private Collection $ingredients;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $ingredientsAll = null;
 
     #[ORM\ManyToMany(targetEntity: Amis::class, mappedBy: 'recettes')]

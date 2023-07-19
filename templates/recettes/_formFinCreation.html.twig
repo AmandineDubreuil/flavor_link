@@ -1,0 +1,36 @@
+{{ form_start(form) }}
+<div class="recettesForm">
+	
+	<div class="preparation">
+		<div class="recettesTemps">
+			<div class="form-field">
+				<label for="tpsPreparation">Temps de préparation :</label>
+				<input name="{{ field_name(form.tpsPreparation) }}" value="{{ field_value(form.tpsPreparation) }}" class="form-control rounded-1"/>
+				<p>
+					min.</p>
+			</div>
+
+			<div class="form-field">
+				<label for="tpsRepos">Temps de repos :</label>
+				<input name="{{ field_name(form.tpsRepos) }}" value="{{ field_value(form.tpsRepos) }}" class="form-control rounded-1"/>
+				<p>
+					min.</p>
+			</div>
+
+			<div class="form-field">
+				<label for="tpsCuisson">Temps de cuisson :</label>
+				<input name="{{ field_name(form.tpsCuisson) }}" value="{{ field_value(form.tpsCuisson) }}" class="form-control rounded-1"/>
+				<p>
+					min.</p>
+			</div>
+		</div>
+		<div class="recettesPreparation">
+			{{form_row(form.preparation)}}
+		</div>
+	</div>
+	<div class="photo">
+		{{form_row(form.photo)}}
+	</div>
+	<button class="btn btnValider">{{ button_label|default('Ajouter') }}</button>
+</div>
+{{ form_end(form) }}

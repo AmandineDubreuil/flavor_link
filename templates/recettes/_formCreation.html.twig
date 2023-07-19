@@ -1,0 +1,32 @@
+{{ form_start(form) }}
+<div class="recettesForm">
+	<div class="recettesTitre">
+		<div class="form-field">
+			<label for="titre">Titre de la recette :</label>
+			<input name="{{ field_name(form.titre) }}" value="{{ field_value(form.titre) }}" placeholder="{{ field_label(form.titre) }}" class="form-control rounded-1"/>
+		</div>
+
+		<div class="form-field">
+			<label for="saison">Saison (1 choix) :</label>
+			<input type="checkbox" name="{{ field_name(form.saison) }}" value="printemps"><label for="printemps">Printemps</label>
+
+			<input type="checkbox" name="{{ field_name(form.saison) }}" value="ete"><label for="ete">Été</label>
+
+			<input type="checkbox" name="{{ field_name(form.saison) }}" value="automne"><label for="automne">Automne</label>
+
+			<input type="checkbox" name="{{ field_name(form.saison) }}" value="hiver"><label for="hiver">Hiver</label>
+		</div>
+
+
+		<div class="form-field nbPersonnes ">
+			<label for="nbPersonnes">Recette pour
+			</label>
+			<input name="{{ field_name(form.nbPersonnes) }}" value="{{ field_value(form.nbPersonnes) }}" class="form-control rounded-1 "/>
+			<p>
+				personnes.</p>
+		</div>
+	</div>
+
+	<button class="btn btnValider">{{ button_label|default('Suivant') }}</button>
+</div>
+{{ form_end(form) }}

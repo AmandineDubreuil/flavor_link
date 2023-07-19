@@ -2,10 +2,8 @@
 
 namespace App\Controller;
 
-use App\Entity\RecetteIngredients;
 use App\Entity\Recettes;
-use App\Form\RecettesType;
-use App\Form\RecettesCreationType;
+use App\Form\RecettesFinCreationType;
 use App\Repository\RecettesRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,8 +14,7 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
-#[Route('/recettes')]
-class RecettesController extends AbstractController
+class RecetteFinCreationController extends AbstractController
 {
     private $security;
     private $entityManager;
@@ -27,59 +24,14 @@ class RecettesController extends AbstractController
         $this->security = $security;
         $this->entityManager = $entityManager;
     }
-
-    #[Route('/', name: 'app_recettes_index', methods: ['GET'])]
-    public function index(RecettesRepository $recettesRepository): Response
+    #[Route('/recette/fincreation', name: 'app_recette_fin_creation', methods: ['GET', 'POST'])]
+    public function edit(Request $request, RecettesRepository $recettesRepository, SluggerInterface $slugger): Response
     {
-
-        return $this->render('recettes/index.html.twig', [
-            'recettes' => $recettesRepository->findAll(),
-        ]);
-    }
-
-
-    #[Route('/new', name: 'app_recettes_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, RecettesRepository $recettesRepository,  SluggerInterface $slugger): Response
-    {
-        $user = $this->security->getUser();
-
-        $recette = new Recettes();
-        $form = $this->createForm(RecettesCreationType::class, $recette);
-        $form->handleRequest($request);
-
-
-        //validation du formulaire
-        if ($form->isSubmitted() && $form->isValid()) {
-            $recette->setUser($user);
-            $recettesRepository->save($recette, true);
-
-            return $this->redirectToRoute('app_recette_ingredients_new', [
-                'recette' => $recette,
-            ], Response::HTTP_SEE_OTHER);
-        }
-
-
-        return $this->renderForm('recettes/new.html.twig', [
-            'recette' => $recette,
-            'form' => $form,
-
-        ]);
-    }
-
-    #[Route('/{id}', name: 'app_recettes_show', methods: ['GET'])]
-    public function show(Recettes $recette): Response
-    {
-        $repas = $recette->getRepas();
-        return $this->render('recettes/show.html.twig', [
-            'recette' => $recette,
-            'repas' => $repas,
-        ]);
-    }
-
-    #[Route('/{id}/edit', name: 'app_recettes_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Recettes $recette, RecettesRepository $recettesRepository,  SluggerInterface $slugger): Response
-    {
-        $form = $this->createForm(RecettesType::class, $recette);
+       
+        $recetteId = $_GET['recette'];
+       // dd($recetteId);
+         $recette = $recettesRepository->find($recetteId);
+        $form = $this->createForm(RecettesFinCreationType::class, $recette);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -127,19 +79,9 @@ class RecettesController extends AbstractController
             return $this->redirectToRoute('app_recettes_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('recettes/edit.html.twig', [
+        return $this->renderForm('recette_fin_creation/index.html.twig', [
             'recette' => $recette,
             'form' => $form,
         ]);
-    }
-
-    #[Route('/{id}', name: 'app_recettes_delete', methods: ['POST'])]
-    public function delete(Request $request, Recettes $recette, RecettesRepository $recettesRepository): Response
-    {
-        if ($this->isCsrfTokenValid('delete' . $recette->getId(), $request->request->get('_token'))) {
-            $recettesRepository->remove($recette, true);
-        }
-
-        return $this->redirectToRoute('app_recettes_index', [], Response::HTTP_SEE_OTHER);
     }
 }

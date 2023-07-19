@@ -1,6 +1,8 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ recette.titre }} - Amiam
+{% block title %}
+	{{ recette.titre }}
+	- Amiam
 {% endblock %}
 
 {% block body %}
@@ -50,8 +52,23 @@
 			<p class="nbPersonnes">pour
 				{{ recette.nbPersonnes }}
 				personnes</p>
-			<p>{{ recette.ingredientsAll | raw }}</p>
-
+			<table >
+								<tbody>
+					{% for ingredient in recette.ingredients %}
+						<tr class="ingredients">
+							<td>
+								{{ ingredient.ingredientId.ingredient }}
+							</td>
+							<td>
+								{{ ingredient.quantite }}
+							</td>
+							<td>
+								{{ ingredient.uniteMesure }}
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
 		</div>
 
 		<div>

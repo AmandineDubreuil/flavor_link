@@ -9,6 +9,7 @@
         <thead>
             <tr>
                 <th>Id</th>
+                 <th>RecetteId</th>
                 <th>Quantite</th>
                 <th>UniteMesure</th>
                 <th>actions</th>
@@ -16,8 +17,11 @@
         </thead>
         <tbody>
         {% for recette_ingredient in recette_ingredients %}
+         {% if recette_ingredient.recetteId is same as recette %}
+      
             <tr>
                 <td>{{ recette_ingredient.id }}</td>
+                <td>{{ recette_ingredient.recetteId }}</td>
                 <td>{{ recette_ingredient.quantite }}</td>
                 <td>{{ recette_ingredient.uniteMesure }}</td>
                 <td>
@@ -25,6 +29,7 @@
                     <a href="{{ path('app_recette_ingredients_edit', {'id': recette_ingredient.id}) }}">edit</a>
                 </td>
             </tr>
+            {% endif %}
         {% else %}
             <tr>
                 <td colspan="4">no records found</td>
@@ -33,5 +38,7 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_recette_ingredients_new') }}">Create new</a>
+    <a href="{{ path('app_recette_ingredients_new', {'recette':recette}) }}">Nouvel Ingrédient</a>
+
+       <a class="btn btnValider" href="{{ path('app_recette_fin_creation', {'recette':recette}) }}">Suivant</a>
 {% endblock %}

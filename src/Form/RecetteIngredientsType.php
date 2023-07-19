@@ -14,7 +14,7 @@ class RecetteIngredientsType extends AbstractType
         $builder
             ->add('quantite')
             ->add('uniteMesure')
-            ->add('recetteId')
+         //   ->add('recetteId')
             ->add('ingredientId')
         ;
     }

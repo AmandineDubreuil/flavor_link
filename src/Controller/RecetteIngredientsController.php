@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\RecetteIngredients;
 use App\Form\RecetteIngredientsType;
 use App\Repository\RecetteIngredientsRepository;
+use App\Repository\RecettesRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,24 +15,36 @@ use Symfony\Component\Routing\Annotation\Route;
 class RecetteIngredientsController extends AbstractController
 {
     #[Route('/', name: 'app_recette_ingredients_index', methods: ['GET'])]
-    public function index(RecetteIngredientsRepository $recetteIngredientsRepository): Response
+    public function index(RecetteIngredientsRepository $recetteIngredientsRepository, RecettesRepository $recettesRepository): Response
     {
+        $recetteId = $_GET['recette'];
+        $recette = $recettesRepository->find($recetteId);
+   //dd($recette);
+
         return $this->render('recette_ingredients/index.html.twig', [
+            'recette' => $recette,
             'recette_ingredients' => $recetteIngredientsRepository->findAll(),
+          
         ]);
     }
 
     #[Route('/new', name: 'app_recette_ingredients_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, RecetteIngredientsRepository $recetteIngredientsRepository): Response
+    public function new(Request $request, RecetteIngredientsRepository $recetteIngredientsRepository, RecettesRepository $recettesRepository): Response
     {
+        $recetteId = $_GET['recette'];
+        $recette = $recettesRepository->find($recetteId);
+
         $recetteIngredient = new RecetteIngredients();
         $form = $this->createForm(RecetteIngredientsType::class, $recetteIngredient);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $recetteIngredient->setRecetteId($recette);
             $recetteIngredientsRepository->save($recetteIngredient, true);
 
-            return $this->redirectToRoute('app_recette_ingredients_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_recette_ingredients_index', [
+                'recette'=>$recette,
+            ], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('recette_ingredients/new.html.twig', [
@@ -69,7 +82,7 @@ class RecetteIngredientsController extends AbstractController
     #[Route('/{id}', name: 'app_recette_ingredients_delete', methods: ['POST'])]
     public function delete(Request $request, RecetteIngredients $recetteIngredient, RecetteIngredientsRepository $recetteIngredientsRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$recetteIngredient->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $recetteIngredient->getId(), $request->request->get('_token'))) {
             $recetteIngredientsRepository->remove($recetteIngredient, true);
         }
 

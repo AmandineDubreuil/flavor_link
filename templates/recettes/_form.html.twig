@@ -7,8 +7,14 @@
 		</div>
 
 		<div class="form-field">
-			<label for="saison">Saison :</label>
-			<input name="{{ field_name(form.saison) }}" value="{{ field_value(form.saison) }}" placeholder="{{ field_label(form.saison) }}" class="form-control rounded-1"/>
+			<label for="saison">Saison (1 choix possible) :</label>
+			<input type="checkbox" name="{{ field_name(form.saison) }}" value="printemps"><label for="printemps">Printemps</label>
+
+	<input type="checkbox" name="{{ field_name(form.saison) }}" value="ete"><label for="ete">Été</label>
+
+		<input type="checkbox" name="{{ field_name(form.saison) }}" value="automne"><label for="automne">Automne</label>
+
+			<input type="checkbox" name="{{ field_name(form.saison) }}" value="hiver"><label for="hiver">Hiver</label>
 		</div>
 
 

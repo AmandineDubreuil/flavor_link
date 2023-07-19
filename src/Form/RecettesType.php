@@ -48,6 +48,7 @@ class RecettesType extends AbstractType
             ])
             ->add('saison', TextType::class, [
                 'required' => true,
+           
             ])
             ->add('nbPersonnes', NumberType::class, [
                 'required' => true,

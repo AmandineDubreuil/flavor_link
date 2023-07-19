@@ -18,7 +18,7 @@ class AuthenticationEntryPoint implements AuthenticationEntryPointInterface
     {
         // add a custom flash message and redirect to the login page
        // $request->getSession()->getFlashBag()->add('note', 'You have to login in order to access this page.');
-       $request->getSession()->getFlashBag()->add('danger', 'L\'accès à cette page n\'est pas autorisé.');
+       $request->getSession()->getFlashBag()->add('danger', 'L\'accès à cette page n\'est pas autorisé, peut-être n\'es-tu pas connecté ?');
         return new RedirectResponse($this->urlGenerator->generate('app_home'));
     }
 }

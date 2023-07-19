@@ -44,7 +44,7 @@ security:
          - { path: ^/amis, roles: ROLE_MEMBER }
          - { path: ^/repas, roles: ROLE_MEMBER }
          - { path: ^/choixrepas, roles: ROLE_MEMBER }
-         - { path: ^/ingredients, roles: ROLE_ADMIN }
+         - { path: ^/ingredients, roles: ROLE_MEMBER }
 when@test:
     security:
         password_hashers:

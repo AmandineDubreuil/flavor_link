@@ -16,16 +16,13 @@ class Ingredients
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $groupe = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $sousGroupe = null;
-
-    #[ORM\Column(length: 255)]
     private ?string $ingredient = null;
 
     #[ORM\OneToMany(mappedBy: 'ingredientId', targetEntity: RecetteIngredients::class)]
     private Collection $recetteIngredients;
+
+    #[ORM\ManyToOne(inversedBy: 'ingredients')]
+    private ?CategoriesIngr $categorie = null;
 
     public function __construct()
     {
@@ -37,30 +34,7 @@ class Ingredients
         return $this->id;
     }
 
-    public function getGroupe(): ?string
-    {
-        return $this->groupe;
-    }
-
-    public function setGroupe(string $groupe): self
-    {
-        $this->groupe = $groupe;
-
-        return $this;
-    }
-
-    public function getSousGroupe(): ?string
-    {
-        return $this->sousGroupe;
-    }
-
-    public function setSousGroupe(string $sousGroupe): self
-    {
-        $this->sousGroupe = $sousGroupe;
-
-        return $this;
-    }
-
+   
     public function getIngredient(): ?string
     {
         return $this->ingredient;
@@ -104,6 +78,18 @@ class Ingredients
                 $recetteIngredient->setIngredientId(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCategorie(): ?CategoriesIngr
+    {
+        return $this->categorie;
+    }
+
+    public function setCategorie(?CategoriesIngr $categorie): self
+    {
+        $this->categorie = $categorie;
 
         return $this;
     }

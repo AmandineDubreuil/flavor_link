@@ -25,6 +25,9 @@
 				<nav class="navbar shadow-1 primary">
 					<a href="{{path('app_home')}}" class="navbar-brand" id="logo">Ami<span class="finLogo">am</span></a>
 					<div class="navbar-menu ml-auto">
+
+						{% if is_granted('ROLE_MEMBER') %}
+
 						<a class="navbar-link" href="{{path('app_recettes_index')}}">
 							<i class="fa-solid fa-book"></i>
 						</a>
@@ -34,8 +37,10 @@
 						<a class="navbar-link" href="{{path('app_amis_index')}}">
 							<i class="fa-solid fa-people-group"></i>
 						</a>
+						<a class="navbar-link" href="{{path('app_ingredients_index')}}">Ingrédients</a>
+							{% endif %}
 						{% if is_granted('ROLE_ADMIN') %}
-							<a class="navbar-link" href="{{path('app_ingredients_index')}}">Ingrédients</a>
+							
 							<a class="navbar-link" href="{{path('admin')}}"><i class="fa-solid fa-file-shield"></i></a>
 						{% endif %}
 

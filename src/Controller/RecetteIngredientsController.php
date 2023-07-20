@@ -33,7 +33,7 @@ class RecetteIngredientsController extends AbstractController
     {
         $recetteId = $_GET['recette'];
         $recette = $recettesRepository->find($recetteId);
-
+      
         $recetteIngredient = new RecetteIngredients();
         $form = $this->createForm(RecetteIngredientsType::class, $recetteIngredient);
         $form->handleRequest($request);
@@ -50,6 +50,7 @@ class RecetteIngredientsController extends AbstractController
         return $this->renderForm('recette_ingredients/new.html.twig', [
             'recette_ingredient' => $recetteIngredient,
             'form' => $form,
+            'recette' => $recette,
         ]);
     }
 

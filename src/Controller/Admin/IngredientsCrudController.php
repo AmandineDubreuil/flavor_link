@@ -17,6 +17,13 @@ class IngredientsCrudController extends AbstractCrudController
     {
         return Ingredients::class;
     }
+    public function createEntity(string $entityFqcn)
+    {
+        $ingredient = new Ingredients();
+        $ingredient->setUser($this->getUser());
+
+        return $ingredient;
+    }
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
@@ -28,14 +35,31 @@ class IngredientsCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-        return [
-            IdField::new('id')
+
+            yield IdField::new('id')
             ->hideOnForm()
-            ->setFormTypeOption('disabled', 'disabled'),
-            TextField::new('ingredient'),
-            AssociationField::new('categorie')
-                     
-    ];
+            ->setFormTypeOption('disabled', 'disabled');
+            yield TextField::new('ingredient');
+            yield AssociationField::new('categorie');
+            yield AssociationField::new('user')
+            ->hideOnForm()
+            
+            ;
+          
+                           
+ 
+
+    //     return [
+    //         IdField::new('id')
+    //         ->hideOnForm()
+    //         ->setFormTypeOption('disabled', 'disabled'),
+    //         TextField::new('ingredient'),
+    //         AssociationField::new('categorie'),
+    //         AssociationField::new('user')
+    //         ->setFormTypeOption('disabled', 'disabled'),
+    //         AssociationField::class
+                           
+    // ];
 }
     /*
     public function configureFields(string $pageName): iterable

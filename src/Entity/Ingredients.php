@@ -24,6 +24,9 @@ class Ingredients
     #[ORM\ManyToOne(inversedBy: 'ingredients')]
     private ?CategoriesIngr $categorie = null;
 
+    #[ORM\ManyToOne(inversedBy: 'ingredients')]
+    private ?User $user = null;
+
     public function __construct()
     {
         $this->recetteIngredients = new ArrayCollection();
@@ -90,6 +93,18 @@ class Ingredients
     public function setCategorie(?CategoriesIngr $categorie): self
     {
         $this->categorie = $categorie;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

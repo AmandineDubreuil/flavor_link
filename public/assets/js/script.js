@@ -5,3 +5,11 @@ $('.selectIngredient').select2({
 
 });
 })
+
+// utilisation de select2 dans IngredientsType pour le select de l'ingredient
+
+$(function(){
+    $('.selectCategorieIngr').select2({
+    
+    });
+    })

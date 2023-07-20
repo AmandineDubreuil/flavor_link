@@ -63,11 +63,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Repas::class)]
     private Collection $repas;
 
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Ingredients::class)]
+    private Collection $ingredients;
+
     public function __construct()
     {
         $this->recettes = new ArrayCollection();
         $this->amis = new ArrayCollection();
         $this->repas = new ArrayCollection();
+        $this->ingredients = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -303,6 +307,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($repa->getUser() === $this) {
                 $repa->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Ingredients>
+     */
+    public function getIngredients(): Collection
+    {
+        return $this->ingredients;
+    }
+
+    public function addIngredient(Ingredients $ingredient): self
+    {
+        if (!$this->ingredients->contains($ingredient)) {
+            $this->ingredients->add($ingredient);
+            $ingredient->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeIngredient(Ingredients $ingredient): self
+    {
+        if ($this->ingredients->removeElement($ingredient)) {
+            // set the owning side to null (unless already changed)
+            if ($ingredient->getUser() === $this) {
+                $ingredient->setUser(null);
             }
         }
 

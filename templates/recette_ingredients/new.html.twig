@@ -8,8 +8,13 @@
 
     <h1>Ajout d'un ingrédient</h1>
 
-    {{ include('recette_ingredients/_form.html.twig') }}
+<div class="groupeBoutons">
+		<a class="btn btnRetour" href="javascript:history.go(-1)">Retour</a>
+		<a class="btn btnValider" href="{{ path('app_ingredients_new', {'recette':recette}) }}">Nouveau</a>
+	</div>
 
+
+    {{ include('recette_ingredients/_form.html.twig') }}
 
 </section>
 

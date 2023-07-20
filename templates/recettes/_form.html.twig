@@ -10,9 +10,9 @@
 			<label for="saison">Saison (1 choix) :</label>
 			<input type="checkbox" name="{{ field_name(form.saison) }}" value="printemps"><label for="printemps">Printemps</label>
 
-	<input type="checkbox" name="{{ field_name(form.saison) }}" value="ete"><label for="ete">Été</label>
+			<input type="checkbox" name="{{ field_name(form.saison) }}" value="ete"><label for="ete">Été</label>
 
-		<input type="checkbox" name="{{ field_name(form.saison) }}" value="automne"><label for="automne">Automne</label>
+			<input type="checkbox" name="{{ field_name(form.saison) }}" value="automne"><label for="automne">Automne</label>
 
 			<input type="checkbox" name="{{ field_name(form.saison) }}" value="hiver"><label for="hiver">Hiver</label>
 		</div>
@@ -29,8 +29,26 @@
 	<div class="ingredients">
 		<h4>Ingrédients :</h4>
 
-		{{form_row(form.ingredientsAll)}}
-		{# <a href="{{ path('app_recette_ingredients_new') }}" class="btn">Ajouter</a> #}
+		{# {{form_row(form.ingredientsAll)}} #}
+		<table>
+			<tbody>
+				{% for ingredient in recette.ingredients %}
+					<tr class="ingredients">
+						<td>
+							{{ ingredient.ingredientId.ingredient }}
+						</td>
+						<td>
+							{{ ingredient.quantite }}
+						</td>
+						<td>
+							{{ ingredient.uniteMesure }}
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+		<a href="{{ path('app_recette_ingredients_index', {'recette':recette}) }}" class="btn btnModifier">Modifier</a>
 
 	</div>
 	<div class="preparation">

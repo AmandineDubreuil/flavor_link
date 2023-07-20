@@ -1,19 +1,24 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Modification {{ recette.titre }} - Amiam{% endblock %}
+{% block title %}Modification
+	{{ recette.titre }}
+	- Amiam
+{% endblock %}
 
 {% block body %}
-<section class="recettesModifier">
-    <h1>Modifications recette {{recette.titre}}</h1>
-    		<div class="groupeBoutons">
+	<section class="recettesModifier">
+		<h1>Modifications recette
+			{{recette.titre}}</h1>
+		<div class="groupeBoutons">
 			<div>
 				<a class="btn btnRetour" href="javascript:history.go(-1)">Retour</a>
 			</div>
-			<div>
-				{{ include('recettes/_delete_form.html.twig') }}
-			</div>
+	
+		<div>
+			{{ include('recettes/_delete_form.html.twig') }}
+		</div>
 
+	</div>
+		{{ include('recettes/_form.html.twig', {'button_label': 'Modifier'}) }}
 
-    {{ include('recettes/_form.html.twig', {'button_label': 'Modifier'}) }}
-
-{% endblock %}
+	{% endblock %}

@@ -497,12 +497,12 @@ margin-top: 1rem;
 .recettesForm .nbPersonnes label,
 .recettesForm .nbPersonnes p,
 .recettesForm .recettesTemps .form-field label,
-.recettesForm .recettesTemps .form-field p {
+.recettesForm .recettesTemps .form-field p, .ingredientRecettesForm label, .ingredientRecettesForm div {
     margin: 1rem;
 }
 
 .recettesForm .nbPersonnes label,
-.recettesForm .recettesTemps .form-field label {
+.recettesForm .recettesTemps .form-field label, .ingredientRecettesForm label, .ingredientRecettesForm div {
     margin-left: 0;
 }
 
@@ -522,9 +522,27 @@ margin-top: 1rem;
 
 }
 
-.recettesForm .photo input {
+.recettesForm .photo input{
     border: 1px solid gray;
     border-radius: 4px;
+}
+
+/* recette ingredient ajouter modifier*/
+
+.ingredientRecettesNew{
+    margin: 1rem;
+}
+
+.ingredientRecettesForm {
+  
+    display: flex;
+    
+}
+
+.ingredientRecettesForm input{
+    border: 1px solid gray;
+    border-radius: 4px;
+    padding: .2rem;
 }
 
 /* recette ajouter modifier */

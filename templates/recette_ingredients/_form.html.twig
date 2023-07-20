@@ -1,4 +1,14 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+<div class="ingredientRecettesForm">
+	<div class="form-field">
+		{{ form_row(form.ingredientId) }}
+	</div>
+	<div class="form-field">
+		{{ form_row(form.quantite) }}
+	</div>
+	<div class="form-field">
+		{{ form_row(form.uniteMesure) }}
+	</div>
+</div>
+<button class="btn btnValider">{{ button_label|default('Ajouter') }}</button>
 {{ form_end(form) }}

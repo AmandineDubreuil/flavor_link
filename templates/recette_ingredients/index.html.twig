@@ -1,44 +1,35 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}RecetteIngredients index{% endblock %}
+{% block title %}Ingrédients pour {{ recette.titre }} - Amiam
+{% endblock %}
 
 {% block body %}
-    <h1>RecetteIngredients index</h1>
+	<h1>Ingrédients pour {{ recette.titre }}</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                 <th>RecetteId</th>
-                <th>Quantite</th>
-                <th>UniteMesure</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for recette_ingredient in recette_ingredients %}
-         {% if recette_ingredient.recetteId is same as recette %}
-      
-            <tr>
-                <td>{{ recette_ingredient.id }}</td>
-                <td>{{ recette_ingredient.recetteId }}</td>
-                <td>{{ recette_ingredient.quantite }}</td>
-                <td>{{ recette_ingredient.uniteMesure }}</td>
-                <td>
-                    <a href="{{ path('app_recette_ingredients_show', {'id': recette_ingredient.id}) }}">show</a>
-                    <a href="{{ path('app_recette_ingredients_edit', {'id': recette_ingredient.id}) }}">edit</a>
-                </td>
-            </tr>
-            {% endif %}
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+	<table>
+		<tbody>
+			{% for recette_ingredient in recette_ingredients %}
+				{% if recette_ingredient.recetteId is same as recette %}
 
-    <a href="{{ path('app_recette_ingredients_new', {'recette':recette}) }}">Nouvel Ingrédient</a>
+					<tr>
 
-       <a class="btn btnValider" href="{{ path('app_recette_fin_creation', {'recette':recette}) }}">Suivant</a>
+						<td>{{ recette_ingredient.ingredientId.ingredient }}</td>
+						<td>{{ recette_ingredient.quantite }}</td>
+						<td>{{ recette_ingredient.uniteMesure }}</td>
+						<td>
+							<a class="btn btnModifier" href="{{ path('app_recette_ingredients_edit', {'id': recette_ingredient.id}) }}">Modifier</a>
+						</td>
+					</tr>
+				{% endif %}
+			{% else %}
+				<tr>
+					<td colspan="4">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<a class="btn btnValider"href="{{ path('app_recette_ingredients_new', {'recette':recette}) }}">Ajouter</a>
+
+	<a class="btn btnValider" href="{{ path('app_recette_fin_creation', {'recette':recette}) }}">Suivant</a>
 {% endblock %}

@@ -43,12 +43,15 @@
 						<td>
 							{{ ingredient.uniteMesure }}
 						</td>
+							<td>
+							<a class="btn btnModifier" href="{{ path('app_recette_ingredients_edit', {'id': ingredient.id}) }}">Modifier</a>
+						</td>
 					</tr>
 				{% endfor %}
 			</tbody>
 		</table>
 
-		<a href="{{ path('app_recette_ingredients_index', {'recette':recette}) }}" class="btn btnModifier">Modifier</a>
+	<a class="btn btnValider" href="{{ path('app_recette_ingredients_new', {'recette':recette}) }}">Ajouter</a>
 
 	</div>
 	<div class="preparation">

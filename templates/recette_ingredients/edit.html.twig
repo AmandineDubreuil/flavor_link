@@ -1,13 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit RecetteIngredients{% endblock %}
+{% block title %}Modification d'une recette - Amiam
+{% endblock %}
 
 {% block body %}
-    <h1>Edit RecetteIngredients</h1>
+<section class="ingredientRecettesNew">
+	<h1>Modification d'un ingrédient</h1>
+	<div class="groupeBoutons">
+		<a class="btn btnRetour" href="javascript:history.go(-1)">Retour</a>
+		{{ include('recette_ingredients/_delete_form.html.twig') }}
+	</div>
+	{{ include('recette_ingredients/_form.html.twig', {'button_label': 'Valider'}) }}
+</section>
 
-    {{ include('recette_ingredients/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('app_recette_ingredients_index') }}">back to list</a>
-
-    {{ include('recette_ingredients/_delete_form.html.twig') }}
 {% endblock %}

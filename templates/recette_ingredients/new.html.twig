@@ -1,11 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New RecetteIngredients{% endblock %}
+{% block title %}Nouvelle Recette - Amiam {% endblock %}
 
 {% block body %}
-    <h1>Create new RecetteIngredients</h1>
+
+<section class="ingredientRecettesNew">
+
+    <h1>Ajout d'un ingrédient</h1>
 
     {{ include('recette_ingredients/_form.html.twig') }}
 
-    <a href="{{ path('app_recette_ingredients_index') }}">back to list</a>
+
+</section>
+
 {% endblock %}

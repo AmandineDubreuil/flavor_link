@@ -8,6 +8,7 @@ Amiam est une application permettant à un utilisateur de choisir une recette pa
 - PHP 8.2
 - Symfony 6.2
 - MySql
+- JQuery : select2
 - Bundle : CKEditor, easyadmin 4
 
 ## License

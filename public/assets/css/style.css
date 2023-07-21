@@ -380,7 +380,12 @@ margin-top: 1rem;
 .groupeBoutons .btnRetour {
     margin-left: 0;
 }
-
+.amisShow .allCatetoriesIngr{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
 .amisShow .cards {
     display: flex;
     flex-wrap: wrap;

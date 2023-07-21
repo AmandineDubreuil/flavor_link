@@ -1,9 +1,17 @@
 {{ form_start(form) }}
-<div class="form-field">
-	<label for="nom">Ingrédient</label>
-	<input name="{{ field_name(form.ingredient) }}" value="{{ field_value(form.ingredient) }}" placeholder="{{ field_label(form.ingredient) }}" class="form-control rounded-1"/>
+<div class="ingredientRecettesForm">
+	<div class="form-field">
+		<p>Pour une aversion générale à une famille de produits, ou un régime particulier</p>
+		{{ form_row(form.superCategorieIngr) }}
+	</div>
+	<div class="form-field">
+		<p>Pour une aversion à une sous-famille de produits, ou un régime particulier</p>
+		{{ form_row(form.categorieIngredients) }}
+	</div>
+	<div class="form-field">
+		<p>Pour une aversion à un produit spécifique, ou un régime particulier</p>
+		{{ form_row(form.ingredient) }}
+	</div>
 </div>
-
-
-    <button class="btn btnValider">{{ button_label|default('Ajouter') }}</button>
+<button class="btn btnValider">{{ button_label|default('Ajouter') }}</button>
 {{ form_end(form) }}

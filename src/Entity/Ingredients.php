@@ -27,9 +27,13 @@ class Ingredients
     #[ORM\ManyToOne(inversedBy: 'ingredients')]
     private ?User $user = null;
 
+    #[ORM\OneToMany(mappedBy: 'ingredient', targetEntity: Allergies::class)]
+    private Collection $allergies;
+
     public function __construct()
     {
         $this->recetteIngredients = new ArrayCollection();
+        $this->allergies = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -105,6 +109,36 @@ class Ingredients
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Allergies>
+     */
+    public function getAllergies(): Collection
+    {
+        return $this->allergies;
+    }
+
+    public function addAllergy(Allergies $allergy): self
+    {
+        if (!$this->allergies->contains($allergy)) {
+            $this->allergies->add($allergy);
+            $allergy->setIngredient($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAllergy(Allergies $allergy): self
+    {
+        if ($this->allergies->removeElement($allergy)) {
+            // set the owning side to null (unless already changed)
+            if ($allergy->getIngredient() === $this) {
+                $allergy->setIngredient(null);
+            }
+        }
 
         return $this;
     }

@@ -24,9 +24,13 @@ class CategoriesIngr
     #[ORM\ManyToOne(inversedBy: 'categorie')]
     private ?SuperCategorieIngr $superCategorieIngr = null;
 
+    #[ORM\OneToMany(mappedBy: 'categorieIngredients', targetEntity: Allergies::class)]
+    private Collection $allergies;
+
        public function __construct()
     {
         $this->ingredients = new ArrayCollection();
+        $this->allergies = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -89,6 +93,36 @@ class CategoriesIngr
     public function setSuperCategorieIngr(?SuperCategorieIngr $superCategorieIngr): self
     {
         $this->superCategorieIngr = $superCategorieIngr;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Allergies>
+     */
+    public function getAllergies(): Collection
+    {
+        return $this->allergies;
+    }
+
+    public function addAllergy(Allergies $allergy): self
+    {
+        if (!$this->allergies->contains($allergy)) {
+            $this->allergies->add($allergy);
+            $allergy->setCategorieIngredients($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAllergy(Allergies $allergy): self
+    {
+        if ($this->allergies->removeElement($allergy)) {
+            // set the owning side to null (unless already changed)
+            if ($allergy->getCategorieIngredients() === $this) {
+                $allergy->setCategorieIngredients(null);
+            }
+        }
 
         return $this;
     }

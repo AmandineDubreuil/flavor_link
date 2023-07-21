@@ -14,32 +14,24 @@ class Allergies
     #[ORM\Column]
     private ?int $id = null;
 
-    /**
-     * @Assert\NotBlank
-     */
-    #[ORM\Column(length: 50)]
-    private ?string $ingredient = null;
-
     #[ORM\ManyToOne(inversedBy: 'allergies')]
     private ?Amis $ami = null;
+
+    #[ORM\ManyToOne(inversedBy: 'allergies')]
+    private ?Ingredients $ingredient = null;
+
+    #[ORM\ManyToOne(inversedBy: 'allergies')]
+    private ?CategoriesIngr $categorieIngredients = null;
+
+    #[ORM\ManyToOne(inversedBy: 'allergies')]
+    private ?SuperCategorieIngr $superCategorieIngr = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getIngredient(): ?string
-    {
-        return $this->ingredient;
-    }
-
-    public function setIngredient(string $ingredient): self
-    {
-        $this->ingredient = $ingredient;
-
-        return $this;
-    }
-
+   
     public function getAmi(): ?Amis
     {
         return $this->ami;
@@ -51,8 +43,44 @@ class Allergies
 
         return $this;
     }
-    public function __toString(): string
+    // public function __toString(): string
+    // {
+    //     return $this->getIngredient();  // or some string field in your Vegetal Entity 
+    // }
+
+    public function getIngredient(): ?Ingredients
     {
-        return $this->getIngredient();  // or some string field in your Vegetal Entity 
+        return $this->ingredient;
+    }
+
+    public function setIngredient(?Ingredients $ingredient): self
+    {
+        $this->ingredient = $ingredient;
+
+        return $this;
+    }
+
+    public function getCategorieIngredients(): ?CategoriesIngr
+    {
+        return $this->categorieIngredients;
+    }
+
+    public function setCategorieIngredients(?CategoriesIngr $categorieIngredients): self
+    {
+        $this->categorieIngredients = $categorieIngredients;
+
+        return $this;
+    }
+
+    public function getSuperCategorieIngr(): ?SuperCategorieIngr
+    {
+        return $this->superCategorieIngr;
+    }
+
+    public function setSuperCategorieIngr(?SuperCategorieIngr $superCategorieIngr): self
+    {
+        $this->superCategorieIngr = $superCategorieIngr;
+
+        return $this;
     }
 }

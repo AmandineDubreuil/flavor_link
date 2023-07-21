@@ -26,23 +26,69 @@
 		<div>
 			<h5>Ingrédients à éviter</h5>
 			<a class="btn btnCreer" href="{{ path('app_allergies_new', {'idAmi': ami.id}) }}">Ajouter</a>
-			<div class='cards'>
-				{% for allergie in ami.allergies | sort((a, b)=> a.ingredient <=> b.ingredient)  %}
-					<div class="card shadow-1 hoverable-1 rounded-3  cardAllergie">
-						<a class="btn" href="{{ path('app_allergies_edit', {'id': allergie.id, 'idAmi': ami.id}) }}">
-							{{ allergie.ingredient }}
-						</a>
+			<div class="allCatetoriesIngr">
+				<div class="categorieIngr">
+					<h6>Famille de produits</h6>
+					<div class='cards'>
+						{% for allergie in ami.allergies | sort((a, b)=> a.superCategorieIngr <=> b.superCategorieIngr)  %}
+							{% if allergie.superCategorieIngr is not null %}
+
+								<div class="card shadow-1 hoverable-1 rounded-3  cardAllergie">
+									<a class="btn" href="{{ path('app_allergies_edit', {'id': allergie.id, 'idAmi': ami.id}) }}">
+										{{ allergie.superCategorieIngr }}
+									</a>
+								</div>
+							{% endif %}
+						{% else %}
+							<p>
+								Aucun ingrédient à éviter !
+							</p>
+
+						{% endfor %}
 					</div>
-				{% else %}
-					<p>
-						Aucun ingrédient à éviter !
-					</p>
+				</div>
+				<div class="categorieIngr">
+					<h6>Sous-famille de produits</h6>
+					<div class='cards'>
+						{% for allergie in ami.allergies | sort((a, b)=> a.categorieIngredients <=> b.categorieIngredients)  %}
+							{% if allergie.categorieIngredients is not null %}
 
-				{% endfor %}
+								<div class="card shadow-1 hoverable-1 rounded-3  cardAllergie">
+									<a class="btn" href="{{ path('app_allergies_edit', {'id': allergie.id, 'idAmi': ami.id}) }}">
+										{{ allergie.categorieIngredients }}
+									</a>
+								</div>
+							{% endif %}
+						{% else %}
+							<p>
+								Aucun ingrédient à éviter !
+							</p>
+						{% endfor %}
+					</div>
+				</div>
+				<div class="categorieIngr">
+					<h6>Ingrédients</h6>
+					<div class='cards'>
+						{% for allergie in ami.allergies | sort((a, b)=> a.ingredient <=> b.ingredient)  %}
+							{% if allergie.ingredient is not null %}
+
+								<div class="card shadow-1 hoverable-1 rounded-3  cardAllergie">
+									<a class="btn" href="{{ path('app_allergies_edit', {'id': allergie.id, 'idAmi': ami.id}) }}">
+										{{ allergie.ingredient }}
+									</a>
+								</div>
+							{% endif %}
+						{% else %}
+							<p>
+								Aucun ingrédient à éviter !
+							</p>
+
+						{% endfor %}
+					</div>
+
+				</div>
 			</div>
-
 		</div>
-
 		<div>
 
 			<div>

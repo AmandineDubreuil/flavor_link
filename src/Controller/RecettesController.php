@@ -6,6 +6,7 @@ use App\Entity\RecetteIngredients;
 use App\Entity\Recettes;
 use App\Form\RecettesType;
 use App\Form\RecettesCreationType;
+use App\Repository\RecetteIngredientsRepository;
 use App\Repository\RecettesRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -134,9 +135,17 @@ class RecettesController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_recettes_delete', methods: ['POST'])]
-    public function delete(Request $request, Recettes $recette, RecettesRepository $recettesRepository): Response
+    public function delete(Request $request, Recettes $recette, RecettesRepository $recettesRepository, RecetteIngredientsRepository $recetteIngredientsRepository): Response
     {
+        $recetteId = $_GET['recette'];
+        $recetteIngredients = $recetteIngredientsRepository->findByRecette($recetteId);
+
         if ($this->isCsrfTokenValid('delete' . $recette->getId(), $request->request->get('_token'))) {
+            foreach ($recetteIngredients as $recetteIngredient) {
+                $recetteIngredientsRepository->remove($recetteIngredient, true); 
+                # code...
+            }
+
             $recettesRepository->remove($recette, true);
         }
 

@@ -9,8 +9,9 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
-use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class RecettesCreationType extends AbstractType
@@ -21,7 +22,18 @@ class RecettesCreationType extends AbstractType
             ->add('titre', TextType::class, [
                 'required' => true,
             ])
-            ->add('saison', TextType::class, [])
+            ->add('saison', ChoiceType::class, [
+                'label' => 'Saison(s) :',
+                'choices' => [
+                    'Printemps' => 'Printemps',
+                    'Été' => 'Été',
+                    'Automne' => 'Automne',
+                    'Hiver' => 'Hiver',
+                ],
+                'expanded' => true,
+                'multiple' => true,
+                'data' => $options['data']->getSaison(), // Pass the values from the database
+            ])
             ->add('nbPersonnes', NumberType::class, [
                 'required' => true,
             ])

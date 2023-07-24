@@ -35,9 +35,6 @@ class Recettes
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $photo = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $saison = null;
-
     #[ORM\Column]
     private ?int $nbPersonnes = null;
 
@@ -56,6 +53,9 @@ class Recettes
 
     #[ORM\OneToMany(mappedBy: 'recette', targetEntity: Repas::class)]
     private Collection $repas;
+
+    #[ORM\Column(type: Types::ARRAY, nullable: true)]
+    private array $saison = [];
 
     public function __construct()
     {
@@ -138,18 +138,6 @@ class Recettes
     public function setPhoto(?string $photo): self
     {
         $this->photo = $photo;
-
-        return $this;
-    }
-
-    public function getSaison(): ?string
-    {
-        return $this->saison;
-    }
-
-    public function setSaison(string $saison): self
-    {
-        $this->saison = $saison;
 
         return $this;
     }
@@ -282,6 +270,18 @@ class Recettes
                 $repa->setRecette(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getSaison(): array
+    {
+        return $this->saison;
+    }
+
+    public function setSaison(?array $saison): self
+    {
+        $this->saison = $saison;
 
         return $this;
     }

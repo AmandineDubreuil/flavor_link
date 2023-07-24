@@ -498,6 +498,15 @@ margin-top: 1rem;
     align-items: center;
 
 }
+.recettesForm .saisons #recettes_saison, .recettesForm .saisons #recettes_creation_saison {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+.recettesForm .saisons #recettes_saison label, .recettesForm .saisons #recettes_creation_saison label {
+    margin-left: .5rem;
+  margin-right: 2rem;
+}
 
 .recettesForm .nbPersonnes label,
 .recettesForm .nbPersonnes p,
@@ -555,6 +564,7 @@ margin-top: 1rem;
     margin: 1rem;
 }
 
+
 /*recette show*/
 .recettesShow {
     margin: 1rem;
@@ -575,6 +585,12 @@ margin-top: 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.recettesShow .saisons p, .recettesShow .tempsGroupe p{
+    margin-top: 1rem;
+    margin-bottom: 0;
+    font-weight: bold;
 }
 
 .recettesShow .cardRepasRecette {

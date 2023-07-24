@@ -29,23 +29,31 @@
 
 		<div class="tempsGroupe">
 			<div class="temps">
-				<div>Temps de préparation</div>
+				<p>Temps de préparation</p>
 				<div>{{ recette.tpsPreparation }}
-					min</div>
+					min
+				</div>
 			</div>
 			<div class="temps">
-				<div>Temps de repos</div>
+				<p>Temps de repos</p>
 				<div>{{ recette.tpsRepos }}
 					min</div>
 			</div>
 			<div class="temps">
-				<div>Temps de cuisson</div>
+				<p>Temps de cuisson</p>
 				<div>{{ recette.tpsCuisson }}
 					min</div>
 			</div>
 		</div>
-		<p>Saison :
-			{{ recette.saison }}</p>
+		<div class="saisons">
+			<p>Saison(s) :</p>
+			<div>
+				{% for saison in recette.saison %}
+					<div>{{ saison }}
+					</div>
+				{% endfor %}
+			</div>
+		</div>
 
 		<div>
 			<h5>Ingrédients</h5>

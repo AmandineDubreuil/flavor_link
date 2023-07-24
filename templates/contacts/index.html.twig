@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contact - Amiam
+{% endblock %}
+
+{% block body %}
+
+	<section class="contact">
+    <h1>Formulaire de contact</h1>
+
+		{{ form_start(form) }}
+		<div class="form-field inscriptionFormInput">
+			<label for="pseudo">Pseudo :</label>
+			<input name="{{ field_name(form.pseudo) }}" value="{{ field_value(form.pseudo) }}" class="form-control rounded-1"/>
+		</div>
+		<div class="form-field inscriptionFormInput">
+			<label for="email">Email :</label>
+			<input name="{{ field_name(form.email) }}" value="{{ field_value(form.email) }}" class="form-control rounded-1"/>
+		</div>
+		<div class="form-field inscriptionFormInput">
+			<label for="sujet">Sujet :</label>
+			<input name="{{ field_name(form.sujet) }}" value="{{ field_value(form.sujet) }}" class="form-control rounded-1"/>
+		</div>
+		<div class="form-field inscriptionFormInput">
+
+			{{form_row(form.message)}}
+		</div>
+		<button class="btn btnValider">{{ button_label|default('Envoyer') }}</button>
+		{{ form_end(form) }}
+	</section>
+
+{% endblock %}

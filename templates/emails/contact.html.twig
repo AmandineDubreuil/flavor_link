@@ -1,0 +1,15 @@
+{% extends 'emails/base_emails.html.twig' %}
+
+
+{% block body %}
+
+<h1>Demande de {{contact.pseudo}}</h1>
+
+<p>Email : {{contact.email}}</p>
+<p>Sujet : {{contact.sujet}}</p>
+<p>Message : </p>
+<div> 
+{{contact.message|raw}}
+</div>
+
+{% endblock %}

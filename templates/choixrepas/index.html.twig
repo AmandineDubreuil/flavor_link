@@ -34,13 +34,14 @@
 		{% endif %}
 
 		<div>
+
 			<h3>Repas proposés</h3>
-			<p>Attention à bien vérifier qu'il ne reste pas d'Ingrédients à éviter. </p>
+			<p>Attention à bien vérifier qu'il ne reste pas d'ingrédients à éviter.
+			</p>
 			{% for recette in recettesOk  | sort((a, b)=> a.titre <=> b.titre) %}
 
 				<div class="card shadow-1 hoverable-1 rounded-3 ">
-					<div
-						class="cardRecette">
+					<div class="cardRecette">
 
 						{% if recette.photo %}
 							<div class="imgRecette">
@@ -80,20 +81,12 @@
 
 						</div>
 
-
-						{# </a> #}
 					</div>
 				</div>
 			{% else %}
 				<div>Aucune recette ne correspond...</div>
 
-				{# <div>
-																					<a href="{{ path('app_recettes_show', {'id': recette.id}) }}">{{ recette.titre }}</a>
-																					-
-																					<a href="{{ path('app_repas_new', {'recetteId': recette.id, 'amisId': amisId}) }}">Choisir</a>
-																				</div> #}
 			{% endfor %}
 
-		</div>
-	</section>
-{% endblock %}
+	</div>
+</section>{% endblock %}

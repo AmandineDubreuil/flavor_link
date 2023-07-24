@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Allergies;
 use App\Entity\Recettes;
 use App\Repository\AmisRepository;
 use App\Repository\RepasRepository;
@@ -28,6 +29,7 @@ class ChoixrepasController extends AbstractController
         $user = $this->security->getUser();
         $amis = $amisRepository->findBy(['user' => $user]);
         $recettes = $recettesRepository->findBy(['user' => $user]);
+
         $amisPresents = "";
         $amisPresentsId = "";
         $recettesAvecAllergie = [];
@@ -38,41 +40,72 @@ class ChoixrepasController extends AbstractController
             $amisPresents = $amisRepository->findBy(['id' => $amisPresentsId]);
             // définir les allergies des amis présents
             $allergiesPresentes = $allergiesRepository->findBy(['ami' => $amisPresentsId]);
-            $allergieArray = [];
-            $recettesAvecAllergie = [];
-            $recettesOui = [];
-            $recettesNon = [];
-            $recettesOkId = [];
-            foreach ($allergiesPresentes as $allergie) {
-                $allergieArray[] = $allergie->getIngredient();
+
+            // récupération d'un tableau des super catégories avec allergies
+            $superCategoriesArray = [];
+            foreach ($allergiesPresentes as $allergieSuperCategorie) {
+                $superCategorie =   $allergieSuperCategorie->getSuperCategorieIngr();
+                if ($superCategorie == !null) {
+                    $superCategoriesArray[] = $superCategorie;
+                }
             }
-            $allergieArrayUnique = array_unique($allergieArray);
-            // récupérer les recettes où des allergies sont présentes
-            // récupération sous forme d'array
-            foreach ($allergieArrayUnique as $allergie) {
-                $recettesAvecAllergie[] = $recettesRepository->findByUserAndAllergie($allergie, $user);
+
+            // récupération d'un tableau des catégories avec allergies
+            $categoriesArray = [];
+            foreach ($allergiesPresentes as $allergieCategorie) {
+                $categorie =   $allergieCategorie->getCategorieIngredients();
+                if ($categorie == !null) {
+                    $categoriesArray[] = $categorie;
+                }
             }
-            // pour chaque recette récupérer l'id et mettre dans un tableau si allergie possible
+
+            // récupération d'un tableau des ingredients avec allergies
+            $ingredientsArray = [];
+            foreach ($allergiesPresentes as $allergieIngredient) {
+                $ingredient =   $allergieIngredient->getIngredient();
+                //  dd($ingredient);
+                if ($ingredient == !null) {
+                    $ingredientsArray[] = $ingredient;
+                }
+            }
+            // récupération des recettes avec allergies dans un tableau
             foreach ($recettes as $recette) {
-                $recetteId = $recette->getId();
-                $recettesOui[] = $recetteId;
-                foreach ($recettesAvecAllergie as $recetteAl => $value) {
-                    foreach ($value as $valueUnique) {
-                        if ($valueUnique == $recetteId) {
-                            $recettesNon[] = $recetteId;
-                        }
+
+
+                foreach ($recette->getIngredients() as $ingredientRecette) {
+                    $ingredientId = $ingredientRecette->getIngredientId();
+                    $categorieId = $ingredientId->getCategorie();
+                    $superCategorieId = $categorieId->getSuperCategorieIngr();
+                    // dd($ingredientId->getCategorie()); 
+                    //  dd($superCategorieId);
+
+                    // pour ingrédient
+                    if (in_array($ingredientId, $ingredientsArray)) {
+                        // Ajout de la recette au tableau "recettesAvecAllergie"
+                        $recettesAvecAllergie[] = $recette;
+                    }
+
+                    // pour catégorie
+                    if (in_array($categorieId, $categoriesArray)) {
+                        // Ajout de la recette au tableau "recettesAvecAllergie"
+                        $recettesAvecAllergie[] = $recette;
+                    }
+
+                    // pour super catégorie
+                    if (in_array($superCategorieId, $superCategoriesArray)) {
+                        // Ajout de la recette au tableau "recettesAvecAllergie"
+                        $recettesAvecAllergie[] = $recette;
                     }
                 }
             }
-            // supprimer les doublons
-            $recettesOuiUnique = array_unique($recettesOui);
-            $recettesNonUnique = array_unique($recettesNon);
-            // supprimer les recettes non du tableau recettes oui
-            $recettesOkId = array_diff($recettesOuiUnique, $recettesNonUnique);
-            // récupère les objets recettes
-            foreach ($recettesOkId as $recetteId) {
-                $recettesOk[] = $recettesRepository->find($recetteId);
-            }
+            // supprimer les doublons du tableau recettesAvecAllergie
+            $recettesAvecAllergieUnique = array_unique($recettesAvecAllergie);
+
+            // retirer les recettes du tableau avec allergie du tableau recettes
+            $recettesOk = array_diff($recettes, $recettesAvecAllergieUnique);
+
+            // test
+            // dd($recettesOk);
         }
         return $this->render('choixrepas/index.html.twig', [
             'controller_name' => 'ChoixrepasController',

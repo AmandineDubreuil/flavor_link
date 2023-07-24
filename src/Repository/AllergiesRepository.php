@@ -73,4 +73,6 @@ class AllergiesRepository extends ServiceEntityRepository
            ->getOneOrNullResult()
        ;
    }
+
+   
 }

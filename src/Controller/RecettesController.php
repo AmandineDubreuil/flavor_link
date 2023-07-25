@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\CategoriesRecette;
 use App\Entity\RecetteIngredients;
 use App\Entity\Recettes;
 use App\Form\RecettesType;

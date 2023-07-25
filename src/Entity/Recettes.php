@@ -57,6 +57,9 @@ class Recettes
     #[ORM\Column(type: Types::ARRAY, nullable: true)]
     private array $saison = [];
 
+    #[ORM\ManyToOne(inversedBy: 'recettes')]
+    private ?CategoriesRecette $categoriesRecette = null;
+
     public function __construct()
     {
         $this->ingredients = new ArrayCollection();
@@ -282,6 +285,18 @@ class Recettes
     public function setSaison(?array $saison): self
     {
         $this->saison = $saison;
+
+        return $this;
+    }
+
+    public function getCategoriesRecette(): ?CategoriesRecette
+    {
+        return $this->categoriesRecette;
+    }
+
+    public function setCategoriesRecette(?CategoriesRecette $categoriesRecette): self
+    {
+        $this->categoriesRecette = $categoriesRecette;
 
         return $this;
     }

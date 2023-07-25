@@ -9,11 +9,14 @@
 		<div>
 			<a class="btn btnCreer" href="{{ path('app_recettes_new') }}">Créer</a>
 		</div>
+
+
 		<div
 			class="cards">
-			{# {% if recette %} #}
+		
 
-			{% for recette in app.user.recettes | sort((a, b)=> a.titre <=> b.titre)  %}
+			{% for recette in app.user.recettes |  sort((a, b)=> a.titre <=> b.titre)  %}
+	
 				<div class="card shadow-1 hoverable-1 rounded-3 ">
 					<a class="cardRecette" href="{{ path('app_recettes_show', {'id': recette.id}) }}">
 						{% if recette.photo %}
@@ -24,6 +27,11 @@
 
 						<div class="slugRecette">
 							<div class="titreRecette">{{ recette.titre }}</div>
+
+							<div>{{ recette.categoriesRecette.categorie }}
+
+
+							</div>
 							<div class="tpsRecette">
 								<div>
 									<div>Préparation</div>
@@ -42,15 +50,18 @@
 								</div>
 
 							</div>
-							<div>{% for saison in recette.saison %}
+							<div>
+								{% for saison in recette.saison %}
 									<div>{{ saison }}
-										</div>
-							{% endfor %}</div>
+									</div>
+								{% endfor %}
+							</div>
 						</div>
 
 
 					</a>
 				</div>
+			
 			{% else %}
 				<div>Aucune recette enregistrée !</div>
 

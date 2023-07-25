@@ -5,7 +5,11 @@
 			<label for="titre">Titre de la recette :</label>
 			<input name="{{ field_name(form.titre) }}" value="{{ field_value(form.titre) }}" placeholder="{{ field_label(form.titre) }}" class="form-control rounded-1"/>
 		</div>
+		<div class="form-field saisons">
 
+			{{ form_row(form.categoriesRecette) }}
+
+		</div>
 		<div class="form-field saisons">
 
 			{{ form_row(form.saison) }}

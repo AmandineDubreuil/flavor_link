@@ -58,7 +58,12 @@
 								</div>
 
 							</div>
-							<div>{{ recette.saison }}</div>
+								<div>
+								{% for saison in recette.saison %}
+									<div>{{ saison }}
+									</div>
+								{% endfor %}
+							</div>
 						</div>
 
 					</a>

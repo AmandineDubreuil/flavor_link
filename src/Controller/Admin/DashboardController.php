@@ -6,6 +6,7 @@ use App\Entity\User;
 use App\Entity\Contacts;
 use App\Entity\Ingredients;
 use App\Entity\CategoriesIngr;
+use App\Entity\CategoriesRecette;
 use App\Entity\SuperCategorieIngr;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -38,6 +39,8 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Super Catégories Ingrédients', 'fa-solid fa-bowl-rice', SuperCategorieIngr::class);
         yield MenuItem::linkToCrud('Catégories Ingrédients', 'fa-solid fa-bowl-rice', CategoriesIngr::class);
         yield MenuItem::linkToCrud('Ingrédients', 'fa-solid fa-bowl-rice', Ingredients::class);
+        yield MenuItem::linkToCrud('Catégories Recettes', 'fa-solid fa-book', CategoriesRecette::class);
+
         yield MenuItem::linkToCrud('Emails', 'fa-solid fa-envelope', Contacts::class);
         //  yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
     }
